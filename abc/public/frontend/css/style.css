@@ -1,0 +1,2335 @@
+/* global css start */
+html{
+	scroll-behavior: smooth;
+}
+body{
+	background: #f7f7f7;
+}
+@font-face{
+	font-family: Now;
+	src: url(fonts/Now-Black.otf) format("truetype");
+}
+h1{
+	font-family: Now;
+	font-size: 48px;
+	font-weight: 600;
+	text-transform: capitalize;
+	padding: 0;
+	margin: 0;
+}
+h2{
+	font-family: 'Work Sans', sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	text-transform:capitalize;
+	padding: 0;
+	margin: 0;
+}
+p{
+	font-family: Now;
+	font-size: 14px;
+	text-transform:capitalize;
+	color: #a2abb0;
+	padding: 0;
+	margin: 0;
+}
+a{
+	font-family: Now;
+	font-size: 16px;
+	text-transform:capitalize;
+	color: #a2abb0;
+	padding: 0;
+	margin: 0;
+}
+a:hover{
+	text-decoration: none;
+	color: unset;
+}
+ul{
+	padding: 0;
+}
+li{
+    font-family: Now;
+	font-size: 14px;
+	list-style: none;
+	text-transform:capitalize;
+	color: #a2abb0;
+	padding: 0;
+	display: inline;
+}
+.btn{
+	font-family: Now;
+	font-size: 14px;
+	text-transform:capitalize;
+	color: #a2abb0;
+	padding: 0;
+	margin: 0;
+}
+button{
+    font-family: Now;
+}
+label{
+	font-family: Now;
+	font-size: 14px;
+	text-transform:capitalize;
+	color: #a2abb0;
+	padding: 0;
+	margin: 0;
+}
+
+.for-mob{
+	display: none;
+}
+.owl-theme .owl-dots .owl-dot span:focus{
+	border: none;
+}
+.owl-theme .owl-dots .owl-dot:focus{
+	outline: unset;
+}
+.section-padding{
+	padding: 50px 0;
+	overflow: hidden;
+}
+.title-row h2{
+	text-align: center;
+	color: #f06039;
+}
+.go-to-top{
+	position: fixed;
+	bottom: 10%;
+	display: none;
+	right: 30px;
+	z-index: 5;
+}
+.go-to-top .fas{
+	background: #f06039;
+    color: white;
+    padding: 15px;
+}
+.go-to-top .fas:hover{
+	background: white;
+    color: #f06039;
+}
+.activePage{
+	color: red!important;
+}
+.page-indicator{
+	background: #f06039;
+	padding: 30px 0;
+	margin-top: 100px;
+}
+.page-indicator ul {
+	margin: 0;
+}
+.page-indicator ul li{
+	display: inline;
+	margin: 0 10px;
+}
+.page-indicator ul li a{
+	color: white;
+}
+/* global css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-pc{
+	padding: 25px 0;
+	position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 7;
+}
+.navbar-item-pc ul{
+	text-align: right;
+	margin-top: 15px;
+}
+.navbar-item-pc ul li{
+	margin: 0 10px;
+}
+.navbar-item-pc ul li a{
+	color: #1E1E1E;
+}
+.navbar-item-pc ul li a:hover{
+	color: #F06039;
+}
+.cart{
+	position: relative;
+}
+.cart-number{
+	position: absolute;
+    left: 100%;
+    bottom: 85%;
+    background: #F06039;
+    color: white;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    padding: 2px 2px 0px 4px;
+    border-radius: 100%;
+}
+.cart-number p{
+	color: white;
+}
+.search-pc{
+	margin-top: 15px;
+	position: relative;
+}
+.search-pc .form-control{
+	border-radius: 0;
+	border: none;
+	box-shadow: none;
+}
+.search-pc button{
+	position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border: none;
+    background: #F9A954;
+    color: white;
+    width: 35px;
+    text-align: center;
+}
+.search-pc button:focus{
+	border: none;
+	box-shadow: none;
+	outline: none;
+}
+.navbar-mob .bar{
+	text-align: right;
+}
+.navbar-mob .bar .fas{
+	font-size: 30px;
+	position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.shop-page-nav{
+	position: unset;
+}
+.shop-page-nav img{
+	position: absolute;
+	top: 0;
+	z-index: 5;
+}
+.parent-nav{
+	position: relative;
+}
+.child-nav{
+	position: absolute;
+    left: 0;
+    width: max-content;
+    z-index: 5;
+    background: white;
+    padding: 15px 0px;
+    box-shadow: rgb(162, 171, 176) 0px 0px 3px 0px;
+    transform: translateY(20%);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease-in-out;
+}
+.parent-nav:hover .child-nav{
+	transform: translateY(0%);
+    opacity: 1;
+    visibility: unset;
+    transition: 0.4s ease-in-out;
+}
+.child-nav ul{
+	text-align: left;
+	margin: 0;
+}
+.child-nav ul li{
+	display: block;
+	margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* navbar mob css start */
+.navbar-mob{
+	background:rgba(255,255,255,0.9);
+}
+.navbar-mob .col-7{
+	text-align: right;
+}
+.navbar-mob .col-7 .fas{
+	font-size: 30px;
+	margin-top: 5px;
+}
+.navbar-ite-mob {
+	padding: 15px;
+	border-bottom: 2px solid #f06039;
+	display: none;
+}
+.navbar-ite-mob ul li{
+	display: block!important;
+	margin: 15px 0;
+}
+.navbar-ite-mob .cart-number{
+	left: 13%;
+}
+.navbar-ite-mob ul li a{
+	color: #1e1e1e;
+}
+.cart-mob {
+	position: fixed;
+    bottom: 0;
+    z-index: 10;
+    background: white;
+    width: 100%;
+    border-top: 2px solid #fbbd56;
+    padding: 15px;
+    text-align: center;
+}
+.cart-mob .cart-number{
+    left: 65%;
+    top: 5px;
+    z-index: 10;
+} 
+.cart-mob a{
+	color: #000000;
+}
+.megamenu ul{
+	margin-left: 15px;
+}
+.megamenu{
+	display: none;
+}
+/* navbar mob css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************************************  HOME PAGE CSS START   *************************************************/
+
+
+/* banner css start */
+.banner{
+	height: 100vh;
+	background-repeat: no-repeat!important;
+	background-position: inherit;
+    background-size: contain;
+	position: relative;
+}
+.banner .container{
+	height: 100vh;
+    position: relative;
+}
+.banner .container .banner-row{
+	position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.banner-carousel .item h1{
+	font-weight: 700;
+}
+.banner-carousel .item h1 span{
+	color: #ec1c25;
+}
+.banner-carousel .item p{
+	margin: 15px 0;
+	text-align: justify;
+}
+.banner-carousel .item a{
+	background: linear-gradient(to bottom, #fbba55 0%, #fc5856 100%);
+	padding: 10px 15px;
+	color: white;
+	border-radius: 30px;
+	display: inline-block;
+}
+.banner-carousel .owl-dots 
+.owl-dot.active span, 
+.banner-carousel .owl-dots .owl-dot:hover span{
+	background: white;
+	border: 10px solid #000000;
+	padding: 5px;
+}
+.banner-carousel .owl-dots .owl-dot span{
+	border: 10px solid transparent;
+	padding: 5px;
+	background: #000000;
+}
+.search-product{
+	position: relative;
+	margin: 15px 0;
+}
+.search-product .form-control{
+	border-radius: 30px;
+	box-shadow: none;
+	outline: none;
+	border:none;
+	box-shadow: #afa8a8 0px 0px 7px -2px;
+}
+.search-product .form-control:focus{
+	border: 1px solid #f06039;
+	border:none;
+}
+.search-product .search-btn{
+	color: white;
+	background: #ff875e;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20%;
+	height: 100%;
+	border-radius: 30px;
+	border: none;
+	outline: none;
+}
+/* banner css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* second section css start */
+.second-section {
+	background: white;
+}
+.second-section-right{
+	position: relative;
+}
+.second-section-right p{
+	margin: 15px 0;
+	text-align: justify;
+}
+.shrape-div{
+	background-image: url(images/design_1.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 25vh;
+    position: relative;
+    padding: 15px;
+}
+.shrape-div-text h2{
+	color: #f06039;
+}
+.shrape-div-text p{
+	margin: 15px 0;
+}
+.shrape-div img{
+	width: 25%;
+    position: absolute;
+    right: 15px;
+    bottom: -20px;
+}
+.left-div{
+	margin-top: 15vh;
+}
+.top-div{
+	margin-bottom: 25px;
+}
+.top-div .shrape-div-img img{
+	width: 70%;
+}
+.second-section-right-box{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* second section css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* third section start */
+.third-section{
+	background: #f7f7f7;
+}
+.third-section-bottom-row{
+	margin-top: 50px;
+}
+.third-section-left .right ul li, .third-section-right .right ul li{
+	display: block;
+	margin: 10px 0;
+	color: #a2abb0;
+}
+.third-section-left .right p, .third-section-right .right p{
+	color: #f06039;
+	margin-bottom: 15px;
+}
+.third-section-left .right{
+	/*padding: 20px;*/
+}
+.third-section-left .right a, .third-section-right .right a{
+	background: linear-gradient(to bottom, #fbba55 0%, #fc5856 100%);
+	padding: 10px 15px;
+	color: white;
+	border-radius: 30px;
+}
+.third-section-left, .third-section-right{
+	background: white;
+    padding: 15px;
+    box-shadow: #f06039 0px 0px 5px -3px;
+}
+.third-section-left, .third-section-right{
+	margin: 15px 0;
+}
+.third-section-left .img-box, .third-section-right .img-box{
+	position: relative;
+}
+.third-section-left .img-box img, .third-section-right .img-box img{
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.home-product-carousel .owl-dots .owl-dot{
+    background: #fca456;
+    margin: 0 5px;
+    height: 5px;
+    width: 30px;
+    border-radius: 15px;
+}
+.home-product-carousel .owl-dots .owl-dot.active{
+    background: #fca456;
+    margin: 0 5px;
+    height: 5px;
+    width: 50px;
+    border-radius: 15px;
+}
+.home-product-carousel .owl-dots .owl-dot span{
+	background: unset!important;
+}
+.sort-row{
+	margin-bottom: 15px ;
+}
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+      padding: 0;
+      font-size: 14px;
+    border: none;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #ff6660;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 10px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 0px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+  height: inherit;
+  padding: 3px 0 0 10px;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #fe685a;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* third section end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* testimonial secion css start */
+.testimonial {
+	background: white;
+}
+.title-row .fa-quote-left{
+	font-size: 40px;
+    display: block;
+    text-align: center;
+    margin: 15px 0;
+    color: #f06039;
+}
+.testimonial-item p{
+	text-align: justify;
+}
+.t-qoute{
+    padding: 30px;
+    position: relative;
+}
+.t-qoute img{
+    position: absolute;
+    width: 3%!important;
+    top: 93%;
+    display: none!important;
+}
+.testimonial-item:hover .t-qoute img{
+    display: block!important;
+}
+.testimonial-item:hover .t-qoute{
+    background: #f06039;
+    color: white;
+}
+.testimonial-item-bottom-right p{
+	margin:10px 0;
+}
+.testimonial-item-bottom-right p span{
+	color: #f06039;
+}
+.testimonial-item-bottom-left{
+	background: #f06039;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.testimonial-item-bottom-left img{
+	border-radius: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.testimonial-item-bottom{
+	margin: 15px 0;
+}
+.testimonial-carousel .owl-dots .owl-dot {
+    display: inline-block;
+    zoom: 1;
+    border: 1px solid #0f3661;
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    border-radius: 100%;
+}
+.testimonial-carousel .owl-dots .owl-dot span{
+	background: none;
+}
+.testimonial-carousel .owl-dots .owl-dot.active span{
+	background: none;
+}
+.testimonial-carousel .owl-dots .owl-dot.active{
+	background: #0f3661;
+}
+.testimonial-carousel .owl-dots .owl-dot.active span, 
+.testimonial-carousel .owl-dots .owl-dot:hover span{
+	background: none!important;
+}
+/* testimonial secion css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* map section start */
+.map .col-md-6{
+	height: 50vh;
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+.map-right h2{
+	position: absolute;
+	top: 80%;
+	left: 10%;
+}
+.map-left{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 40%;
+}
+.map-left img{
+	display: block;
+    margin: 0 auto;
+}
+.map-left-bottom{
+	margin-top: 15px;
+	background: white;
+}
+.map-left-bottom .left{
+	background: #ff2020;
+}
+.map-left-bottom .right{
+	padding: 15px;
+}
+.map-left-bottom .right p span{
+	color: #ff2020;
+}
+/* map section end */
+
+
+/***************************************  HOME PAGE CSS START   ****************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************  ABOUT PAGE CSS START   *******************************************/
+
+
+
+
+/* about page css start */
+.about-banner{
+    height: 80vh!important;
+}
+.about-carousel .item .col-md-12{
+	padding: 30px;
+}
+.about-carousel .item h1{
+	font-weight: 700;
+	margin: 10px 0;
+}
+.about-carousel .owl-dots 
+.owl-dot.active span, 
+.about-carousel .owl-dots .owl-dot:hover span{
+	background: white;
+	border: 10px solid #000000;
+	padding: 5px;
+}
+.about-carousel .owl-dots .owl-dot span{
+	border: 10px solid transparent;
+	padding: 5px;
+	background: #000000;
+}
+
+/* about page css end */
+
+
+
+
+
+
+
+
+
+
+/* about-second start */
+.about-second{
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: right;
+    background-size: contain;
+}
+.about-second .left img{
+	width: 50%;
+	display: block;
+	margin: 0 auto;
+}
+.about-second .right ul{
+	margin: 15px 0;
+}
+.about-second .right ul li{
+	margin: 10px 0;
+	display: block;
+}
+.about-second .right h2 span{
+	color: #f06039;
+}
+.about-second .right ul li span{
+	color: #f06039;
+}
+/* about-second end */
+
+
+
+
+
+
+
+
+
+
+
+/* about page slider start */
+.about-slider{
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 100vh;
+}
+.about-carousel .left ul li{
+	display: inline;
+}
+.about-carousel .left ul li .fas{
+	color: #83ae49;
+}
+.about-carousel .left img{
+	width: 5%!important;
+	display: inline;
+}
+.about-carousel .left h2{
+	margin: 15px 0;
+	color: #fc6b5e;
+}
+.about-carousel .left p{
+	color: #000000;
+	text-align: justify;
+}
+.about-carousel .left a{
+	background: linear-gradient(to left, #ef7845 0%, #f36a68 100%);
+    padding: 15px 25px;
+    color: white;
+    border-radius: 30px;
+    display: inline-block;
+    margin-top: 15px;
+}
+.about-carousel .left{
+	    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+.about-carousel .right{
+	position: relative;
+}
+.about-carousel .right img{
+	display: block;
+	margin: 0 auto;
+}
+.about-carousel .right h1{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.about-carousel .owl-nav {
+    margin-top: 10px;
+    position: absolute;
+    top: 45%;
+    width: 100%;
+}
+.about-carousel .owl-nav .owl-next  span{
+	position: absolute;
+    right: 0;
+    color: white;
+    font-size: 50px;
+}
+.about-carousel .owl-nav .owl-prev  span{
+	position: absolute;
+    right: 100%;
+    color: white;
+    font-size: 50px;
+}
+/* about page slider end */
+
+
+
+
+
+
+
+
+
+
+
+
+/* about-member css start */
+.about-member{
+	background: #f6f6f6;
+}
+.about-member .title-row h1{
+	color: #000000;
+}
+.member-carousel-row{
+	margin-top: 30px;
+}
+.member-item h2{
+	margin: 15px 0;
+}
+.member-item p{
+	margin: 15px 0;
+	text-align: justify;
+}
+.member-item{
+	background: white;
+    padding: 15px;
+    transition: 0.4s ease-in-out;
+}
+.member-item ul li{
+	margin: 0 5px;
+}
+.member-item ul li a:hover{
+	color: #f97146;
+}
+.member-carousel .owl-nav {
+    margin-top: 10px;
+    position: absolute;
+    top: 45%;
+    width: 100%;
+}
+.member-carousel .owl-nav .owl-next  span{
+	position: absolute;
+    left: 100%;
+    color: #000000;
+    font-size: 50px;
+}
+.member-carousel .owl-nav .owl-prev  span{
+	position: absolute;
+    right: 100%;
+    color: #000000;
+    font-size: 50px;
+}
+
+/* about-member css end */
+
+
+
+
+
+
+
+
+
+/* third-section css start */
+.third-section{
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.about-third h2{
+    color: white;
+}
+.third-section ul{
+	margin-top: 35px;
+}
+.third-section ul li{
+	display: block;
+	color: white;
+	margin: 10px 0;
+	letter-spacing: 2px;
+}
+/* third-section css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* fourth-section css start */
+.fourth-section {
+	overflow: hidden;
+}
+.fourth-section .left{
+	position: relative;
+}
+.fourth-section .right-img{
+	position: absolute;
+    right: -35px;
+    top: -35px;
+    z-index: -1;
+}
+.fourth-section .main-img{
+	width: 100%;
+}
+.fourth-section .bottom-img{
+	position: absolute;
+    left: -35px;
+    bottom: -35px;
+    z-index: -1;
+}
+.fourth-section .right{
+	position: absolute;
+	left: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.fourth-section .right ul{
+	margin: 15px 0;
+}
+.fourth-section .right ul li{
+	display: block;
+	margin: 10px 0;
+}
+.fourth-section .right a{
+	background: linear-gradient(to left, #ef7845 0%, #f36a68 100%);
+	padding: 15px 25px;
+	color: white;
+	border-radius: 5px;
+	display: inline-block;
+}
+/* fourth-section css end */
+
+
+/* fifth section css start */
+.fifth-section{
+	overflow: hidden;
+}
+.fifth-section .title-row{
+	text-align: center;
+}
+.fifth-section .title-row p{
+	margin: 15px 0;
+}
+.fifth-section .right h2 span{
+	color: #f06039;
+}
+.fifth-section .right img{
+	width: 100%;
+}
+.relation-row{
+	margin-top: 30px;
+}
+.fifth-section .left{
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.fifth-section .left h2{
+	line-height: 30px;
+	text-align: justify;
+}
+/* fifth section css end */
+
+
+
+
+
+
+
+/***************************************  ABOUT PAGE CSS START   ****************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************  SHOP PAGE CSS START   ****************************************/
+.shop{
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 50vh;
+	position: relative;
+	overflow: hidden;
+}
+.shop .container{
+	height: 50vh;
+}
+.shop .row{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin: 15px 0;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Hide the browser's default checkbox */
+.check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 100%;
+}
+/* On mouse-over, add a grey background color */
+.check:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+/* When the checkbox is checked, add a blue background */
+.check input:checked ~ .checkmark {
+  background-color: #FE655D;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+  display: block;
+}
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+  	    left: 5px;
+    top: 2px;
+  	width: 5px;
+  	height: 10px;
+  	border: solid white;
+  	border-width: 0 3px 3px 0;
+  	-webkit-transform: rotate(45deg);
+  	-ms-transform: rotate(45deg);
+  	transform: rotate(45deg);
+}
+.shop-product .left ul li{
+	margin: 15px 0;
+}
+.shop-product .left{
+	background: white;
+    padding: 15px;
+    box-shadow: #A2ABB0 0px 0px 14px -5px;
+    margin: 15px 0;
+    position: absolute;
+    right: 100%;
+    top: 30px;
+        width: max-content;
+}
+.filter-category{
+	cursor: pointer;
+}
+.product-detail{
+	margin: 15px 0;
+}
+.product-detail a:hover{
+	color: #F06039;
+}
+.product-detail p span{
+	color: #F06039;
+}
+.product-image{
+	background: #EDEDED;
+    padding: 15px;
+    overflow: hidden;
+    position: relative;
+        height: 200px;
+    width: 100%;
+}
+.product-image img{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+}
+.product-detail-bottom{
+	display: flex;
+}
+.product-detail-bottom p{
+	width: 50%;
+}
+.product-detail-bottom ul{
+	width: 50%;
+	margin: -2px;
+	text-align: right;
+}
+.product-detail-bottom ul li{
+	font-size: 10px;
+	color: #FFC107;
+}
+.product-image a{
+	background: linear-gradient(to left, #EF7845 0%, #F36A68 100%);
+    padding: 10px 15px;
+    color: white;
+    border-radius: 5px;
+    position: absolute;
+    width: fit-content;
+    left: 50%;
+    font-size: 10px;
+    transition: 0.4s ease-in-out;
+    top: 1150%;
+    transform: translate(-50%,-50%);
+}
+.product-image p{
+	background: linear-gradient(to left, #EF7845 0%, #F36A68 100%);
+    padding: 10px 15px;
+    color: white;
+    border-radius: 5px;
+    position: absolute;
+    transform: translateY(-200%);
+    width: fit-content;
+    left: 15px;
+    font-size: 10px;
+    transition: 0.4s ease-in-out;
+    z-index: 2;
+}
+.product-item:hover .product-image a{
+	transition: 0.4s ease-in-out;
+	top: 85%;
+	transform: translate(-50%,-50%);
+}
+.product-item:hover .product-image p{
+	transform: translateY(0%);
+	transition: 0.4s ease-in-out;
+}
+.paginate-row{
+	padding: 30px 0;
+}
+.paginate-row ul{
+	text-align: center;
+}
+.paginate-row ul li a{
+	background: linear-gradient(to left, #EF7845 0%, #F36A68 100%);
+	padding: 10px;
+	color: white;
+}
+.shop-product{
+	position: relative;
+}
+.shop-product .preloader{
+	position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: white;
+}
+.shop-product .preloader img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.filter-category{
+	text-align: right;
+}
+.cat-form ul{
+	margin: 15px 0;
+}
+.cat-form ul li{
+	margin: 5px 0;
+}
+.cat-form ul li a:hover{
+    color : #ff875e;
+}
+/***************************************  SHOP PAGE CSS END   ****************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************  PRODUCT DETAILS PAGE CSS START   ****************************************/
+.thumbnail-image{
+	margin: 15px 0;
+}
+.thumbnail-image img{
+	width: 100%;
+    height: 70px;
+}
+.img-two, .img-three{
+	display: none;
+}
+.main-img img{
+	width: 100%;
+	    height: 200px;
+}
+.thumbnail-image .col-md-4, .thumbnail-image .col-4{
+	cursor: pointer;
+}
+.product-detail .right p{
+	margin: 15px 0;
+}
+.product-detail .right ul li{
+	display: block;
+	margin: 15px 0;
+}
+.cart-add form .form-group .form-control:focus{
+	box-shadow: none!important;
+	border: 1px solid #f06039;
+	outline: none;
+}
+.add-to-cart .btn{
+	background: linear-gradient(to left, #ef7845 0%, #f36a68 100%);
+	padding: 7px 20px;
+	color: white;
+	border-radius: 5px;
+}
+.add-to-cart .btn:focus{
+	border: none;
+	box-shadow: none;
+	outline: none;
+}
+.description-row{
+	margin: 30px 0;
+	text-align: center;
+	overflow: hidden;
+}
+.description-row .title p{
+	display: inline-block;
+	background: linear-gradient(to left, #ef7845 0%, #f36a68 100%);
+	padding: 15px 20px;
+	color: white;
+	border-radius: 5px;
+	position: relative;
+}
+.description-row .title p::before{
+	position: absolute;
+    content: "";
+    background: #e7e9ea;
+    height: 1px;
+    width: 1000px;
+    right: 105%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.description-row .title p::after{
+	position: absolute;
+    content: "";
+    background: #e7e9ea;
+    height: 1px;
+    width: 1000px;
+    left: 105%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.description-row .info{
+	margin: 15px 0;
+}
+.description-row .info{
+	text-align: left;
+}
+.description-row .info p{
+	text-align: justify;
+	margin: 15px 0;
+	color: #a2abb0;
+}
+.description-row{
+	border-bottom: 1px solid #e7e9ea;
+}
+.related-product-box .product-image a{
+	background: linear-gradient(to left, #ef7845 0%, #f36a68 100%);
+    padding: 10px 15px;
+    color: white;
+    border-radius: 5px;
+    position: absolute;
+    width: fit-content;
+    left: 50%;
+    font-size: 10px;
+    transition: 0.4s ease-in-out;
+    top: 1150%;
+    transform: translate(-50%,-50%);
+}
+.related-product-box:hover .product-image a{
+	transition: 0.4s ease-in-out;
+	top: 85%;
+	transform: translate(-50%,-50%);
+}
+.related-product .title-row{
+	margin-bottom: 15px;
+}
+/***************************************  PRODUCT DETAILS PAGE CSS END   ****************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************  USER PAGE CSS START   ****************************************/
+.user-section{
+	padding: 150px 0;
+}
+.user-section .register-box h2{
+	color: #f06039;
+	text-align: center;
+}
+.user-section .register-box{
+	padding: 30px;
+}
+.user-section .user-form .form-group{
+	margin: 15px 0;
+}
+.user-section .user-form label{
+	margin: 10px 0; 
+	color: #f06039;
+}
+.user-section .user-form .form-control{
+	border: none;
+	box-shadow: none;
+	background: transparent!important;
+	border-bottom: 1px solid #a2abb0;
+}
+.user-section .user-form .form-control:focus{
+	border-bottom: 1px solid #f06039;
+}
+.user-section .user-form .submit-btn{
+	text-align: center;
+}
+.user-section .user-form .submit-btn .btn{
+	background: #f06039;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+.user-section .register .bottom{
+	background: #f06039;
+	height: 50px;
+	    margin-left: 15px;
+	    border-radius: 0px 0px 0px 10px;
+}
+.user-section .user-box{
+	    background: white;
+    box-shadow: #a2abb0 0px 0px 12px -5px;
+        border-radius: 10px;
+}
+
+.user-section .register-box::after{
+	content: "";
+	position: absolute;
+	left: 100%;
+	background: #f06039;
+	width: 3px;
+	height: 100%;
+	top: 0;
+}
+.user-section .register{
+	padding: 0;
+}
+.user-section .login-box h2{
+	color: #f06039;
+	text-align: center;
+}
+.user-section .login-box{
+	padding: 30px;
+}
+.user-section .login-box .logo img{
+	display: block;
+	margin: 0 auto;
+}
+/***************************************  USER PAGE CSS END   ****************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************************  CHECKOUT PAGE CSS START   ****************************************/
+.checkout {
+	padding-top: 150px;
+}
+.container .form-outer{
+	width: 100%;
+	overflow: hidden;
+}
+.checkout .inline{
+	display: inline;
+}
+.form-outer .form{
+	display: flex;
+	width: 400%;
+}
+.form-outer .form .page{
+	width: 25%;
+	transition: 0.4s ease-in-out;
+	overflow: hidden;
+	height: fit-content;
+}
+.form-outer .form .page .title{
+	text-align: left;
+}
+.form-outer .form .page .form-group{
+	width: 100%;
+}
+.form-outer .form .page .form-group input{
+	height: 100%;
+	width: 100%;
+}
+.container .progress-bar{
+	background: unset;
+	display: -webkit-inline-box;
+	margin: 40px 0;
+	width: 100%;
+}
+.container .progress-bar .step{
+	text-align: center;
+	width: 50%;
+	position: relative;
+}
+.check .fas{
+	color: black;
+}
+.container .progress-bar .step .bullet{
+	border: 2px solid #E5E5E5;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    position: relative;
+    transition: 0.2s ease-in-out;
+    height: 50px;
+    width: 50px;
+}
+.progress-bar .step .bullet.active{
+	border-color: #F06039;
+	position: relative;
+}
+.progress-bar .step .bullet span{
+	height: 80%;
+    background: #E5E5E5;
+    padding: 5px 7px;
+    border-radius: 50%;
+    display: block;
+    text-align: left;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 9px;
+    color: white;
+}
+.progress-bar .step .step-box{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.progress-bar .step .bullet span.active{
+	display: none;
+}
+.container .progress-bar .step .check{
+	display: inline-block;
+}
+/*.progress-bar .step:last-child .bullet::before,
+.progress-bar .step:last-child .bullet::after{
+	display: none;
+}*/
+.progress-bar .step p.active{
+	color: #F06039;
+}
+/*.progress-bar .step .bullet::before,
+.progress-bar .step .bullet::after{
+	content: "";
+    position: absolute;
+    background: #E5E5E5;
+    width: 100%;
+    height: 2px;
+    left: 100%;
+    top: 50%;
+}*/
+.progress-bar .step.active::before,
+.progress-bar .step.active::after{
+	border-color: yellow;
+	background: yellow;
+	position: relative;
+}
+.container .progress-bar .step:last-child::before,
+.container .progress-bar .step:last-child::after{
+	display: none;
+}
+.container .progress-bar .step::before,
+.container .progress-bar .step::after{
+	content: "";
+    position: absolute;
+    background: #E5E5E5;
+    width: 75%;
+    height: 4px;
+    left: 63%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.container .progress-bar .step.active::after{
+	background: #F06039;
+	transform-origin: left;
+	animation: animate 0.3s linear forwards;
+	transform: scaleX(0);
+	z-index: 5;
+}
+@keyframes animate{
+100%{
+	transform: scaleX(1);
+}
+}
+.container .progress-bar .step .check{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    top: 60%;
+}
+.progress-bar .step .bullet.active span{
+	display: none;
+}
+.progress-bar .step .check .fas{
+	color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.progress-bar .step .check.active{
+	display: block;
+    height: 80%;
+    background: #F06039;
+    padding: 5px 7px;
+    border-radius: 50%;
+    width: 80%;
+    top: 17%;
+    color: white;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.page{
+	border: 1px solid #E5E5E5 ;
+	padding: 15px;
+}
+.form-outer form .page .form-group input:focus{
+	box-shadow: none;
+}
+.address-form input{
+	margin: 15px 0;
+}
+.form-group p{
+	display: inline;
+    background: linear-gradient(to bottom, #F06039 0%, #A2ABB0 100%);
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.Submit{
+	display: inline!important;
+    width: unset!important;
+    background: linear-gradient(to bottom, #F06039 0%, #A2ABB0 100%);
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: unset;
+    font-family: 'Roboto', sans-serif;
+	text-transform: capitalize;
+	font-size: 13px;
+	color: white;
+}
+.payment-details{
+	margin: 15px 0;
+}
+.review-order{
+	padding: unset;
+}
+.review-order .row{
+	padding: 15px;
+}
+.review-order .border{
+	padding: 15px;
+	border: none!important;
+    border-bottom: 1px solid #E5E5E5!important;
+}
+.review-product-info p{
+	color: #F06039 ;
+	font-weight: 600;
+}
+.number-spin{
+	border: 1px solid #A2ABB0;
+	border-radius: 3px;
+}
+.number-spin:focus{
+	box-shadow: none;
+	outline: none;
+	border: 1px solid #F06039;
+}
+.updated-price p{
+	color: #F06039 ;
+	font-weight: 600;
+}
+.review-order table tbody tr{
+	margin: 15px 0;
+}
+.review-order table tbody td{
+	width: 20%;
+	text-align: center;
+}
+.updated-price a:hover{
+	color: #F06039;
+}
+
+.update-qty a{
+	border: none;
+    background: #F97942;
+    color: white!important;
+    padding: 10px 15px;
+}
+.custom_checkbox {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+    margin-bottom: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Hide the browser's default checkbox */
+.custom_checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+    width: 15px;
+  background-color: #F06039;
+  border-radius: 3px;
+}
+/* On mouse-over, add a grey background color */
+.custom_checkbox:hover input ~ .checkmark {
+  background-color: #F06039 ;
+}
+/* When the checkbox is checked, add a blue background */
+.custom_checkbox input:checked ~ .checkmark {
+  background-color: #F06039 ;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the checkmark when checked */
+.custom_checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+/* Style the checkmark/indicator */
+.custom_checkbox .checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  border: none;
+  padding: 0;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+.select-selected {
+  background-color: DodgerBlue;
+}
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+ color: #989898;
+  padding: 5px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #E5E5E5;
+ 	background: #E5E5E5;
+}
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  background: #F06039;
+  color: white;
+}
+.form-outer form .page .form-group .form-control{
+	border: none;
+    border-bottom: 1px solid #F06039;
+    background: none;
+    box-shadow: none;
+        margin: 15px 0;
+}
+.mystyle{
+	background:#ffe0e0;
+}
+.form-outer form .page .form-group label{
+	margin: 10px 0;
+}
+.nextBtn .submit{
+	display: inline;
+    background: linear-gradient(to bottom, #F06039 0%, #A2ABB0 100%);
+    color: white;
+    padding: 8px 20px;
+    cursor: pointer;
+    border: none;
+}
+.update-qty button{
+    background: linear-gradient(to bottom, #fbba55 0%, #fc5856 100%);
+    padding: 7px 15px;
+        border: none;
+    color: white;
+}
+.update-qty button:focus{
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+/******************************** checkout page css end *************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************** CONTACT page css START *************************************/
+.contact .left img{
+	width: 100%;
+}
+.contact .left{
+	box-shadow: #dedbdb 0px 15px 14px -4px;
+}
+.contact .right p{
+	margin: 15px 0;
+}
+.contact .right{
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	transform: translateY(-50%);
+	width: 100%;
+}
+.contact-form-section .form-control{
+	border: none;
+	box-shadow: none;
+	border-bottom: 1px solid #f06039;
+	background : none;
+}
+.contact-form-section .send-msg{
+	border: none;
+	background: #f06039!important;
+	color: white;
+	border-radius: 30px;
+}
+.send-msg:hover{
+	background: white!important;
+	color: #f06039;
+}
+.contact-page-info{
+	background: #f06039;
+}
+.contact-info-item{
+	text-align: center;
+}
+.contact-info-item h2, .contact-info-item p{
+	color: white;;
+}
+.contact-info-item p{
+	margin: 10px 0;
+}
+.contact-form-section .left h2{
+	color: #f06039;
+}
+.contact-with-people{
+	margin: 15px 0;
+}
+.contact-with-people .right h2{
+	color: #f06039;
+}
+.contact-with-people .right p{
+	margin: 10px 0;
+}
+/******************************** CONTACT page css end *************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* gallery css start */
+.gallery .title-row h1{
+	text-align: left;
+	color: #000000;
+}
+.photo-gallery{
+	margin-top: 30px;
+}
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 33.33%;
+  max-width: 33.33%;
+  padding: 0 4px;
+}
+
+.column img {
+  vertical-align: middle;
+  width: 100%;
+}
+.gallery-image{
+	position: relative;
+	    margin: 8px 0;
+}
+.gallery-hover{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(1,1,1,0.8);
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.4s ease-in-out;
+}
+.gallery-image:hover .gallery-hover{
+	opacity: 1;
+	visibility: unset;
+	transition: 0.4s ease-in-out;
+}
+.gallery-hover .fas{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: white;
+	font-size: 30px;
+}
+/* gallery css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer section start */
+footer{
+	background:#ffffff1f;
+	padding: 30px 0;
+}
+.footer-title img{
+	display: block;
+	margin: 0 auto;
+}
+.footer-title p{
+	text-align: center;
+	margin: 15px 0;
+}
+.footer-middle .left ul, .footer-middle .right ul{
+	text-align: center;
+}
+.footer-middle .left ul li, .footer-middle .right ul li{
+	display: block;
+	margin: 10px 0;
+}
+.footer-middle .left ul li a:hover, 
+.footer-middle .right ul li a:hover{
+	text-decoration: underline;
+	color: #f97942;
+}
+.footer-middle .col-md-6{
+	position: relative;
+}
+.footer-middle .middle{
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.footer-middle .middle .form-group{
+	position: relative;
+}
+.footer-middle .middle .form-control{
+	border: 1px solid #f97942;
+	border-radius: unset;
+}
+.footer-middle .middle .form-control:focus{
+	outline: none;
+	box-shadow: none;
+}
+.footer-middle .middle .form-group{
+	margin-bottom: unset;
+}
+.footer-middle .middle .form-group .submit-btn{
+	background: #f97942;
+    color: white;
+    border: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 70%;
+}
+.footer-middle .middle .form-group .submit-btn:focus{
+	outline: none;
+	border: none;
+}
+.footer-middle .middle .form-group .submit-btn:hover{
+	background: white;
+	color: #f97942;
+}
+.footer-bottom ul{
+	text-align: center;
+}
+.footer-bottom ul li{
+	margin: 0 10px;
+}
+.footer-bottom ul li .fab{
+	border: 1px solid #a2abb0;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    padding: 5px;
+}
+.footer-bottom ul li .fab:hover{
+	color: #f97942;
+}
+/* footer section end */
