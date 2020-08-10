@@ -7,18 +7,19 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="#">
-                <!-- Logo icon -->
-                <b class="logo-icon p-l-10">
-                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                    <!-- Dark Logo icon -->
-                    <img src="{{ asset('backend/assets/images/logo-icon.png') }}" alt="homepage" class="light-logo" />
-                </b>
-                <!--End Logo icon -->
-                    <!-- Logo text -->
+            <a class="navbar-brand" href="{{ route('dashboard') }}" style="margin-top: 15px">
                 <span class="logo-text">
-                        <!-- dark Logo text -->
-                        <img src="{{ asset('backend/assets/images/logo-text.png')}}" alt="homepage" class="light-logo" />
+                    <!-- dark Logo text -->
+                     @foreach( $logos as $logo )
+                     @if( $logo->image == NULL )
+                        <div class="alert alert-warning">
+                        No Image uploaded
+                        </div>
+                     @else
+                     <img src="{{ asset('images/logo/' . $logo->image) }}" width="100%" alt="homepage" class="light-logo" />
+                     @endif
+                    
+                    @endforeach
                 </span>
                 <!-- Logo icon -->
                 <!-- <b class="logo-icon"> -->
@@ -146,7 +147,12 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout
+                        </a>
                         <div class="dropdown-divider"></div>
                         <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
                     </div>
