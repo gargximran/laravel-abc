@@ -5,51 +5,33 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('backend_dashboard')}}" aria-expanded="false">
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
-                        <i class="mdi mdi-human-male"></i>
-                        <span class="hide-menu">Employee</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('product_show_backend')}}" aria-expanded="false">
                         <i class="mdi mdi-cart-outline"></i>
-                        <span class="hide-menu">Manage Customers</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
-                        <i class="mdi mdi-truck-delivery"></i>
-                        <span class="hide-menu">Manage Supplier</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
-                        <i class="mdi mdi-tag"></i>
-                        <span class="hide-menu">Manage Brand</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
-                        <i class="mdi mdi-umbrella"></i>
-                        <span class="hide-menu">Inventories</span>
+                        <span class="hide-menu"> Manage Product</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> 
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-receipt"></i>
-                        <span class="hide-menu">Buy Action </span>
+                        <span class="hide-menu"> Manage Category </span>
                     </a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item ml-3">
-                            <a href="" class="sidebar-link">
+                            <a href="{{route('parent_category_show')}}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
-                                <span class="hide-menu"> Import Inventory </span>
+                                <span class="hide-menu"> Parent Category </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item ml-3">
+                            <a href="{{route('child_category_show')}}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu"> Sub Category </span>
                             </a>
                         </li>
                     </ul>

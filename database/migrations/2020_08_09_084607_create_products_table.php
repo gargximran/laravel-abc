@@ -22,11 +22,13 @@ class CreateProductsTable extends Migration
             $table->integer('regular_price')->unsigned();
             $table->integer('offer_price')->default(0)->unsigned();
             $table->string('model')->nullable();
+            $table->string('size');
             $table->string('code')->unique();
             $table->boolean('status')->default(true);
             $table->text('specification')->nullable();
             $table->text('description')->nullable();
             $table->integer('quantity')->default(0)->unsigned();
+            $table->boolean('exclusive')->default(false);
             $table->timestamps();
         });
     }

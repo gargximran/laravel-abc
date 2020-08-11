@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Category;
 use App\Models\Backend\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::orderBy('id', 'desc')->get();
+        return view('backend.pages.product.index', compact('products'));
     }
 
     /**
@@ -25,7 +27,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::where('category_id', 0)->get();
+        return view('backend.pages.product.add', compact('categories'));
+
     }
 
     /**

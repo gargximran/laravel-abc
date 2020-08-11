@@ -53,6 +53,8 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     @include('backend.include.script')
+
+    {!! Toastr::message() !!}
     
 </body>
 </html>

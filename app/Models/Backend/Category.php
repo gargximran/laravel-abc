@@ -13,7 +13,7 @@ class Category extends Model
     protected $fillable = ['name', 'category_id'];
 
     public function parent(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class,'category_id', 'id');
     }
 
     public function child(){

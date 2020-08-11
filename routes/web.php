@@ -30,9 +30,29 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->namespace('Backend')->group(function(){
 
     //home page route
-    Route::get('/', function(){
-        return view('backend.pages.home');
+    Route::get('/', 'DashboardController@index')->name('backend_dashboard');
+
+    //category Management
+    Route::prefix('category')->group(function(){
+        Route::get('/parent', 'CategoryController@indexParent')->name('parent_category_show');
+        Route::post('/parent', 'CategoryController@storeParent')->name('parent_category_store');
+        Route::post('/parent/{category:id}/update', 'CategoryController@updateParent')->name('parent_category_update');
+
+
+
+        Route::get('/child', 'CategoryController@indexChild')->name('child_category_show');
+        Route::post('/child', 'CategoryController@storeChild')->name('child_category_store');
+        Route::post('/child/{category:id}/update', 'CategoryController@updateChild')->name('child_category_update');
     });
+
+
+
+    //product management
+    Route::prefix('product')->group(function(){
+        Route::get('/', 'ProductController@index')->name('product_show_backend');
+        Route::get('/add', 'ProductController@create')->name('product_create_backend');
+    });
+    
 
 
 });
@@ -80,10 +100,3 @@ Route::get('/about','Frontend\FrontendController@about')->name('about');
 //shop page route
 Route::get('/shop','Frontend\FrontendController@shop')->name('shop');
 
-//product detail page route
-//Route::get('/productDetails','Frontend\FrontendController@shop')->name('shop');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
