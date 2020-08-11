@@ -5,10 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inventory</title>
+    <title>ABC-Admin Panel</title>
+
+    <!-- Favicon -->
+    @foreach( $favs as $fav )
+    <link type="image/gif" rel="shortcut icon" href="{{ asset('images/fav/' . $fav->image) }}">
+    @endforeach
+
+
+    <!--- Font Awesome CSS 5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <!-- Custom CSS -->
-    <link href="{{ asset('backend/assets/libs/flot/css/float-chart.css') }}" rel="stylesheet">
+
     @yield('per_page_css')
+    <link href="{{ asset('backend/assets/libs/flot/css/float-chart.css') }}" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/dist/css/custom.css') }}" rel="stylesheet">
