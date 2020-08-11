@@ -77,7 +77,6 @@ Route::prefix('admin')->namespace('Backend')->group(function(){
 
 
 
-
     //home page route
     Route::get('/', 'DashboardController@index')->name('backend_dashboard');
 
