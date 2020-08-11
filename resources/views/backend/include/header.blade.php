@@ -7,7 +7,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="{{ route('dashboard') }}" style="margin-top: 15px">
+            <a class="navbar-brand" href="{{ route('backend_dashboard') }}" style="margin-top: 15px">
 
                 <span class="logo-text">
                     <!-- dark Logo text -->
