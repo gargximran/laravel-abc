@@ -7,7 +7,7 @@
     <!-- title row start -->
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Manage Home Page</h4>
+            <h4 class="page-title">Manage About Page</h4>
         </div>
     </div>
     <!-- title row end -->
@@ -15,9 +15,9 @@
     <div class="row">
         <div class="col-md-12">
             <!-- add message -->
-            @if( session()->has('message') )
+            @if( session()->has('create') )
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Congratulation!</strong> {{ session()->get('message') }}
+                <strong>Congratulation!</strong> {{ session()->get('create') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -56,6 +56,8 @@
         </div>
     </div>
 
+
+
     <!-- banner card start -->
     <div class="row">
         <div class="col-md-12">
@@ -68,38 +70,26 @@
                         </div>
                     </div>
 
-                    <!-- add homebanner row start -->
+                    <!-- add row start -->
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#addhomebanner">Add Banner</button>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addbanner">Add New banner</button>
                             <!-- Modal -->
-                            <div class="modal fade" id="addhomebanner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="addbanner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add New homebanner</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New banner</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('homebanner.create') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('aboutbanner.create') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                             <div class="form-group">
-                                                <label>Title</label>
+                                                <label>Banner Title</label>
                                                 <input type="text" class="form-control" name="title" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea name="description" rows="2" class="form-control"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Link</label>
-                                                <input type="text" class="form-control" name="link" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Add homebanner</label>
-                                                <input type="file" class="form-control-file" name="image" required>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">Add</button>
@@ -114,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- add homebanner row end -->
+                    <!-- add row end -->
 
                     <!-- manage row start -->
                     <div class="row">
@@ -123,10 +113,7 @@
                                 <thead class="text-center">
                                     <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">Image</th>
                                     <th scope="col">Title</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Link</th>
                                     <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -134,33 +121,28 @@
                                     @php 
                                         $i = 1 ;
                                     @endphp
-                                    @foreach( $homebanners as $homebanner )
+                                    @foreach( $banners as $banner )
                                     <tr class="text-center">
                                         <th scope="row">{{ $i }}</th>
-                                        <td>
-                                            <img src="{{ asset('images/banner/' . $homebanner->image ) }}" class="img-fluid" width="50px"  alt="">
-                                        </td>
-                                        <td>{{ $homebanner->title }}</td>
-                                        <td>{{ $homebanner->description }}</td>
-                                        <td>{{ $homebanner->link }}</td>
+                                        <td>{{ $banner->title }}</td>
                                         <td>
 
                                             <!-- edit modal start -->
-                                            <a class="btn btn-primary" href="{{ route('homebanner.edit', $homebanner->slug) }}">Edit</a>
+                                            <a class="btn btn-primary" href="{{ route('aboutbanner.edit', $banner->id) }}">Edit</a>
 
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deletehomebanner">Delete</button>
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deletebanner">Delete</button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deletehomebanner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="deletebanner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this homebanner?</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this banner?</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form action="{{ route('homebanner.delete', $homebanner->slug) }}" method="POST">
+                                                        <form action="{{ route('aboutbanner.delete', $banner->id) }}" method="POST">
                                                             @csrf
                                                             <button type="submit" class="btn btn-success">Yes</button>
                                                         </form>
@@ -198,240 +180,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- display section card start -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card" >
-                <div class="card-body" style="overflow: scroll;height: 500px;">
-                    
-                    <div class="row">
-                        <div classcol-md-12>
-                            <h5>Manage Display Section</h5>
-                        </div>
-                    </div>
-                    
-                    <!-- add  row start -->
-                    <div class="row">
-                        <div class="col-md-12 text-right">
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#addhomedisplay">Add Display Item</button>
-                            <!-- Modal -->
-                            <div class="modal fade bd-example-modal-lg" id="addhomedisplay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add New Display</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('homedisplay.create') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-
-                                            <!-- display item row start -->
-                                            <div class="row">
-
-                                                <!-- display one start -->
-                                                <div class="col-md-4">
-                                                    <h5 class="text-left">Display One</h5>
-                                                    <div class="form-group">
-                                                        <label>Title</label>
-                                                        <input type="text" class="form-control" name="titleOne" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea name="descriptionOne" rows="0" class="form-control"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Image</label>
-                                                        <input type="file" class="form-control-file" name="imageOne" required>
-                                                    </div>
-                                                </div>
-                                                <!-- display one end -->
-
-                                                <!-- display two start -->
-                                                <div class="col-md-4">
-                                                    <h5 class="text-left">Display Two</h5>
-                                                    <div class="form-group">
-                                                        <label>Title</label>
-                                                        <input type="text" class="form-control" name="titleTwo" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea name="descriptionTwo" rows="0" class="form-control"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Image</label>
-                                                        <input type="file" class="form-control-file" name="imageTwo" required>
-                                                    </div>
-                                                </div>
-                                                <!-- display two end -->
-
-                                                <!-- display three start -->
-                                                <div class="col-md-4">
-                                                    <h5 class="text-left">Display Three</h5>
-                                                    <div class="form-group">
-                                                        <label>Title</label>
-                                                        <input type="text" class="form-control" name="titleThree" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea name="descriptionThree" rows="0" class="form-control"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Image</label>
-                                                        <input type="file" class="form-control-file" name="imageThree" required>
-                                                    </div>
-                                                </div>
-                                                <!-- display three end -->
-
-                                            </div>
-                                            <!-- display item row end -->
-
-                                            <!-- title and desc row start -->
-                                            <div class="row" style="border-top: 1px solid #3e5569; ">
-
-                                                <!-- display one start -->
-                                                <div class="col-md-12" style="margin-top: 15px">
-                                                    <h5 class="text-left">Display Information Right</h5>
-                                                    <div class="form-group">
-                                                        <label>Title</label>
-                                                        <input type="text" class="form-control" name="title" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea name="description" rows="0" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                                <!-- display one end -->
-
-                                            </div>
-                                            <!-- title and desc row end -->
-
-                                            <div class="row">
-
-                                                <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-primary">Add</button>
-                                                </div>
-
-                                            </div>
-                                            
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- add  row end -->
-
-                    <!-- manage row start -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table table-dark">
-                                <thead class="text-center">
-                                    <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Title One</th>
-                                    <th scope="col">Title Two</th>
-                                    <th scope="col">Title Three</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php 
-                                        $i = 1 ;
-                                    @endphp
-                                    @foreach( $homedisplay as $homedisplay )
-                                    <tr class="text-center">
-                                        <th scope="row">{{ $i }}</th>
-                                        
-                                        <td>{{ $homedisplay->titleOne }}</td>
-                                        <td>{{ $homedisplay->titleTwo }}</td>
-                                        <td>{{ $homedisplay->titleThree }}</td>
-                                        <td>{{ $homedisplay->title }}</td>
-                                        <td>
-
-                                            <!-- edit modal start -->
-                                            <a class="btn btn-primary" href="{{ route('homedisplay.edit', $homedisplay->slug) }}">Edit</a>
-                                            
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deletehomedisplay">Delete</button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="deletehomedisplay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this homedisplay?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form action="{{ route('homedisplay.delete', $homedisplay->slug) }}" method="POST">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-success">Yes</button>
-                                                        </form>
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @php 
-                                        $i++ ;
-                                    @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- manage row end -->
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- display section card end -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- testimonial card start -->
+    <!-- abc info card start -->
     <div class="row">
         <div class="col-md-12">
             <div class="card" >
@@ -439,42 +188,46 @@
 
                     <div class="row">
                         <div classcol-md-12>
-                            <h5>Manage Testimonial</h5>
+                            <h5>Manage Abc information</h5>
                         </div>
                     </div>
 
                     <!-- add row start -->
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#addtestimonial">Add New Testimonial</button>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#abcinfo">Add New Information</button>
                             <!-- Modal -->
-                            <div class="modal fade" id="addtestimonial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="abcinfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add New Testimonial</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Information</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('testimonial.create') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('abcinfo.create') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                             <div class="form-group">
-                                                <label>Commenter Name</label>
-                                                <input type="text" class="form-control" name="name" required>
+                                                <label>A stands for</label>
+                                                <input type="text" class="form-control" name="a" >
                                             </div>
                                             <div class="form-group">
-                                                <label>Commenter Designation</label>
-                                                <input type="text" class="form-control" name="designation" required>
+                                                <label>B stands for</label>
+                                                <input type="text" class="form-control" name="b" >
                                             </div>
                                             <div class="form-group">
-                                                <label>Commenter Comments</label>
-                                                <textarea name="comments" rows="2" class="form-control"></textarea>
+                                                <label>C stands for</label>
+                                                <input type="text" class="form-control" name="c" >
                                             </div>
                                             <div class="form-group">
-                                                <label>Add Commenter Image</label>
-                                                <input type="file" class="form-control-file" name="image" required>
+                                                <label>Professional Experience ( Year )</label>
+                                                <input type="text" class="form-control" name="year" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Image</label>
+                                                <input type="file" class="form-control-file" name="image" >
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">Add</button>
@@ -499,9 +252,10 @@
                                     <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Image</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Designation</th>
-                                    <th scope="col">Comment</th>
+                                    <th scope="col">A Stands For</th>
+                                    <th scope="col">B Stands For</th>
+                                    <th scope="col">C Stands For</th>
+                                    <th scope="col">Experienced Year</th>
                                     <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -509,33 +263,34 @@
                                     @php 
                                         $i = 1 ;
                                     @endphp
-                                    @foreach( $testimonials as $testimonial )
+                                    @foreach( $abcinfos as $abcinfo )
                                     <tr class="text-center">
                                         <th scope="row">{{ $i }}</th>
                                         <td>
-                                            <img src="{{ asset('images/testimonial/' . $testimonial->image ) }}" class="img-fluid" width="50px"  alt="">
+                                            <img src="{{ asset('images/abcinfo/' . $abcinfo->image) }}" width="50px" alt="">
                                         </td>
-                                        <td>{{ $testimonial->name }}</td>
-                                        <td>{{ $testimonial->designation }}</td>
-                                        <td>{{ $testimonial->comments }}</td>
+                                        <td>{{ $abcinfo->a }}</td>
+                                        <td>{{ $abcinfo->b }}</td>
+                                        <td>{{ $abcinfo->c }}</td>
+                                        <td>{{ $abcinfo->year }}</td>
                                         <td>
 
                                             <!-- edit modal start -->
-                                            <a class="btn btn-primary" href="{{ route('testimonial.edit', $testimonial->id) }}">Edit</a>
+                                            <a class="btn btn-primary" href="{{ route('abcinfo.edit', $abcinfo->id) }}">Edit</a>
 
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deletetestimonial">Delete</button>
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteabcinfo">Delete</button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deletetestimonial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="deleteabcinfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this commenter?</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this abc information?</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form action="{{ route('testimonial.delete', $testimonial->id) }}" method="POST">
+                                                        <form action="{{ route('abcinfo.delete', $abcinfo->id) }}" method="POST">
                                                             @csrf
                                                             <button type="submit" class="btn btn-success">Yes</button>
                                                         </form>
@@ -560,7 +315,7 @@
             </div>
         </div>
     </div>
-    <!-- testimonial card end -->
+    <!-- abc info card end -->
 
 
 
@@ -568,6 +323,139 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- client card start -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" >
+                <div class="card-body" style="overflow: scroll;height: 500px;">
+
+                    <div class="row">
+                        <div classcol-md-12>
+                            <h5>Manage Client</h5>
+                        </div>
+                    </div>
+
+                    <!-- add row start -->
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addclient">Add New Client</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="addclient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Client</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('client.create') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                            <div class="form-group">
+                                                <label>Client Name</label>
+                                                <input type="text" class="form-control" name="cName" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Comments</label>
+                                                <input type="text" class="form-control" name="comments" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Link</label>
+                                                <input type="text" class="form-control" name="link" >
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- add row end -->
+
+                    <!-- manage row start -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-dark">
+                                <thead class="text-center">
+                                    <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Comments</th>
+                                    <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php 
+                                        $i = 1 ;
+                                    @endphp
+                                    @foreach( $clients as $client )
+                                    <tr class="text-center">
+                                        <th scope="row">{{ $i }}</th>
+                                        <td>{{ $client->cName }}</td>
+                                        <td>{{ $client->comments }}</td>
+                                        <td>
+
+                                            <!-- edit modal start -->
+                                            <a class="btn btn-primary" href="{{ route('client.edit', $client->id) }}">Edit</a>
+
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteclient">Delete</button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteclient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this client?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('client.delete', $client->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">Yes</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @php 
+                                        $i++ ;
+                                    @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- manage row end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- client card end -->
 
 
 

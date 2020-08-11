@@ -901,7 +901,7 @@ label{
 .about-slider{
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;
+	background-size: contain;
 	height: 100vh;
 }
 .about-carousel .left ul li{

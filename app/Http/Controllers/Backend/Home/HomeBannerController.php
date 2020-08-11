@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Backend\HomeBanner;
+use App\Models\Backend\Home\HomeBanner;
 use Illuminate\Support\Str;
 use Image; 
 use File;
@@ -137,7 +137,7 @@ class HomeBannerController extends Controller
         //write success message
         $request->session()->flash('update', ' Home banner updated Successfully');  
 
-        return redirect()->route('homebanner');
+        return redirect()->route('homepage.show');
     }
 
     /**
@@ -156,6 +156,6 @@ class HomeBannerController extends Controller
         }
         //write success message
         $request->session()->flash('delete', '  homebanner deleted Successfully'); 
-        return redirect()->route('homebanner');
+        return redirect()->route('homepage.show');
     }
 }

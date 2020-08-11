@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
+
+
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Rehi's Backend Web Routes Start
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -13,11 +16,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-
-
 Route::prefix('admin')->group(function(){
     // fav icon route start
     	
@@ -38,24 +36,96 @@ Route::prefix('admin')->group(function(){
     // logo route end
 
 
-
-    Route::group(['prefix' => 'ManageHomePage'], function(){
+    //home page route start
+    Route::group(['prefix' => 'Home-page'], function(){
 
         //show home page
-        Route::get('/', 'Backend\HomePageController@index')->name('homepage.show');
-    
+        Route::get('/', 'Backend\Home\HomePageController@index')->name('homepage.show');
     
         // banner route start
-        Route::get('/banner', 'Backend\HomeBannerController@index')->name('homebanner');
-        Route::post('/banner/create', 'Backend\HomeBannerController@store')->name('homebanner.create');
-        Route::get('/banner/edit/{homebanner:slug}', 'Backend\HomeBannerController@edit')->name('homebanner.edit');
-        Route::post('/banner/edit/{homebanner:slug}', 'Backend\HomeBannerController@update')->name('homebanner.update');
-        Route::post('/banner/delete/{homebanner:slug}', 'Backend\HomeBannerController@destroy')->name('homebanner.delete');
+        Route::post('/banner/create', 'Backend\Home\HomeBannerController@store')->name('homebanner.create');
+        Route::get('/banner/edit/{homebanner:slug}', 'Backend\Home\HomeBannerController@edit')->name('homebanner.edit');
+        Route::post('/banner/edit/{homebanner:slug}', 'Backend\Home\HomeBannerController@update')->name('homebanner.update');
+        Route::post('/banner/delete/{homebanner:slug}', 'Backend\Home\HomeBannerController@destroy')->name('homebanner.delete');
         // banner route end
-    
-    
+
+        // display route start
+        Route::post('/homedisplay/create', 'Backend\Home\HomeDisplayController@store')->name('homedisplay.create');
+        Route::get('/homedisplay/edit/{homedisplay:slug}', 'Backend\Home\HomeDisplayController@edit')->name('homedisplay.edit');
+        Route::post('/homedisplay/edit/{homedisplay:slug}', 'Backend\Home\HomeDisplayController@update')->name('homedisplay.update');
+        Route::post('/homedisplay/delete/{homedisplay:slug}', 'Backend\Home\HomeDisplayController@destroy')->name('homedisplay.delete');
+        // display route end
+
+        // testimonial route start
+        Route::post('/testimonial/create', 'Backend\Home\TestimonialController@store')->name('testimonial.create');
+        Route::get('/testimonial/edit/{testimonial:id}', 'Backend\Home\TestimonialController@edit')->name('testimonial.edit');
+        Route::post('/testimonial/edit/{testimonial:id}', 'Backend\Home\TestimonialController@update')->name('testimonial.update');
+        Route::post('/testimonial/delete/{testimonial:id}', 'Backend\Home\TestimonialController@destroy')->name('testimonial.delete');
+        // testimonial route end
+
     });	
+    //home page route end
+
+    //about page route start
+    Route::group(['prefix' => 'About-page'], function(){
+        
+        //show about page
+        Route::get('/', 'Backend\About\AboutPageController@index')->name('aboutpage.show');
+
+        // banner route start
+        Route::post('/banner/create', 'Backend\About\AboutBannerController@store')->name('aboutbanner.create');
+        Route::get('/banner/edit/{aboutbanner:id}', 'Backend\About\AboutBannerController@edit')->name('aboutbanner.edit');
+        Route::post('/banner/edit/{aboutbanner:id}', 'Backend\About\AboutBannerController@update')->name('aboutbanner.update');
+        Route::post('/banner/delete/{aboutbanner:id}', 'Backend\About\AboutBannerController@destroy')->name('aboutbanner.delete');
+        // banner route end
+
+        // abc info route start
+        Route::post('/abcinfo/create', 'Backend\About\AbcInfoController@store')->name('abcinfo.create');
+        Route::get('/abcinfo/edit/{abcinfo:id}', 'Backend\About\AbcInfoController@edit')->name('abcinfo.edit');
+        Route::post('/abcinfo/edit/{abcinfo:id}', 'Backend\About\AbcInfoController@update')->name('abcinfo.update');
+        Route::post('/abcinfo/delete/{abcinfo:id}', 'Backend\About\AbcInfoController@destroy')->name('abcinfo.delete');
+        // abc info route end
+
+        // client route start
+        Route::post('/client/create', 'Backend\About\ClientController@store')->name('client.create');
+        Route::get('/client/edit/{client:id}', 'Backend\About\ClientController@edit')->name('client.edit');
+        Route::post('/client/edit/{client:id}', 'Backend\About\ClientController@update')->name('client.update');
+        Route::post('/client/delete/{client:id}', 'Backend\About\ClientController@destroy')->name('client.delete');
+        // client route end
+
+        // team member route start
+        Route::post('/team/create', 'Backend\About\ClientController@store')->name('team.create');
+        Route::get('/team/edit/{team:id}', 'Backend\About\ClientController@edit')->name('team.edit');
+        Route::post('/team/edit/{team:id}', 'Backend\About\ClientController@update')->name('team.update');
+        Route::post('/team/delete/{team:id}', 'Backend\About\ClientController@destroy')->name('team.delete');
+        // team member route end
+
+    });	
+    //about page route end
+
+
 });
+/*
+|--------------------------------------------------------------------------
+| Rehi's Backend Web Routes End
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*

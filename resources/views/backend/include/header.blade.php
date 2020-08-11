@@ -7,7 +7,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="{{ route('backend_dashboard') }}" style="margin-top: 15px">
+            <a class="navbar-brand" href="{{ route('backend_dashboard') }}" >
 
                 <span class="logo-text">
                     <!-- dark Logo text -->
@@ -17,7 +17,7 @@
                             No Image uploaded
                             </div>
                         @else
-                        <img src="{{ asset('images/logo/' . $logo->image) }}" width="100%" alt="homepage" class="light-logo" />
+                        <img src="{{ asset('images/logo/' . $logo->image) }}" style="margin: 15px" width="100%" alt="homepage" class="light-logo" />
                         @endif
 
                     @endforeach
