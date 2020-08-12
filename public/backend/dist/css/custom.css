@@ -46,3 +46,14 @@ button:focus{
 .table_image{
   width: 70px !important;
 }
+
+@media (min-width: 320px) and (max-width: 500px) {
+  .table th, .table thead th {
+    width: 100%;
+    display: flex;
+  } 
+  .table-dark td, .table-dark th, .table-dark thead th {
+    display: block;
+    width: 100%;
+  }
+}
