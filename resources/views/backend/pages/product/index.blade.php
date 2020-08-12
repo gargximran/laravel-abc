@@ -38,7 +38,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="zero_config" class="table table-bordered table-hover text-center">
+                        <table id="zero_config" class="table table-bordered table-hover text-center align-item-center">
                             <thead>
                                 <tr>
                                     <th>Image</th>
@@ -54,7 +54,7 @@
                             <tbody>
                                 @foreach($products as $key => $product)
                                     <tr>
-                                        <td></td>
+                                        <td class=""><p class="text-center "><img src="{{asset('images/product/'.$product->image[0]->name)}}" class="border table_image"></p></td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->category->parent->name}} > {{$product->category->name}}</td>
                                         <td>{{$product->model}}</td>

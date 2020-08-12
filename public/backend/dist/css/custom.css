@@ -24,3 +24,25 @@ button:focus{
   outline: none!important;
   box-shadow: none!important;
 } 
+
+.ql-container{
+  height: auto !important;
+  min-height: 100px !important;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+.inputNumber::-webkit-outer-spin-button,
+.inputNumber::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.inputNumber{
+  -moz-appearance: textfield;
+}
+
+.table_image{
+  width: 70px !important;
+}

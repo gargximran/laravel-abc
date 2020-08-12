@@ -25,7 +25,6 @@ class CreateProductsTable extends Migration
             $table->string('size');
             $table->string('code')->unique();
             $table->boolean('status')->default(true);
-            $table->text('specification')->nullable();
             $table->text('description')->nullable();
             $table->integer('quantity')->default(0)->unsigned();
             $table->boolean('exclusive')->default(false);

@@ -99,9 +99,9 @@ Route::prefix('admin')->namespace('Backend')->group(function(){
     Route::prefix('product')->group(function(){
         Route::get('/', 'ProductController@index')->name('product_show_backend');
         Route::get('/add', 'ProductController@create')->name('product_create_backend');
+        Route::post('/store', 'ProductController@store')->name('product_store_backend');
     });
     
-
 
 });
 
