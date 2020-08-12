@@ -901,7 +901,7 @@ label{
 .about-slider{
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;
+	background-size: contain;
 	height: 100vh;
 }
 .about-carousel .left ul li{
@@ -911,8 +911,8 @@ label{
 	color: #83ae49;
 }
 .about-carousel .left img{
-	width: 5%!important;
-	display: inline;
+	width: 5% !important;
+	display: inline-block;
 }
 .about-carousel .left h2{
 	margin: 15px 0;

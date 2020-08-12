@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Backend\HomeBanner;
+use App\Models\Backend\Home\HomeBanner;
+use App\Models\Backend\Home\HomeDisplay;
+use App\Models\Backend\Home\Testimonial;
 
 class HomePageController extends Controller
 {
@@ -16,7 +18,11 @@ class HomePageController extends Controller
     public function index()
     {
         $homebanners = HomeBanner::orderBy('id','asc')->get();
-        return view('backend.pages.home.manage', compact('homebanners'));
+        $homedisplay = HomeDisplay::orderBy('id','asc')->get();
+        $testimonials = Testimonial::orderBy('id','asc')->get();
+        return view('backend.pages.home.manage', compact(
+            'homebanners', 'homedisplay', 'testimonials'
+        ));
     }
 
     /**
@@ -84,4 +90,4 @@ class HomePageController extends Controller
     {
         //
     }
-}
+} 
