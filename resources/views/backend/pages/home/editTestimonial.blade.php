@@ -36,7 +36,7 @@
                                     <textarea name="comments" rows="2" class="form-control">{{ $testimonial->comments }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Add Commenter Image</label> <br>
+                                    <label>Add Commenter Image Add Commenter Image ( Please uplaod 360x360px image )</label> <br>
                                     <img src="{{ asset('images/testimonial/' . $testimonial->image) }}" width="150px" alt=""> <br> <br>
                                     <input type="file" class="form-control-file" name="image" >
                                 </div>

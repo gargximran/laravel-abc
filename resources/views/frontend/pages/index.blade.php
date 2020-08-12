@@ -10,20 +10,21 @@
 			<div class="banner-carousel owl-carousel owl-theme">
     			
     			<!-- item start -->
+                @foreach( $homebanners as $homebanner )
     			<div class="item">
     				<div class="col-md-12">
     					<div class="row">
     						<!-- right part start -->
     						<div class="col-md-6 for-mob bounceInDown" data-wow-duration="1s" data-wow-delay="2s">
-    							<img src="{{ asset('frontend/images/fan.png') }}" class="img-fluid">
+    							<img src="{{ asset('images/banner/' . $homebanner->image) }}" class="img-fluid">
     						</div>
     						<!-- right part end -->
 
     						<!-- left part start -->
     						<div class="col-md-6 ">
-    							<h1>Accelerate your comfort with <span>ABC</span></h1>
-    							<p>ABC ceiling fans generate powerful air movement that you can feel while remaining quiet and wobble free.</p>
-    							<a href="">
+    							<h1>{{ $homebanner->title }}</h1>
+    							<p>{{ $homebanner->description }}.</p>
+    							<a href="{{ $homebanner->link }}">
     								know more
     							</a>
                                 <form>
@@ -37,7 +38,7 @@
 
     						<!-- right part start -->
     						<div class="col-md-6 for-pc wow bounceInDown" data-wow-duration="1s" data-wow-delay="2s">
-    							<img src="{{ asset('frontend/images/fan.png') }}" class="img-fluid">
+    							<img src="{{ asset('images/banner/' . $homebanner->image) }}" class="img-fluid">
     						</div>
     						<!-- right part end -->
     					</div>
@@ -46,6 +47,7 @@
     			<!-- item end -->
 
     		</div>
+            @endforeach
     		<!-- slider end -->
 
 		</div>
@@ -56,6 +58,7 @@
 
 
 <!-- second section start -->
+@foreach( $homedisplays as $homedisplay)
 <section class="second-section section-padding wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
     <div class="container">
         <div class="row">
@@ -68,12 +71,12 @@
                     <div class="col-md-6 shrape-div left-div wow bounceInLeft" data-wow-duration="1s" data-wow-delay="1s" style="background-image: url({{ asset('frontend/images/design_1.png') }});">
                         <div>
                             <div class="shrape-div-text">
-                                <h2>LED Bulb</h2>
-                                <p>35% Off Offer</p>
+                                <h2>{{ $homedisplay->titleOne }}</h2>
+                                <p>{{ $homedisplay->descriptionOne }}</p>
                             </div>
                         </div>
                         <div class="shrape-div-img">
-                            <img src="{{ asset('frontend/images/light.png') }}" class="img-fluid">
+                            <img src="{{ asset('images/homedisplay/' . $homedisplay->imageOne) }}" class="img-fluid">
                         </div>
                     </div>
                     <!-- left image div end -->
@@ -85,11 +88,11 @@
                             <!-- top image div start -->
                             <div class="col-md-12 shrape-div top-div wow bounceInDown" data-wow-duration="1s" data-wow-delay="1s" style="background-image: url({{ asset('frontend/images/design_1.png') }});">
                                 <div class="shrape-div-text">
-                                    <h2>Cilling Fan</h2>
-                                    <p>Exclusive Design</p>
+                                    <h2>{{ $homedisplay->titleTwo }}</h2>
+                                    <p>{{ $homedisplay->descriptionTwo }}</p>
                                 </div>
                                 <div class="shrape-div-img">
-                                    <img src="{{ asset('frontend/images/fan2.png') }}" class="img-fluid">
+                                    <img src="{{ asset('images/homedisplay/' . $homedisplay->imageTwo) }}" class="img-fluid">
                                 </div>
                             </div>
                             <!-- top image div end -->
@@ -97,11 +100,11 @@
                             <!-- bottom image div start -->
                             <div class="col-md-12 shrape-div wow bounceInUp" data-wow-duration="1s" data-wow-delay="1s" style="background-image: url({{ asset('frontend/images/design_1.png') }});">
                                 <div class="shrape-div-text">
-                                    <h2>Switch Board</h2>
-                                    <p>Premium Look</p>
+                                    <h2>{{ $homedisplay->titleThree }}</h2>
+                                    <p>{{ $homedisplay->descriptionThree }}</p>
                                 </div>
                                 <div class="shrape-div-img">
-                                    <img src="{{ asset('frontend/images/switch.png') }}" class="img-fluid">
+                                    <img src="{{ asset('images/homedisplay/' . $homedisplay->imageThree) }}" class="img-fluid">
                                 </div>
                             </div>
                             <!-- bottom image div end -->
@@ -117,8 +120,8 @@
             <!-- right part start -->
             <div class="col-md-5 second-section-right wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
                 <div class="second-section-right-box">
-                    <h2>It's your life, and your style.</h2>
-                    <p>ABC Company creates ceiling fans for every look and lifestyle. Whether it's a traditional or modern design, owning a ABC ceiling fan is always easy, breezy. Look around and you're sure to find the design that will make you a fan for life.</p>
+                    <h2>{{ $homedisplay->title }}</h2>
+                    <p>{{ $homedisplay->description }}.</p>
                 </div>
             </div>
             <!-- right part end -->
@@ -126,6 +129,7 @@
         </div>
     </div>
 </section>
+@endforeach
 <!-- second section end -->
 
 
@@ -292,12 +296,12 @@
             <div class="testimonial-carousel owl-carousel owl-theme">
                 
                 <!-- testimonial item start -->
+                @foreach( $testimonials as $testimonial )
                 <div class="item">
                     <div class="col-md-12">
                         <div class="testimonial-item">
                             <p class="t-qoute">
-                                "My experience with ABC is absolutely positive. The Products are beautifully designed and well working. 
-                                DeerCreative provides quick and competent support."
+                                {{ $testimonial->comments }}
                                 <img src="{{ asset('frontend/images/diamond.png') }}" class="img-fluid">
                             </p>
                             <div class="testimonial-item-bottom">
@@ -305,7 +309,7 @@
                                     <!-- image part start -->
                                     <div class="col-md-3">
                                         <div class="testimonial-item-bottom-left">
-                                            <img src="{{ asset('frontend/images/user.jpg') }}" class="img-fluid">
+                                            <img src="{{ asset('images/testimonial/' . $testimonial->image) }}" class="img-fluid">
                                         </div>
                                     </div>
                                     <!-- image part end -->
@@ -314,9 +318,9 @@
                                     <div class="col-md-9">
                                         <div class="testimonial-item-bottom-right">
                                             <p>
-                                                <span>Nancy Franklin</span>
+                                                <span>{{ $testimonial->name }}</span>
                                             </p>
-                                            <p>Sales & Marketing DeerCreative Ltd.</p>
+                                            <p>{{ $testimonial->designation }}</p>
                                         </div>
                                     </div>
                                     <!-- info part end -->
@@ -325,78 +329,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- testimonial item end -->
-
-                <!-- testimonial item start -->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="testimonial-item">
-                            <p class="t-qoute">
-                                "My experience with ABC is absolutely positive. The Products are beautifully designed and well working. 
-                                DeerCreative provides quick and competent support."
-                                <img src="{{ asset('frontend/images/diamond.png') }}" class="img-fluid">
-                            </p>
-                            <div class="testimonial-item-bottom">
-                                <div class="row">
-                                    <!-- image part start -->
-                                    <div class="col-md-3">
-                                        <div class="testimonial-item-bottom-left">
-                                            <img src="{{ asset('frontend/images/user.jpg') }}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                    <!-- image part end -->
-
-                                    <!-- info part start -->
-                                    <div class="col-md-9">
-                                        <div class="testimonial-item-bottom-right">
-                                            <p>
-                                                <span>Nancy Franklin</span>
-                                            </p>
-                                            <p>Sales & Marketing DeerCreative Ltd.</p>
-                                        </div>
-                                    </div>
-                                    <!-- info part end -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- testimonial item end -->
-
-                <!-- testimonial item start -->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="testimonial-item">
-                            <p class="t-qoute">
-                                "My experience with ABC is absolutely positive. The Products are beautifully designed and well working. 
-                                DeerCreative provides quick and competent support."
-                                <img src="{{ asset('frontend/images/diamond.png') }}" class="img-fluid">
-                            </p>
-                            <div class="testimonial-item-bottom">
-                                <div class="row">
-                                    <!-- image part start -->
-                                    <div class="col-md-3">
-                                        <div class="testimonial-item-bottom-left">
-                                            <img src="{{ asset('frontend/images/user.jpg') }}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                    <!-- image part end -->
-
-                                    <!-- info part start -->
-                                    <div class="col-md-9">
-                                        <div class="testimonial-item-bottom-right">
-                                            <p>
-                                                <span>Nancy Franklin</span>
-                                            </p>
-                                            <p>Sales & Marketing DeerCreative Ltd.</p>
-                                        </div>
-                                    </div>
-                                    <!-- info part end -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <!-- testimonial item end -->
 
             </div>

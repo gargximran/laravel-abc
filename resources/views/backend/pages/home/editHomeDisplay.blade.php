@@ -39,7 +39,7 @@
                                                 <textarea name="descriptionOne" rows="0" class="form-control">{{ $homedisplay->descriptionOne }}</textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label>Image</label> <br>
+                                                <label>Image ( PLease upload 96x177px image )</label> <br>
                                                 <img src="{{ asset('images/homedisplay/' . $homedisplay->imageOne) }}" width="150px" alt=""> <br> <br>
                                                 <input type="file" class="form-control-file" name="imageOne" >
                                             </div>
@@ -58,7 +58,7 @@
                                                 <textarea name="descriptionTwo" rows="0" class="form-control">{{ $homedisplay->descriptionTwo }}</textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label>Image</label> <br>
+                                                <label>Image Image ( PLease upload 249x128px image )</label> <br>
                                                 <img src="{{ asset('images/homedisplay/' . $homedisplay->imageTwo) }}" width="150px" alt=""> <br> <br>
                                                 <input type="file" class="form-control-file" name="imageTwo" >
                                             </div>
@@ -77,7 +77,7 @@
                                                 <textarea name="descriptionThree" rows="0" class="form-control">{{ $homedisplay->descriptionThree }}</textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label>Image</label> <br>
+                                                <label>Image Image ( PLease upload 114x110px image )</label> <br>
                                                 <img src="{{ asset('images/homedisplay/' . $homedisplay->imageThree) }}" width="150px" alt=""> <br> <br>
                                                 <input type="file" class="form-control-file" name="imageThree" >
                                             </div>

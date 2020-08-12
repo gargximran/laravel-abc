@@ -7,7 +7,7 @@
     <!-- title row start -->
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Edit Home Banner</h4>
+            <h4 class="page-title">Edit Vision, Mission, Values</h4>
         </div>
     </div>
     <!-- title row end -->
@@ -21,24 +21,24 @@
                     <!-- edit row start -->
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <form action="{{ route('homebanner.update', $homebanner->slug) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('vision.update', $vision->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" class="form-control" name="title"  value="{{ $homebanner->title }}">
+                                    <label>Vision</label>
+                                    <input type="text" class="form-control" name="vision" value="{{ $vision->vision }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea name="description" rows="2" class="form-control">{{  $homebanner->description }}</textarea>
+                                    <label>Mission</label>
+                                    <input type="text" class="form-control" name="mission" value="{{ $vision->mission }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Link</label>
-                                    <input type="text" class="form-control" name="link" value="{{ $homebanner->link }}" >
+                                    <label>Values</label>
+                                    <input type="text" class="form-control" name="value" value="{{ $vision->value }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Add homebanner ( Please upload 900x465 size image )</label> <br>
-                                    <img src="{{ asset('images/banner/' . $homebanner->image ) }}" width="150px" alt=""> <br> <br>
-                                    <input type="file" class="form-control-file" name="image" >
+                                    <label>Image ( Please uplaod 380x468px size image )</label> <br>
+                                    <img src="{{ asset('images/vision/' . $vision->image) }}" width="150px" alt="">
+                                    <input type="file" class="form-control-file" name="image" > <br> <br>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Update</button>

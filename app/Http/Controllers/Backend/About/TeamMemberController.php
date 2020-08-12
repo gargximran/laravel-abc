@@ -5,12 +5,21 @@ namespace App\Http\Controllers\Backend\About;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\Backend\About\Client;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\File;
+use App\Models\Backend\About\Team;
+use Image; 
+use File;
 
-class ClientController extends Controller
+class TeamMemberController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,32 +41,37 @@ class ClientController extends Controller
     {
         $request->validate(
             [
-                'cName' => 'required'
+                'name' => 'required'
+            ],
+            [
+                'designation' => 'required'
+            ],
+            [
+                'description' => 'required'
             ],
             [
                 'image' => 'required'
             ],
-            [
-                'comments' => 'required'
-            ],
         );
 
-        $client = new Client();
+        $team = new Team();
 
-        $client->cName       = $request->cName;
-        $client->comments    = $request->comments;
-        $client->link        = $request->link;
+        $team->name             = $request->name;
+        $team->designation      = $request->designation;
+        $team->description      = $request->description;
+
         if( $request->image ){
             $image  = $request->file('image');
             $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/client/' . $img);
+            $location = public_path('images/team/' . $img);
             Image::make($image)->save($location);
-            $client->image = $img;
+            $team->image = $img;
         }
-        $client->save();
+
+        $team->save();
 
         //write success message
-        $request->session()->flash('create', ' Client added Successfully');  
+        $request->session()->flash('create', ' Team added Successfully');  
 
         return back();
     }
@@ -79,9 +93,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Team $team)
     {
-        return view('backend.pages.about.editClient', compact('client'));
+        return view('backend.pages.about.editTeam', compact('team'));
     }
 
     /**
@@ -91,37 +105,42 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Team $team)
     {
         $request->validate(
             [
-                'cName' => 'required'
+                'name' => 'required'
+            ],
+            [
+                'designation' => 'required'
+            ],
+            [
+                'description' => 'required'
             ],
             [
                 'image' => 'required'
             ],
-            [
-                'comments' => 'required'
-            ],
         );
 
-        $client->cName       = $request->cName;
-        $client->comments    = $request->comments;
-        $client->link        = $request->link;
+        $team->name             = $request->name;
+        $team->designation      = $request->designation;
+        $team->description      = $request->description;
+
         if( $request->image ){
-            if( File::exists('images/client/' . $client->image) ){
-                File::delete('images/client/' . $client->image);
+            if( File::exists('images/team/' . $team->image) ){
+                File::delete('images/team/' . $team->image);
             }
             $image  = $request->file('image');
             $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/client/' . $img);
+            $location = public_path('images/team/' . $img);
             Image::make($image)->save($location);
-            $client->image = $img;
+            $team->image = $img;
         }
-        $client->save();
+
+        $team->save();
 
         //write success message
-        $request->session()->flash('update', ' Client updated Successfully');  
+        $request->session()->flash('update', ' Team updated Successfully');  
 
         return redirect()->route('aboutpage.show');
     }
@@ -132,13 +151,16 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Client $client)
+    public function destroy(Request $request, Team $team)
     {
-        if( !is_null($client) ){
-            $client->delete();
-        };
+        if( !is_null($team) ){
+            if( File::exists('images/team/' . $team->image) ){
+                File::delete('images/team/' . $team->image);
+            }
+            $team->delete();
+        }
         //write success message
-        $request->session()->flash('delete', ' Client deleted Successfully');  
+        $request->session()->flash('delete', ' Team deleted Successfully');  
 
         return redirect()->route('aboutpage.show');
     }

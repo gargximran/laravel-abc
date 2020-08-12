@@ -19,9 +19,6 @@ class CreateTeamsTable extends Migration
             $table->string('designation');
             $table->text('description');
             $table->text('image');
-            $table->text('fLink');
-            $table->text('tLink');
-            $table->text('lLink');
             $table->timestamps();
         });
     }

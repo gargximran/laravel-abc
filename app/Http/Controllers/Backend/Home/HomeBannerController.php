@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Backend\Home\HomeBanner;
-use Image; 
-use File;
+use Intervention\Image\Facades\Image; 
+use Illuminate\Support\Facades\File;
 
 class HomeBannerController extends Controller
 {

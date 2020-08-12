@@ -226,7 +226,7 @@
                                                 <input type="text" class="form-control" name="year" >
                                             </div>
                                             <div class="form-group">
-                                                <label>Image</label>
+                                                <label>Image ( Please Upload 500x321px size image )</label>
                                                 <input type="file" class="form-control-file" name="image" >
                                             </div>
                                             <div class="form-group">
@@ -378,6 +378,10 @@
                                                 <input type="text" class="form-control" name="link" >
                                             </div>
                                             <div class="form-group">
+                                                <label>Image ( Please upload 471x470px size image )</label>
+                                                <input type="file" class="form-control-file" name="image" >
+                                            </div>
+                                            <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">Add</button>
                                             </div>
                                         </form>
@@ -399,6 +403,7 @@
                                 <thead class="text-center">
                                     <tr>
                                     <th scope="col">Id</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Comments</th>
                                     <th scope="col">Action</th>
@@ -411,8 +416,11 @@
                                     @foreach( $clients as $client )
                                     <tr class="text-center">
                                         <th scope="row">{{ $i }}</th>
+                                        <td>
+                                            <img src="{{ asset('images/client/' . $client->image ) }}" width="50px" alt="">
+                                        </td>
                                         <td>{{ $client->cName }}</td>
-                                        <td>{{ $client->comments }}</td>
+                                        <td>{{ Str::limit($client->comments, 100) }}</td>
                                         <td>
 
                                             <!-- edit modal start -->
@@ -456,6 +464,583 @@
         </div>
     </div>
     <!-- client card end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- team member card start -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" >
+                <div class="card-body" style="overflow: scroll;height: 500px;">
+
+                    <div class="row">
+                        <div classcol-md-12>
+                            <h5>Manage Team Member</h5>
+                        </div>
+                    </div>
+
+                    <!-- add row start -->
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addteammember">Add New Team Member</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="addteammember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Team Member</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('team.create') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                            <div class="form-group">
+                                                <label>Team Member Name</label>
+                                                <input type="text" class="form-control" name="name" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Team Member Designation</label>
+                                                <input type="text" class="form-control" name="designation" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Team Member Description</label>
+                                                <textarea name="description" rows="2" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Team Member Image ( Please upload 330x270px size image ) </label>
+                                                <input type="file" class="form-control-file" name="image" >
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- add row end -->
+
+                    <!-- manage row start -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-dark">
+                                <thead class="text-center">
+                                    <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Designation</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php 
+                                        $i = 1 ;
+                                    @endphp
+                                    @foreach( $teams as $team )
+                                    <tr class="text-center">
+                                        <th scope="row">{{ $i }}</th>
+                                        <td>
+                                            <img src="{{ asset('images/team/' . $team->image) }}" width="50px" alt="">
+                                        </td>
+                                        <td>{{ $team->name }}</td>
+                                        <td>{{ $team->designation }}</td>
+                                        <td>{{ Str::limit($team->description, 100) }}</td>
+                                        <td>
+
+                                            <!-- edit modal start -->
+                                            <a class="btn btn-primary" href="{{ route('team.edit', $team->id) }}">Edit</a>
+
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteteam">Delete</button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteteam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this member?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('team.delete', $team->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">Yes</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @php 
+                                        $i++ ;
+                                    @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- manage row end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- team member card end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- industry card start -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" >
+                <div class="card-body" style="overflow: scroll;height: 500px;">
+
+                    <div class="row">
+                        <div classcol-md-12>
+                            <h5>Manage Industry</h5>
+                        </div>
+                    </div>
+
+                    <!-- add row start -->
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addindustry">Add New Industry</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="addindustry" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Industry</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('industry.create') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                            <div class="form-group">
+                                                <label>Industry</label>
+                                                <input type="text" class="form-control" name="industry" >
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- add row end -->
+
+                    <!-- manage row start -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-dark">
+                                <thead class="text-center">
+                                    <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Industry</th>
+                                    <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php 
+                                        $i = 1 ;
+                                    @endphp
+                                    @foreach( $industries as $industry )
+                                    <tr class="text-center">
+                                        <th scope="row">{{ $i }}</th>
+                                        <td>{{ Str::limit($industry->information, 100) }}</td>
+                                        <td>
+
+                                            <!-- edit modal start -->
+                                            <a class="btn btn-primary" href="{{ route('industry.edit', $industry->id) }}">Edit</a>
+
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deletevision">Delete</button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deletevision" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this industry?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('industry.delete', $industry->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">Yes</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @php 
+                                        $i++ ;
+                                    @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- manage row end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- industry card end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- vission mission and values card start -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" >
+                <div class="card-body" style="overflow: scroll;height: 500px;">
+
+                    <div class="row">
+                        <div classcol-md-12>
+                            <h5>Manage Vision, Mission, Values</h5>
+                        </div>
+                    </div>
+
+                    <!-- add row start -->
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addvisionitem">Add New Item</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="addvisionitem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('vision.create') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                            <div class="form-group">
+                                                <label>Vision</label>
+                                                <input type="text" class="form-control" name="vision" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mission</label>
+                                                <input type="text" class="form-control" name="mission" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Values</label>
+                                                <input type="text" class="form-control" name="value" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Image ( Please uplaod 380x468px size image )</label>
+                                                <input type="file" class="form-control-file" name="image" >
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- add row end -->
+
+                    <!-- manage row start -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-dark">
+                                <thead class="text-center">
+                                    <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Vision</th>
+                                    <th scope="col">Mission</th>
+                                    <th scope="col">Values</th>
+                                    <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php 
+                                        $i = 1 ;
+                                    @endphp
+                                    @foreach( $visions as $vision )
+                                    <tr class="text-center">
+                                        <th scope="row">{{ $i }}</th>
+                                        <td>
+                                            <img src="{{ asset('images/vision/' . $vision->image) }}" width="50px" alt="">
+                                        </td>
+                                        <td>{{ $vision->vision }}</td>
+                                        <td>{{ $vision->mission }}</td>
+                                        <td>{{ $vision->value }}</td>
+                                        <td>
+
+                                            <!-- edit modal start -->
+                                            <a class="btn btn-primary" href="{{ route('vision.edit', $vision->id) }}">Edit</a>
+
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deletevision">Delete</button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deletevision" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this member?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('vision.delete', $vision->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">Yes</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @php 
+                                        $i++ ;
+                                    @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- manage row end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- vission mission and values card end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- relation with customer card start -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" >
+                <div class="card-body" style="overflow: scroll;height: 500px;">
+
+                    <div class="row">
+                        <div classcol-md-12>
+                            <h5>Manage Our Relation With Client</h5>
+                        </div>
+                    </div>
+
+                    <!-- add row start -->
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addrelation">Add New Item</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="addrelation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('relation.create') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                            <div class="form-group">
+                                                <label>Comments</label>
+                                                <input type="text" class="form-control" name="comments" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Image ( Please upload 526x425px size image )</label>
+                                                <input type="file" class="form-control-file" name="image" >
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- add row end -->
+
+                    <!-- manage row start -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-dark">
+                                <thead class="text-center">
+                                    <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Comments</th>
+                                    <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php 
+                                        $i = 1 ;
+                                    @endphp
+                                    @foreach( $relations as $relation )
+                                    <tr class="text-center">
+                                        <th scope="row">{{ $i }}</th>
+                                        <td>
+                                            <img src="{{ asset('images/relation/' . $relation->image) }}" width="50px" alt="">
+                                        </td>
+                                        <td>{{ Str::limit($relation->comments, 100) }}</td>
+                                        <td>
+
+                                            <!-- edit modal start -->
+                                            <a class="btn btn-primary" href="{{ route('relation.edit', $relation->id) }}">Edit</a>
+
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleterelation">Delete</button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleterelation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this relation?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('relation.delete', $relation->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">Yes</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @php 
+                                        $i++ ;
+                                    @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- manage row end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- relation with customer card end -->
 
 
 
