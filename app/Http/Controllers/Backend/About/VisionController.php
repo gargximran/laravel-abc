@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\About;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Backend\Fav;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image; 
+use App\Models\Backend\About\Vision;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
-class FavController extends Controller
+class VisionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,7 @@ class FavController extends Controller
      */
     public function index()
     {
-        $favs = Fav::orderBy('id','asc')->get();
-        return view('backend.pages.fav.manage', compact('favs'));
+        //
     }
 
     /**
@@ -29,7 +28,7 @@ class FavController extends Controller
      */
     public function create()
     {
-
+        
     }
 
     /**
@@ -40,40 +39,47 @@ class FavController extends Controller
      */
     public function store(Request $request)
     {
-        $favs = fav::orderBy('id','asc')->get();
+        $visions = Vision::orderBy('id','asc')->get();
 
-        if( count($favs) == NULL ){ 
+        if( count($visions) == NULL ){ 
             $request->validate(
                 [
-                    'name' => 'required'
+                    'vision' => 'required'
+                ],
+                [
+                    'mission' => 'required'
+                ],
+                [
+                    'values' => 'required'
                 ],
                 [
                     'image' => 'required'
                 ]
             );
 
-            $fav = new fav();
+            $vision = new Vision();
 
-            $fav->name = $request->name;
-            $fav->slug = Str::slug($request->name);
+            $vision->vision     = $request->vision;
+            $vision->mission    = $request->mission;
+            $vision->value     = $request->value;
 
             if( $request->image ){
                 $image  = $request->file('image');
                 $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-                $location = public_path('images/fav/' . $img);
+                $location = public_path('images/vision/' . $img);
                 Image::make($image)->save($location);
-                $fav->image = $img;
+                $vision->image = $img;
             }
-            $fav->save();
+            $vision->save();
 
             //write success message
-            $request->session()->flash('message', ' fav icon added Successfully');  
+            $request->session()->flash('create', ' Vision created Successfully');  
 
             return back();
         }
         else{
             //write unsuccess message
-            $request->session()->flash('createFailed', 'fav icon already added');  
+            $request->session()->flash('createFailed', 'Vision already added');  
 
             return back();
         }
@@ -96,9 +102,9 @@ class FavController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fav $fav)
+    public function edit(Vision $vision)
     {
-        return view('backend.pages.fav.edit', compact('fav'));
+        return view('backend.pages.about.editVision', compact('vision'));
     }
 
     /**
@@ -108,36 +114,44 @@ class FavController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fav $fav)
+    public function update(Request $request, Vision $vision)
     {
         $request->validate(
             [
-                'name' => 'required'
+                'vision' => 'required'
+            ],
+            [
+                'mission' => 'required'
+            ],
+            [
+                'values' => 'required'
             ],
             [
                 'image' => 'required'
             ]
         );
 
-        $fav->name = $request->name;
-        $fav->slug = Str::slug($request->name);
+        $vision->vision     = $request->vision;
+        $vision->mission    = $request->mission;
+        $vision->value      = $request->value;
 
         if( $request->image ){
-            if( File::exists('images/fav/' . $fav->image) ){
-                File::delete('images/fav/' . $fav->image);
+            if( File::exists('images/vision/' . $vision->image) ){
+                File::delete('images/vision/' . $vision->image);
             }
 
             $image  = $request->file('image');
             $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/fav/' . $img);
+            $location = public_path('images/vision/' . $img);
             Image::make($image)->save($location);
-            $fav->image = $img;
+            $vision->image = $img;
         }
-        $fav->save();
+        $vision->save();
 
         //write success message
-        $request->session()->flash('update', ' fav icon updated Successfully'); 
-        return redirect()->route('fav');
+        $request->session()->flash('update', ' Vision updated Successfully');  
+
+        return redirect()->route('aboutpage.show');
     }
 
     /**
@@ -146,16 +160,17 @@ class FavController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Fav $fav)
+    public function destroy(Request $request, Vision $vision)
     {
-        if( !is_null($fav) ){
-            if( File::exists('images/fav/' . $fav->image) ){
-                File::delete('images/fav/' . $fav->image);
+        if( !is_null($vision) ){
+            if( File::exists('images/vision/' . $vision->image) ){
+                File::delete('images/vision/' . $vision->image);
             }
-            $fav->delete();
+            $vision->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  fav deleted Successfully'); 
-        return redirect()->route('fav');
+        $request->session()->flash('delete', ' vision deleted Successfully');  
+
+        return redirect()->route('aboutpage.show');
     }
 }

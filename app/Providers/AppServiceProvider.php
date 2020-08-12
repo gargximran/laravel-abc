@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('logos', logo::orderBy('id','asc')->get() );
-        View::share('favs', Fav::orderBy('id','asc')->get() );
+        // View::share('logos', logo::orderBy('id','asc')->get() );
+        // View::share('favs', Fav::orderBy('id','asc')->get() );
     }
 }

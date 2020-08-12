@@ -98,7 +98,7 @@
                                                     <input type="text" class="form-control" name="link" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Add homebanner</label>
+                                                    <label>Add homebanner ( Please upload 900x465 size image )</label>
                                                     <input type="file" class="form-control-file" name="image" required>
                                                 </div>
                                                 <div class="form-group">
@@ -232,7 +232,7 @@
                                                             <textarea name="descriptionOne" rows="0" class="form-control"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image</label>
+                                                            <label>Image ( PLease upload 96x177px image )</label>
                                                             <input type="file" class="form-control-file" name="imageOne" required>
                                                         </div>
                                                     </div>
@@ -250,7 +250,7 @@
                                                             <textarea name="descriptionTwo" rows="0" class="form-control"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image</label>
+                                                            <label>Image Image ( PLease upload 249x128px image )</label>
                                                             <input type="file" class="form-control-file" name="imageTwo" required>
                                                         </div>
                                                     </div>
@@ -268,7 +268,7 @@
                                                             <textarea name="descriptionThree" rows="0" class="form-control"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image</label>
+                                                            <label>Image Image ( PLease upload 114x110px image )</label>
                                                             <input type="file" class="form-control-file" name="imageThree" required>
                                                         </div>
                                                     </div>
@@ -450,7 +450,7 @@
                                                     <textarea name="comments" rows="2" class="form-control"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Add Commenter Image</label>
+                                                    <label>Add Commenter Image ( Please uplaod 360x360px image )</label>
                                                     <input type="file" class="form-control-file" name="image" required>
                                                 </div>
                                                 <div class="form-group">
@@ -494,7 +494,7 @@
                                         </td>
                                         <td>{{ $testimonial->name }}</td>
                                         <td>{{ $testimonial->designation }}</td>
-                                        <td>{{ $testimonial->comments }}</td>
+                                        <td>{{ Str::limit($testimonial->comments, 100) }}</td>
                                         <td>
 
                                             <!-- edit modal start -->
