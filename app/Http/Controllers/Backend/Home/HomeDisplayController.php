@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Backend\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Home\HomeDisplay;
-use Image;
-use File;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class HomeDisplayController extends Controller

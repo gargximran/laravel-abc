@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\About;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Backend\Logo;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image; 
+use App\Models\Backend\About\Vision;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
-class LogoController extends Controller
+class VisionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,8 @@ class LogoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        $logos = logo::orderBy('id','asc')->get();
-        return view('backend.pages.logo.manage', compact('logos'));
+    {
+        //
     }
 
     /**
@@ -29,7 +28,7 @@ class LogoController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -40,40 +39,47 @@ class LogoController extends Controller
      */
     public function store(Request $request)
     {
-        $logos = logo::orderBy('id','asc')->get();
+        $visions = Vision::orderBy('id','asc')->get();
 
-        if( count($logos) == NULL ){ 
+        if( count($visions) == NULL ){ 
             $request->validate(
                 [
-                    'name' => 'required'
+                    'vision' => 'required'
+                ],
+                [
+                    'mission' => 'required'
+                ],
+                [
+                    'values' => 'required'
                 ],
                 [
                     'image' => 'required'
                 ]
             );
 
-            $logo = new Logo();
+            $vision = new Vision();
 
-            $logo->name = $request->name;
-            $logo->slug = Str::slug($request->name);
+            $vision->vision     = $request->vision;
+            $vision->mission    = $request->mission;
+            $vision->value     = $request->value;
 
             if( $request->image ){
                 $image  = $request->file('image');
                 $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-                $location = public_path('images/logo/' . $img);
+                $location = public_path('images/vision/' . $img);
                 Image::make($image)->save($location);
-                $logo->image = $img;
+                $vision->image = $img;
             }
-            $logo->save();
+            $vision->save();
 
             //write success message
-            $request->session()->flash('message', ' Logo added Successfully');  
+            $request->session()->flash('create', ' Vision created Successfully');  
 
             return back();
         }
         else{
             //write unsuccess message
-            $request->session()->flash('createFailed', 'Logo already added');  
+            $request->session()->flash('createFailed', 'Vision already added');  
 
             return back();
         }
@@ -96,9 +102,9 @@ class LogoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Logo $logo)
+    public function edit(Vision $vision)
     {
-        return view('backend.pages.logo.edit', compact('logo'));
+        return view('backend.pages.about.editVision', compact('vision'));
     }
 
     /**
@@ -108,36 +114,44 @@ class LogoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Logo $logo)
+    public function update(Request $request, Vision $vision)
     {
         $request->validate(
             [
-                'name' => 'required'
+                'vision' => 'required'
+            ],
+            [
+                'mission' => 'required'
+            ],
+            [
+                'values' => 'required'
             ],
             [
                 'image' => 'required'
             ]
         );
 
-        $logo->name = $request->name;
-        $logo->slug = Str::slug($request->name);
+        $vision->vision     = $request->vision;
+        $vision->mission    = $request->mission;
+        $vision->value      = $request->value;
 
         if( $request->image ){
-            if( File::exists('images/logo/' . $logo->image) ){
-                File::delete('images/logo/' . $logo->image);
+            if( File::exists('images/vision/' . $vision->image) ){
+                File::delete('images/vision/' . $vision->image);
             }
 
             $image  = $request->file('image');
             $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/logo/' . $img);
+            $location = public_path('images/vision/' . $img);
             Image::make($image)->save($location);
-            $logo->image = $img;
+            $vision->image = $img;
         }
-        $logo->save();
+        $vision->save();
 
         //write success message
-        $request->session()->flash('update', ' Logo updated Successfully'); 
-        return redirect()->route('logo');
+        $request->session()->flash('update', ' Vision updated Successfully');  
+
+        return redirect()->route('aboutpage.show');
     }
 
     /**
@@ -146,16 +160,17 @@ class LogoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Logo $logo)
+    public function destroy(Request $request, Vision $vision)
     {
-        if( !is_null($logo) ){
-            if( File::exists('images/logo/' . $logo->image) ){
-                File::delete('images/logo/' . $logo->image);
+        if( !is_null($vision) ){
+            if( File::exists('images/vision/' . $vision->image) ){
+                File::delete('images/vision/' . $vision->image);
             }
-            $logo->delete();
+            $vision->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  Logo deleted Successfully'); 
-        return redirect()->route('logo');
+        $request->session()->flash('delete', ' vision deleted Successfully');  
+
+        return redirect()->route('aboutpage.show');
     }
 }

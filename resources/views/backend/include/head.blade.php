@@ -8,7 +8,7 @@
     <title>ABC-Admin Panel</title>
 
     <!-- Favicon -->
-    @foreach( $favs as $fav )
+    @foreach( App\Models\Backend\Fav::orderBy('id','asc')->get() as $fav )
     <link type="image/gif" rel="shortcut icon" href="{{ asset('images/fav/' . $fav->image) }}">
     @endforeach
 

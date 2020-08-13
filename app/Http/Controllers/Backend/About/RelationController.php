@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\About;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Backend\Logo;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image; 
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
+use App\Models\Backend\About\Relation;
 
-class LogoController extends Controller
+class RelationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,8 @@ class LogoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        $logos = logo::orderBy('id','asc')->get();
-        return view('backend.pages.logo.manage', compact('logos'));
+    {
+        //
     }
 
     /**
@@ -40,40 +39,39 @@ class LogoController extends Controller
      */
     public function store(Request $request)
     {
-        $logos = logo::orderBy('id','asc')->get();
+        $relations = Relation::orderBy('id','asc')->get();
 
-        if( count($logos) == NULL ){ 
+        if( count($relations) == NULL ){ 
             $request->validate(
                 [
-                    'name' => 'required'
+                    'comments' => 'required'
                 ],
                 [
                     'image' => 'required'
                 ]
             );
 
-            $logo = new Logo();
+            $relation = new Relation();
 
-            $logo->name = $request->name;
-            $logo->slug = Str::slug($request->name);
+            $relation->comments = $request->comments;
 
             if( $request->image ){
                 $image  = $request->file('image');
                 $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-                $location = public_path('images/logo/' . $img);
+                $location = public_path('images/relation/' . $img);
                 Image::make($image)->save($location);
-                $logo->image = $img;
+                $relation->image = $img;
             }
-            $logo->save();
+            $relation->save();
 
             //write success message
-            $request->session()->flash('message', ' Logo added Successfully');  
+            $request->session()->flash('create', ' Relation added Successfully');  
 
             return back();
         }
         else{
             //write unsuccess message
-            $request->session()->flash('createFailed', 'Logo already added');  
+            $request->session()->flash('createFailed', 'Relation already added');  
 
             return back();
         }
@@ -96,9 +94,9 @@ class LogoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Logo $logo)
+    public function edit(Relation $relation)
     {
-        return view('backend.pages.logo.edit', compact('logo'));
+        return view('backend.pages.about.editRelation', compact('relation'));
     }
 
     /**
@@ -108,36 +106,35 @@ class LogoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Logo $logo)
+    public function update(Request $request, Relation $relation)
     {
         $request->validate(
             [
-                'name' => 'required'
+                'comments' => 'required'
             ],
             [
                 'image' => 'required'
             ]
         );
 
-        $logo->name = $request->name;
-        $logo->slug = Str::slug($request->name);
+        $relation->comments = $request->comments;
 
         if( $request->image ){
-            if( File::exists('images/logo/' . $logo->image) ){
-                File::delete('images/logo/' . $logo->image);
+            if( File::exists('images/relation/' . $relation->image) ){
+                File::delete('images/relation/' . $relation->image);
             }
-
             $image  = $request->file('image');
             $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/logo/' . $img);
+            $location = public_path('images/relation/' . $img);
             Image::make($image)->save($location);
-            $logo->image = $img;
+            $relation->image = $img;
         }
-        $logo->save();
+        $relation->save();
 
         //write success message
-        $request->session()->flash('update', ' Logo updated Successfully'); 
-        return redirect()->route('logo');
+        $request->session()->flash('update', ' Relation updated Successfully');  
+
+        return redirect()->route('aboutpage.show');
     }
 
     /**
@@ -146,16 +143,17 @@ class LogoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Logo $logo)
+    public function destroy(Request $request, Relation $relation)
     {
-        if( !is_null($logo) ){
-            if( File::exists('images/logo/' . $logo->image) ){
-                File::delete('images/logo/' . $logo->image);
+        if( !is_null($relation) ){
+            if( File::exists('images/relation/' . $relation->image) ){
+                File::delete('images/relation/' . $relation->image);
             }
-            $logo->delete();
+            $relation->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  Logo deleted Successfully'); 
-        return redirect()->route('logo');
+        $request->session()->flash('delete', ' Relation deleted Successfully');  
+
+        return redirect()->route('aboutpage.show');
     }
 }

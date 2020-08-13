@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Backend\About\Client;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+
+
 
 class ClientController extends Controller
 {
@@ -33,8 +37,11 @@ class ClientController extends Controller
                 'cName' => 'required'
             ],
             [
-                'comments' => 'required'
+                'image' => 'required'
             ],
+            [
+                'comments' => 'required'
+            ]
         );
 
         $client = new Client();
@@ -42,6 +49,13 @@ class ClientController extends Controller
         $client->cName       = $request->cName;
         $client->comments    = $request->comments;
         $client->link        = $request->link;
+        if( $request->image ){
+            $image  = $request->file('image');
+            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/client/' . $img);
+            Image::make($image)->save($location);
+            $client->image = $img;
+        }
         $client->save();
 
         //write success message
@@ -86,13 +100,26 @@ class ClientController extends Controller
                 'cName' => 'required'
             ],
             [
-                'comments' => 'required'
+                'image' => 'required'
             ],
+            [
+                'comments' => 'required'
+            ]
         );
 
         $client->cName       = $request->cName;
         $client->comments    = $request->comments;
         $client->link        = $request->link;
+        if( $request->image ){
+            if( File::exists('images/client/' . $client->image) ){
+                File::delete('images/client/' . $client->image);
+            }
+            $image  = $request->file('image');
+            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/client/' . $img);
+            Image::make($image)->save($location);
+            $client->image = $img;
+        }
         $client->save();
 
         //write success message

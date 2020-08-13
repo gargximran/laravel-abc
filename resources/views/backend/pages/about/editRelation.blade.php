@@ -7,7 +7,7 @@
     <!-- title row start -->
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Edit Home Banner</h4>
+            <h4 class="page-title">Edit Relation</h4>
         </div>
     </div>
     <!-- title row end -->
@@ -21,23 +21,15 @@
                     <!-- edit row start -->
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <form action="{{ route('homebanner.update', $homebanner->slug) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('relation.update', $relation->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" class="form-control" name="title"  value="{{ $homebanner->title }}">
+                                    <label>Comments</label>
+                                    <input type="text" class="form-control" name="comments" value="{{ $relation->comments }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea name="description" rows="2" class="form-control">{{  $homebanner->description }}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Link</label>
-                                    <input type="text" class="form-control" name="link" value="{{ $homebanner->link }}" >
-                                </div>
-                                <div class="form-group">
-                                    <label>Add homebanner ( Please upload 900x465 size image )</label> <br>
-                                    <img src="{{ asset('images/banner/' . $homebanner->image ) }}" width="150px" alt=""> <br> <br>
+                                    <label>Image ( Please upload 526x425px size image )</label> <br>
+                                    <img src="{{ asset('images/relation/' . $relation->image) }}" width="150px" alt="">
                                     <input type="file" class="form-control-file" name="image" >
                                 </div>
                                 <div class="form-group">

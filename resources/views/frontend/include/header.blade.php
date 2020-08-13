@@ -4,4 +4,6 @@
 <title>ABC - Advance Best Cheap</title>
 
 <!-- Favicon -->
-<link type="image/gif" rel="shortcut icon" href="{{ asset('frontend/images/fav.png') }}">
+@foreach( App\Models\Backend\Fav::orderBy('id','asc')->get() as $fav )
+    <link type="image/gif" rel="shortcut icon" href="{{ asset('images/fav/' . $fav->image) }}">
+@endforeach 

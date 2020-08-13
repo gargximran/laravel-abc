@@ -6,7 +6,9 @@
 			<!-- logo start -->
 			<div class="col-md-3">
 				<a href="{{ route('index') }}">
-					<img src="{{ asset('frontend/images/logo.png') }}" class="img-fluid">
+					@foreach( App\Models\Backend\Logo::orderBy('id','asc')->get() as $logo )
+					<img src="{{ asset('images/logo/' . $logo->image) }}" class="img-fluid">
+					@endforeach
 				</a>
 			</div>
 			<!-- logo end -->
@@ -21,7 +23,7 @@
 						<li class="parent-nav">
 							<a href="{{ route('about') }}">about</a>
 
-							<div class="child-nav">
+							{{-- <div class="child-nav">
 								<ul>
 									<li>
 										<a href="">blogs</a>
@@ -33,17 +35,17 @@
 										<a href="gallery.php">gallery</a>
 									</li>
 								</ul>
-							</div>
+							</div> --}}
 
 						</li>
 						<li>
 							<a href="{{ route('shop') }}">shop</a>
 						</li>
 						<li>
-							<a href="">product</a>
+							<a href="{{ route('gallery') }}">gallery</a>
 						</li>
 						<li>
-							<a href="{{route('contact')}}">contact</a>
+							<a href="{{ route('contact') }}">contact</a>
 						</li>
 						<li class="cart">
 							<a href="">cart <i class="fas fa-shopping-cart"></i> </a>
@@ -71,7 +73,9 @@
 			<!-- logo start -->
 			<div class="col-4">
 				<a href="{{ route('index') }}">
-					<img src="{{ asset('frontend/images/logo.png') }}" class="img-fluid">
+					@foreach( App\Models\Backend\Logo::orderBy('id','asc')->get() as $logo )
+					<img src="{{ asset('images/logo/' . $logo->image) }}" class="img-fluid">
+					@endforeach
 				</a>
 			</div>
 			<!-- logo end -->
@@ -91,7 +95,7 @@
 			<li>
 				<a href="{{ route('index') }}"> <i class="fas fa-home"></i> home</a>
 			</li>
-			<li>
+			{{-- <li>
 				<div class="row">
 					<div class="col-8">
 						 <a href="{{ route('about') }}">about</a>
@@ -117,6 +121,9 @@
 						</ul>
 					</div>
 				</div>				
+			</li> --}}
+			<li>
+				<a href="{{ route('gallery') }}">gallery</a>
 			</li>
 			<li>
 				<a href="{{ route('shop') }}">shop</a>
@@ -125,7 +132,7 @@
 				<a href="">product</a>
 			</li>
 			<li>
-				<a href="contact.php">contact</a>
+				<a href="{{ route('contact') }}">contact</a>
 			</li>
 		</ul>
 	</div>

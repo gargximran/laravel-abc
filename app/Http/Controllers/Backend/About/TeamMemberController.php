@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Home;
+namespace App\Http\Controllers\Backend\About;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\Backend\Home\HomeBanner;
-use Illuminate\Support\Facades\File; 
-use Intervention\Image\Facades\Image; 
+use App\Models\Backend\About\Team;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
-class HomeBannerController extends Controller
+class TeamMemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,7 @@ class HomeBannerController extends Controller
      */
     public function index()
     {
-        $homebanners = HomeBanner::orderBy('id','asc')->get();
-        return view('backend.pages.home.manage', compact('homebanners'));
+        //
     }
 
     /**
@@ -42,7 +41,10 @@ class HomeBannerController extends Controller
     {
         $request->validate(
             [
-                'title' => 'required'
+                'name' => 'required'
+            ],
+            [
+                'designation' => 'required'
             ],
             [
                 'description' => 'required'
@@ -52,24 +54,24 @@ class HomeBannerController extends Controller
             ]
         );
 
-        $homebanner = new homebanner();
+        $team = new Team();
 
-        $homebanner->title = $request->title;
-        $homebanner->description = $request->description;
-        $homebanner->link = $request->link;
-        $homebanner->slug = Str::slug($request->title);
+        $team->name             = $request->name;
+        $team->designation      = $request->designation;
+        $team->description      = $request->description;
 
         if( $request->image ){
             $image  = $request->file('image');
             $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/banner/' . $img);
+            $location = public_path('images/team/' . $img);
             Image::make($image)->save($location);
-            $homebanner->image = $img;
+            $team->image = $img;
         }
-        $homebanner->save();
+
+        $team->save();
 
         //write success message
-        $request->session()->flash('message', ' Home banner added Successfully');  
+        $request->session()->flash('create', ' Team added Successfully');  
 
         return back();
     }
@@ -91,9 +93,9 @@ class HomeBannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(HomeBanner $homebanner)
+    public function edit(Team $team)
     {
-        return view('backend.pages.home.editHomeBanner', compact('homebanner'));
+        return view('backend.pages.about.editTeam', compact('team'));
     }
 
     /**
@@ -103,11 +105,14 @@ class HomeBannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HomeBanner $homebanner)
+    public function update(Request $request, Team $team)
     {
         $request->validate(
             [
-                'title' => 'required'
+                'name' => 'required'
+            ],
+            [
+                'designation' => 'required'
             ],
             [
                 'description' => 'required'
@@ -117,27 +122,27 @@ class HomeBannerController extends Controller
             ]
         );
 
-        $homebanner->title = $request->title;
-        $homebanner->description = $request->description;
-        $homebanner->link = $request->link;
-        $homebanner->slug = Str::slug($request->title);
+        $team->name             = $request->name;
+        $team->designation      = $request->designation;
+        $team->description      = $request->description;
 
         if( $request->image ){
-            if( File::exists('images/banner/' . $homebanner->image) ){
-                File::delete('images/banner/' . $homebanner->image);
+            if( File::exists('images/team/' . $team->image) ){
+                File::delete('images/team/' . $team->image);
             }
             $image  = $request->file('image');
             $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/banner/' . $img);
+            $location = public_path('images/team/' . $img);
             Image::make($image)->save($location);
-            $homebanner->image = $img;
+            $team->image = $img;
         }
-        $homebanner->save();
+
+        $team->save();
 
         //write success message
-        $request->session()->flash('update', ' Home banner updated Successfully');  
+        $request->session()->flash('update', ' Team updated Successfully');  
 
-        return redirect()->route('homepage.show');
+        return redirect()->route('aboutpage.show');
     }
 
     /**
@@ -146,16 +151,17 @@ class HomeBannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, HomeBanner $homebanner)
+    public function destroy(Request $request, Team $team)
     {
-        if( !is_null($homebanner) ){
-            if( File::exists('images/banner/' . $homebanner->image) ){
-                File::delete('images/banner/' . $homebanner->image);
+        if( !is_null($team) ){
+            if( File::exists('images/team/' . $team->image) ){
+                File::delete('images/team/' . $team->image);
             }
-            $homebanner->delete();
+            $team->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  homebanner deleted Successfully'); 
-        return redirect()->route('homepage.show');
+        $request->session()->flash('delete', ' Team deleted Successfully');  
+
+        return redirect()->route('aboutpage.show');
     }
 }

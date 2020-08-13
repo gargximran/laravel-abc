@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Fav;
 use Illuminate\Support\Str;
-use Image; 
-use File;
+use Intervention\Image\Facades\Image; 
+use Illuminate\Support\Facades\File;
 
 class FavController extends Controller
 {

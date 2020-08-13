@@ -2,7 +2,6 @@
 @section('title')
 @endsection
 @section('body-content')
-
 <!-- page indicator start -->
 <section class="page-indicator">
 	<div class="container">
@@ -21,12 +20,11 @@
 	</div>
 </section>
 <!-- page indicator end -->
-
 <!-- contact section start -->
 <section class="contact section-padding">
 	<div class="container">
 		<div class="row">
-			
+
 			<!-- left part start -->
 			<div class="col-md-12">
 				<div class="left">
@@ -34,7 +32,6 @@
 				</div>
 			</div>
 			<!-- left part end -->
-
 			<!-- right part start -->
 			<!-- <div class="col-md-6">
 				<div class="right">
@@ -60,17 +57,14 @@
 				</div>
 			</div> -->
 			<!-- right part end -->
-
 		</div>
 	</div>
 </section>
 <!-- contact section end -->
-
 <!-- contact page address info start -->
 <section class="contact-page-info section-padding">
 	<div class="container">
 		<div class="row">
-
 			<!-- contact info item start -->
 			<div class="col-md-4">
 				<div class="contact-info-item">
@@ -80,7 +74,6 @@
 				</div>
 			</div>				
 			<!-- contact info item end -->
-
 			<!-- contact info item start -->
 			<div class="col-md-4">
 				<div class="contact-info-item">
@@ -90,7 +83,6 @@
 				</div>
 			</div>				
 			<!-- contact info item end -->
-
 			<!-- contact info item start -->
 			<div class="col-md-4">
 				<div class="contact-info-item">
@@ -100,28 +92,24 @@
 				</div>
 			</div>				
 			<!-- contact info item end -->
-
 		</div>
 	</div>
 </section>
 <!-- contact page address info end -->
-
-
 <!-- contact form section start -->
 <section class="contact-form-section section-padding">
 	<div class="container">
 		<div class="row">
-
 			<!-- left part start -->
 			<div class="col-md-6">
 				<div class="left">
 					<h2>How can we help you?</h2>
-					
+
 					<!-- contact people row start -->
 					<div class="row contact-with-people">
 						<div class="col-md-3">
 							<div class="left">
-								<img src="{{ asset('public/frontend/images/User-icon.png') }}" class="img-fluid" alt="">
+								<img src="{{ asset('frontend/images/User-icon.png') }}" class="img-fluid" alt="">
 							</div>
 						</div>
 						<div class="col-md-9">
@@ -134,12 +122,11 @@
 						</div>
 					</div>
 					<!-- contact people row end -->
-
 					<!-- contact people row start -->
 					<div class="row contact-with-people">
 						<div class="col-md-3">
 							<div class="left">
-								<img src="{{ asset('public/frontend/images/User-icon.png') }}" class="img-fluid" alt="">
+								<img src="{{ asset('frontend/images/User-icon.png') }}" class="img-fluid" alt="">
 							</div>
 						</div>
 						<div class="col-md-9">
@@ -152,11 +139,9 @@
 						</div>
 					</div>
 					<!-- contact people row end -->
-
 				</div>
 			</div>
 			<!-- left part END -->
-
 			<!-- right part start -->
 			<div class="col-md-6">
 				<div class="right">
@@ -180,10 +165,8 @@
 				</div>
 			</div>
 			<!-- right part end -->
-
 		</div>
 	</div>
 </section>
 <!-- contact form section end -->
-
-@endsection
+@endsection 

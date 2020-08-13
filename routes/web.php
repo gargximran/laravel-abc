@@ -69,7 +69,7 @@ Route::prefix('admin')->group(function(){
     //home page route end
 
     //about page route start
-    Route::group(['prefix' => 'About-page'], function(){
+    Route::group(['prefix' => 'about-page'], function(){
 
         //show about page
         Route::get('/', 'Backend\About\AboutPageController@index')->name('aboutpage.show');
@@ -96,11 +96,32 @@ Route::prefix('admin')->group(function(){
         // client route end
 
         // team member route start
-        Route::post('/team/create', 'Backend\About\ClientController@store')->name('team.create');
-        Route::get('/team/edit/{team:id}', 'Backend\About\ClientController@edit')->name('team.edit');
-        Route::post('/team/edit/{team:id}', 'Backend\About\ClientController@update')->name('team.update');
-        Route::post('/team/delete/{team:id}', 'Backend\About\ClientController@destroy')->name('team.delete');
+        Route::post('/team/create', 'Backend\About\TeamMemberController@store')->name('team.create');
+        Route::get('/team/edit/{team:id}', 'Backend\About\TeamMemberController@edit')->name('team.edit');
+        Route::post('/team/edit/{team:id}', 'Backend\About\TeamMemberController@update')->name('team.update');
+        Route::post('/team/delete/{team:id}', 'Backend\About\TeamMemberController@destroy')->name('team.delete');
         // team member route end
+
+         // industry route start
+         Route::post('/industry/create', 'Backend\About\IndustryController@store')->name('industry.create');
+         Route::get('/industry/edit/{industry:id}', 'Backend\About\IndustryController@edit')->name('industry.edit');
+         Route::post('/industry/edit/{industry:id}', 'Backend\About\IndustryController@update')->name('industry.update');
+         Route::post('/industry/delete/{industry:id}', 'Backend\About\IndustryController@destroy')->name('industry.delete');
+         // industry route end
+ 
+         // vission mission values route start
+         Route::post('/vision/create', 'Backend\About\VisionController@store')->name('vision.create');
+         Route::get('/vision/edit/{vision:id}', 'Backend\About\VisionController@edit')->name('vision.edit');
+         Route::post('/vision/edit/{vision:id}', 'Backend\About\VisionController@update')->name('vision.update');
+         Route::post('/vision/delete/{vision:id}', 'Backend\About\VisionController@destroy')->name('vision.delete');
+         // vission mission values route end
+ 
+         // relation route start
+         Route::post('/relation/create', 'Backend\About\RelationController@store')->name('relation.create');
+         Route::get('/relation/edit/{relation:id}', 'Backend\About\RelationController@edit')->name('relation.edit');
+         Route::post('/relation/edit/{relation:id}', 'Backend\About\RelationController@update')->name('relation.update');
+         Route::post('/relation/delete/{relation:id}', 'Backend\About\RelationController@destroy')->name('relation.delete');
+         // relation route end
     
     });	
 });
@@ -201,13 +222,9 @@ Route::get('/about','Frontend\FrontendController@about')->name('about');
 Route::get('/shop','Frontend\FrontendController@shop')->name('shop');
 
 
-Route::get('/contact',function(){
-    return view('frontend.pages.contact');
-})->name('contact');
+Route::get('/contact','Frontend\FrontendController@contact')->name('contact');
 
-
-
-// Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/gallery','Frontend\FrontendController@gallery')->name('gallery');
 
 
 
