@@ -11,7 +11,7 @@
 
                 <span class="logo-text">
                     <!-- dark Logo text -->
-                    @foreach( $logos as $logo )
+                    @foreach(  App\Models\Backend\Logo::orderBy('id','asc')->get() as $logo )
                         @if( $logo->image == NULL )
                             <div class="alert alert-warning">
                             No Image uploaded

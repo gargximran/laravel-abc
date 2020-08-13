@@ -108,7 +108,7 @@ Route::prefix('admin')->group(function(){
 
 /*
 |--------------------------------------------------------------------------
-| Backend Web Routes
+| imaran Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -148,6 +148,10 @@ Route::prefix('admin')->namespace('Backend')->group(function(){
         Route::get('/', 'ProductController@index')->name('product_show_backend');
         Route::get('/add', 'ProductController@create')->name('product_create_backend');
         Route::post('/store', 'ProductController@store')->name('product_store_backend');
+        Route::get('/{product:slug}/edit', 'ProductController@edit')->name('product_edit_backend');
+        Route::put('/{product:slug}/update', 'ProductController@update')->name('product_update_backend');
+        Route::delete('/{product:slug}/delete', 'ProductController@destroy')->name('product_destroy_backend');
+        Route::get('/{product:slug}/show', 'ProductController@show')->name('product_show_single_backend');
     });
     
 
@@ -195,6 +199,11 @@ Route::get('/about','Frontend\FrontendController@about')->name('about');
 
 //shop page route
 Route::get('/shop','Frontend\FrontendController@shop')->name('shop');
+
+
+Route::get('/contact',function(){
+    return view('frontend.pages.contact');
+})->name('contact');
 
 
 

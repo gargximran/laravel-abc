@@ -55,7 +55,11 @@
                                 @foreach($products as $key => $product)
                                     <tr>
                                         <td class=""><p class="text-center "><img src="{{asset('images/product/'.$product->image[0]->name)}}" class="border table_image"></p></td>
-                                        <td>{{$product->name}}</td>
+                                        <td>@if ($product->exclusive)
+                                            <i class="text-warning mdi mdi-feather"></i>
+                                        @endif <span @if (!$product->status)
+                                            class="text-danger"
+                                        @endif>{{$product->name}}</span></td>
                                         <td>{{$product->category->parent->name}} > {{$product->category->name}}</td>
                                         <td>{{$product->model}}</td>
                                         <td>{{$product->size}}</td>
@@ -64,8 +68,8 @@
 
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href=""  class="btn btn-primary  btn-sm"><i class="mdi mdi-eye"></i> View</a> 
-                                                <a href="" class="btn btn-warning btn-sm"><i class="mdi mdi-account-edit"></i> Edit</a> 
+                                                <a href="{{route('product_show_single_backend', $product->slug)}}"  class="btn btn-primary  btn-sm"><i class="mdi mdi-eye"></i> View</a> 
+                                                <a href="{{ route('product_edit_backend', $product->slug) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-account-edit"></i> Edit</a> 
                                                 <div class="btn-group">
                                                     <button
                                                         type="button"
@@ -82,8 +86,10 @@
                                                     
                                                     >
 
-                                                    <form action="" method="POST">
-                                                        <input type="hidden" name="_method" value="delete">                                                    <input type="hidden" name="_token" value="uvzWM02xAsBfvlkvhNEFjrRmm9quBG8EusW29Jb3">                                                    <button class="dropdown-item bg-danger" type="submit">Confirm Delete?</button>
+                                                    <form action="{{route('product_destroy_backend', $product->slug)}}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        <button class="dropdown-item bg-danger" type="submit">Confirm Delete?</button>
                                                     </form>
 
                                                         <a

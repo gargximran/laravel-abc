@@ -43,7 +43,7 @@
 							<a href="">product</a>
 						</li>
 						<li>
-							<a href="contact.php">contact</a>
+							<a href="{{route('contact')}}">contact</a>
 						</li>
 						<li class="cart">
 							<a href="">cart <i class="fas fa-shopping-cart"></i> </a>
