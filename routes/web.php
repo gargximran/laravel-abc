@@ -220,11 +220,13 @@ Route::get('/about','Frontend\FrontendController@about')->name('about');
 
 //shop page route
 Route::get('/shop','Frontend\FrontendController@shop')->name('shop');
+Route::get('/shop/search}','Frontend\FrontendController@search')->name('search');
 
 
 Route::get('/contact','Frontend\FrontendController@contact')->name('contact');
 
 Route::get('/gallery','Frontend\FrontendController@gallery')->name('gallery');
+Route::get('/checkout','Frontend\FrontendController@checkout')->name('checkout');
 
 
 

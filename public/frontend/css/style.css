@@ -2333,3 +2333,14 @@ footer{
 	color: #f97942;
 }
 /* footer section end */
+
+
+/* pagination  view */
+.paginate-row nav{
+	text-align: center !important;
+}
+
+.page-item.active .page-link{
+	background-color: #ff004c !important;
+	border-color: #fff !important;
+}

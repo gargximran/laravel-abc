@@ -24,7 +24,7 @@
     						<div class="col-md-6 ">
     							<h1>{{ $homebanner->title }}</h1>
     							<p>{{ $homebanner->description }}.</p>
-    							<a href="{{ $homebanner->link }}">
+    							<a href="{{ $homebanner->link }}">g </a>
                                 <form>
                                     <div class="form-group search-product">
                                         <input type="text" class="form-control" placeholder="Search your products" name="">
@@ -41,11 +41,12 @@
     						<!-- right part end -->
     					</div>
     				</div>
-    			</div>
+                </div>
+                @endforeach
     			<!-- item end -->
 
             </div>
-            @endforeach
+            
     		<!-- slider end -->
 
 		</div>
@@ -147,27 +148,36 @@
         <div class="row third-section-bottom-row">
             <div class="home-product-carousel owl-carousel owl-theme">
 
+
                 <!-- item part start -->
+                @foreach ($exclusiveProducts as $exclusiveItem)
+                    
+                
                 <div class="item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.5s">
                     <div class="col-md-12">
                         <div class="third-section-left">
                             <div class="row">
                                 <!-- left -->
                                 <div class="col-md-6 img-box">
-                                    <img src="{{ asset('frontend/images/fan2.png') }}" class="img-fluid">
+                                    <img src="{{ asset('images/product/'.$exclusiveItem->image[0]->name) }}" class="img-fluid">
                                 </div>
 
                                 <!-- right -->
                                 <div class="col-md-6 right">
-                                    <h2>AARAM 36”</h2>
+                                    <h2>{{$exclusiveItem->name}}</h2>
                                     <ul>
-                                        <li>Since 2012 </li>
-                                        <li>Elegant Design </li>
-                                        <li>Aerodynamic </li>
+                                        <li>{{__('Size : ').$exclusiveItem->size}} </li>
+                                        <li>{{__('Brand : ').$exclusiveItem->brand}} </li>
+                                        <li>{{__('Model : ').$exclusiveItem->model}} </li>
                                         <li>3 Years Replacement Guranted </li>
                                     </ul>
-                                    <p>1500 tk</p>
-                                    <a href="">
+                                    @if ($exclusiveItem->offer_price)
+                                        <p>{{$exclusiveItem->offer_price}} tk</p>
+                                        @else
+                                        <p>{{$exclusiveItem->regular_price}} tk</p>
+                                    @endif
+                                    
+                                    <a href="#">
                                         know more
                                     </a>
                                 </div>
@@ -176,96 +186,10 @@
                     </div>
                 </div>
                 <!-- left part end -->
+                @endforeach
 
-                <!-- item part start -->
-                <div class="item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.5s">
-                    <div class="col-md-12">
-                        <div class="third-section-left">
-                            <div class="row">
-                                <!-- left -->
-                                <div class="col-md-6 img-box">
-                                    <img src="{{ asset('frontend/images/fan2.png') }}" class="img-fluid">
-                                </div>
+              
 
-                                <!-- right -->
-                                <div class="col-md-6 right">
-                                    <h2>AARAM 36”</h2>
-                                    <ul>
-                                        <li>Since 2012 </li>
-                                        <li>Elegant Design </li>
-                                        <li>Aerodynamic </li>
-                                        <li>3 Years Replacement Guranted </li>
-                                    </ul>
-                                    <p>1500 tk</p>
-                                    <a href="">
-                                        know more
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- left part end -->
-
-                <!-- item part start -->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="third-section-left">
-                            <div class="row">
-                                <!-- left -->
-                                <div class="col-md-6 img-box">
-                                    <img src="{{ asset('frontend/images/fan2.png') }}" class="img-fluid">
-                                </div>
-
-                                <!-- right -->
-                                <div class="col-md-6 right">
-                                    <h2>AARAM 36”</h2>
-                                    <ul>
-                                        <li>Since 2012 </li>
-                                        <li>Elegant Design </li>
-                                        <li>Aerodynamic </li>
-                                        <li>3 Years Replacement Guranted </li>
-                                    </ul>
-                                    <p>1500 tk</p>
-                                    <a href="">
-                                        know more
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- left part end -->
-
-                <!-- item part start -->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="third-section-left">
-                            <div class="row">
-                                <!-- left -->
-                                <div class="col-md-6 img-box">
-                                    <img src="{{ asset('frontend/images/fan2.png') }}" class="img-fluid">
-                                </div>
-
-                                <!-- right -->
-                                <div class="col-md-6 right">
-                                    <h2>AARAM 36”</h2>
-                                    <ul>
-                                        <li>Since 2012 </li>
-                                        <li>Elegant Design </li>
-                                        <li>Aerodynamic </li>
-                                        <li>3 Years Replacement Guranted </li>
-                                    </ul>
-                                    <p>1500 tk</p>
-                                    <a href="">
-                                        know more
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- left part end -->
 
             </div>
 

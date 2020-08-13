@@ -27,9 +27,10 @@
 	    
 	    <div class="row">
 			<div class="col-md-6 offset-md-3">
-				 <form>
+				 <form action="{{route('search')}}" method="get">
+					
                     <div class="form-group search-product">
-                        <input type="text" class="form-control" placeholder="Search your products" name="">
+                        <input type="text" class="form-control" placeholder="Search your products" name="search">
                         <button type="submit" class="search-btn">Search</button>
                     </div>
                 </form>
@@ -52,18 +53,16 @@
 					<div class="cat-form">
 						<form>
 							<ul>
+                                @foreach (App\Models\Backend\Category::where('category_id', 0)->get() as $parentCategory)
+									<li>										
+										<a href="#">{{$parentCategory->name}}</a> <br>
+									</li>
+								@endforeach                                   
+                              
+								
                                                                     
                               
-								<li>
-									
-                                      <a href="shop/Fan">Fan</a> <br>
-                                </li>
-                                                                    
-                              
-								<li>
-									
-                                      <a href="shop/Light">Light</a> <br>
-                                </li>
+							
                                 								
 							</ul>
 						</form>
@@ -99,34 +98,41 @@
 					<div class="row">           
                        
 						<!-- product item start -->
+						@foreach ($products as $product)
+							
+						
 						<div class="col-md-3 col-6">
 							<div class="product-item">
 								<div class="product-image">
                                     <p>10 %</p>
-                                    <img src="{{ asset('frontend/images/fan4.png') }}" class="img-fluid">
+                                    <img src="{{ asset('images/product/'.$product->image[0]->name) }}" class="img-fluid">
 									<a href="">see more</a> 
 									<!--add to car-->
 								</div>
 								<div class="product-detail">
-									<a href="">ABC Ceiling Fan</a>
+									<a href="">{{$product->name}}</a>
 									<div class="product-detail-bottom">
-                                            <p>1350 tk</p> 
-                                        <p> <del>1500</del> Tk </p>
+										@if ($product->offer_price)
+											<p>{{$product->offer_price}} tk</p> 
+											<p> <del>{{$product->regular_price}}</del> Tk </p>
+										@else
+											<p>{{$product->regular_price}} tk</p> 
+										@endif
+                                         
                                     </div>
 								</div>
 							</div>
 						</div>
 						<!-- product item end -->
+						@endforeach
                         
 
 					</div>
 				</div>
 
 				<div class="col-md-12 paginate-row">
-					<ul>
-						<li><a href="">1</a></li>
-						<li><a href="">2</a></li>
-					</ul>
+					{{$products->links()}}
+				
 				</div>
 
 			</div>

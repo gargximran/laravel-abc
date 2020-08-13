@@ -15,6 +15,7 @@ use App\Models\Backend\About\Team;
 use App\Models\Backend\About\Vision;
 use App\Models\Backend\About\Relation;
 use App\Models\Backend\About\Industry;
+use App\Models\Backend\Product;
 
 class FrontendController extends Controller
 {
@@ -23,8 +24,9 @@ class FrontendController extends Controller
         $homebanners = HomeBanner::orderBy('id','asc')->get();
         $homedisplays = HomeDisplay::orderBy('id','asc')->get();
         $testimonials = Testimonial::orderBy('id','asc')->get();
+        $exclusiveProducts = Product::where('status' ,1)->where('exclusive', 1)->where('quantity', '!=', 0)->get();
         return view('frontend.pages.index',compact(
-            'homebanners', 'testimonials', 'homedisplays'
+            'homebanners', 'testimonials', 'homedisplays','exclusiveProducts'
         ));
     }
 
@@ -44,7 +46,10 @@ class FrontendController extends Controller
 
     //shop page show
     public function shop(){
-        return view('frontend.pages.shop');
+        $products = Product::orderBy('id', 'desc')->where('quantity',"!=", 0)->where('status', 1)->paginate(20);
+   
+        
+        return view('frontend.pages.shop', compact('products'));
     }
 
     //contact page show
@@ -55,5 +60,21 @@ class FrontendController extends Controller
     //gallery page show
     public function gallery(){
         return view('frontend.pages.gallery');
+    }
+
+
+    // search option
+    public function search(Request $request){
+
+        $searchQuery = $request->search;
+        $products = Product::orWhere('name',"LIKE", "%$request->search%")->orWhere('model',"LIKE", "%$request->search%")->orWhere('regular_price',"LIKE", "%$request->search%")->orWhere('offer_price',"LIKE", "%$request->search%")->orWhere('brand',"LIKE", "%$request->search%")->where('quantity', '!=', 0)->where('status', 1)->paginate(20);
+        return view('frontend.pages.search', compact('products',"searchQuery"));
+
+    }
+
+
+
+    public function checkout(){
+        return view('frontend.pages.checkout');
     }
 }

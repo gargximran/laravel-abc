@@ -81,6 +81,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Parent Category Name</th>
+                                    <th>Product Count</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -89,6 +90,7 @@
                                     <tr>
                                         <td>{{$childCategory->name}}</td>
                                         <td>{{$childCategory->parent->name}}</td>
+                                        <td>{{ count($childCategory->product)}}</td>
 
                                         <td>
                                             <div class="d-flex justify-content-center">

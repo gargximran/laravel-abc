@@ -67,7 +67,7 @@ class ProductController extends Controller
 
         $serialVal = Product::orderBy('id', 'desc')->select('id')->first();
         
-        $val = number_format($serialVal->id) + 1;
+        $val = $serialVal ? number_format($serialVal->id) + 1 : 1;
 
         $category = Category::find($request->category);
 
