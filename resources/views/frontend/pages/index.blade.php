@@ -24,10 +24,10 @@
     						<div class="col-md-6 ">
     							<h1>{{ $homebanner->title }}</h1>
     							<p>{{ $homebanner->description }}.</p>
-    							<a href="{{ $homebanner->link }}">g </a>
-                                <form>
+    							<a href="{{ $homebanner->link }}">Know more </a>
+                                <form action="{{route('search')}}" method="get">
                                     <div class="form-group search-product">
-                                        <input type="text" class="form-control" placeholder="Search your products" name="">
+                                        <input type="text" class="form-control" placeholder="Search your products"  name="search">
                                         <button type="submit" class="search-btn">Search</button>
                                     </div>
                                 </form>
@@ -151,8 +151,6 @@
 
                 <!-- item part start -->
                 @foreach ($exclusiveProducts as $exclusiveItem)
-                    
-                
                 <div class="item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.5s">
                     <div class="col-md-12">
                         <div class="third-section-left">
@@ -280,9 +278,11 @@
                             </div>
 
                             <div class="col-md-7 right">
+                                @foreach( $contactinfos as $contactinfo )
                                 <p>
-                                    <span>Corporate/Head Office & Showroom:</span> 
-                                21, Habibullah Electric Market, Kazi Abdul Hamid Lane, Nawabpur, Dhaka - 1100.</p>
+                                    {{ $contactinfo->address }}
+                                </p>
+                                @endforeach
                             </div>
                         </div>
                     </div>

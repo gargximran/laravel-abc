@@ -5,11 +5,20 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark " href="{{ route('backend_dashboard') }}" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark " href="{{ route('dashboard') }}" aria-expanded="false">
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+
+                <!-- email subscription start -->
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('subscribers') }}" aria-expanded="false">
+                        <i class="fas fa-envelope"></i>
+                        <span class="hide-menu">Email Subscriptions</span>
+                    </a>
+                </li>
+                <!-- email subscription end -->
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('fav') }}" aria-expanded="false">
@@ -34,6 +43,8 @@
                         <span class="hide-menu"> Pages </span>
                     </a>
                     <ul aria-expanded="false" class="collapse  first-level">
+
+                        <!-- home page start-->
                         <li class="sidebar-item ml-3">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('homepage.show') }}" aria-expanded="false">
                                 <i class="fas fa-home"></i>
@@ -50,6 +61,24 @@
                             </a>
                         </li>
                         <!-- about page end -->
+
+                        <!-- contact page start -->
+                        <li class="sidebar-item ml-3">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('contactpage.show') }}" aria-expanded="false">
+                                <i class="fas fa-phone"></i>
+                                <span class="hide-menu">Contact Page</span>
+                            </a>
+                        </li>
+                        <!-- contact page end -->
+
+                        <!-- gallery page start -->
+                        <li class="sidebar-item ml-3">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('gallerypage.show') }}" aria-expanded="false">
+                                <i class="fas fa-camera"></i>
+                                <span class="hide-menu">Gallery Page</span>
+                            </a>
+                        </li>
+                        <!-- gallery page end -->
                     </ul>
                 </li>
 

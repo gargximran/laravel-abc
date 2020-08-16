@@ -16,6 +16,10 @@ use App\Models\Backend\About\Vision;
 use App\Models\Backend\About\Relation;
 use App\Models\Backend\About\Industry;
 use App\Models\Backend\Product;
+use App\Models\Backend\Contact\Map;
+use App\Models\Backend\Contact\ContactInfo;
+use App\Models\Backend\Contact\ContactStuff;
+use App\MOdels\Backend\Gallery\Gallery;
 
 class FrontendController extends Controller
 {
@@ -24,9 +28,10 @@ class FrontendController extends Controller
         $homebanners = HomeBanner::orderBy('id','asc')->get();
         $homedisplays = HomeDisplay::orderBy('id','asc')->get();
         $testimonials = Testimonial::orderBy('id','asc')->get();
+        $contactinfos = ContactInfo::orderBy('id','asc')->get();
         $exclusiveProducts = Product::where('status' ,1)->where('exclusive', 1)->where('quantity', '!=', 0)->get();
         return view('frontend.pages.index',compact(
-            'homebanners', 'testimonials', 'homedisplays','exclusiveProducts'
+            'homebanners', 'testimonials', 'homedisplays','exclusiveProducts', 'contactinfos'
         ));
     }
 
@@ -46,7 +51,7 @@ class FrontendController extends Controller
 
     //shop page show
     public function shop(){
-        $products = Product::orderBy('id', 'desc')->where('quantity',"!=", 0)->where('status', 1)->paginate(20);
+        $products = Product::orderBy('id', 'desc')->where('quantity',"!=", 0)->where('status', 1)->paginate(5);
    
         
         return view('frontend.pages.shop', compact('products'));
@@ -54,12 +59,18 @@ class FrontendController extends Controller
 
     //contact page show
     public function contact(){
-        return view('frontend.pages.contact');
+        $maps = Map::orderBy('id', 'asc')->get();
+        $contactinfos = ContactInfo::orderBy('id','asc')->get();
+        $contactstuffs = ContactStuff::orderBy('id','asc')->get();
+        return view('frontend.pages.contact', compact(
+            'maps', 'contactinfos', 'contactstuffs'
+        ));
     }
 
     //gallery page show
     public function gallery(){
-        return view('frontend.pages.gallery');
+        $gallerys = Gallery::orderBy('id', 'desc')->get();
+        return view('frontend.pages.gallery', compact('gallerys'));
     }
 
 
@@ -76,5 +87,11 @@ class FrontendController extends Controller
 
     public function checkout(){
         return view('frontend.pages.checkout');
+    }
+
+
+
+    public function singeProduct(Product $product){
+        return view('frontend.pages.productDetails', compact('product'));
     }
 }

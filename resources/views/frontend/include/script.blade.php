@@ -22,6 +22,24 @@
 <!-- wow js file -->
   <script type="text/javascript" src="{{ asset('frontend/js/wow.min.js') }}"></script> 
 
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <!-- the main js file -->
 <script type="text/javascript" src="{{ asset('frontend/js/main.js') }}" ></script>
+
+{{-- Ajax action for  cart --}}
+
+<script>
+  function addToCart(id){
+    axios.post('/api/cart/add',{
+      id
+    }).then(res=>{
+      console.log(res.data)
+    })
+  }
+
+
+
+
+</script>

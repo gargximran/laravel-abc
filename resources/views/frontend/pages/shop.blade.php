@@ -53,17 +53,50 @@
 					<div class="cat-form">
 						<form>
 							<ul>
-                                @foreach (App\Models\Backend\Category::where('category_id', 0)->get() as $parentCategory)
-									<li>										
-										<a href="#">{{$parentCategory->name}}</a> <br>
-									</li>
-								@endforeach                                   
-                              
+
 								
-                                                                    
-                              
+
+                                @foreach (App\Models\Backend\Category::where('category_id', 0)->get() as $parentCategory)
+									
+									@if (count($parentCategory->child))
+										
+									
+										<!-- parent category start -->
+										<div class="row show-child-cat" id="{{$parentCategory->slug}}">
+											
+											<div class="col-md-9">
+												<p>{{$parentCategory->name}}</p>
+											</div>
+
+											<!-- dropdown icon start -->
+											<div class="col-md-3 text-right">
+												<i class="fas fa-plus"></i>
+											</div>
+											<!-- dropdown icon end -->
+
+
+											
+													<!-- child category start -->
+													<div class="row child-category {{$parentCategory->slug}}">
+														@foreach ($parentCategory->child as $child)
+														<div class="col-md-12">
+															<a href="{{route('categoryProduct', $child->slug)}}">{{$child->name}}</a>
+														</div>
+														@endforeach
+													</div>
+													<!-- child category end -->
+											
+											
+
+										</div>
+										<!-- parent category end -->
+								
+								
+								
+								
+									@endif
 							
-                                								
+								@endforeach   							
 							</ul>
 						</form>
 					</div>
@@ -106,15 +139,15 @@
 								<div class="product-image">
                                     <p>10 %</p>
                                     <img src="{{ asset('images/product/'.$product->image[0]->name) }}" class="img-fluid">
-									<a href="">see more</a> 
+									<a href="#" onclick="addToCart({{$product->id}});">Add To Cart</a> 
 									<!--add to car-->
 								</div>
 								<div class="product-detail">
-									<a href="">{{$product->name}}</a>
+									<a href="{{route('singeProduct', $product->slug)}}">{{$product->name}}</a>
 									<div class="product-detail-bottom">
 										@if ($product->offer_price)
 											<p>{{$product->offer_price}} tk</p> 
-											<p> <del>{{$product->regular_price}}</del> Tk </p>
+											<p class="text-danger"> <del>{{$product->regular_price}}</del> Tk </p>
 										@else
 											<p>{{$product->regular_price}} tk</p> 
 										@endif

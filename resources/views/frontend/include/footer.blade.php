@@ -41,10 +41,10 @@
 			<!-- middle part start -->
 			<div class="col-md-6">
 				<div class="middle">
-					<form>
+					<form id="createSubscribers">
 						<div class="form-group">
-							<input type="email" placeholder="Email Address" class="form-control" name="">
-							<button type="submit" class="submit-btn">Subscribe</button>
+							<input type="email" placeholder="Email Address" class="form-control" name="email" required>
+							<button type="submit" class="submit-btn emailSubscription">Subscribe</button>
 						</div>
 					</form>
 				</div>

@@ -86,7 +86,7 @@
     							<div class="left">
     								
     								<h2>{{ $client->cName }}</h2>
-    								<p>img src="{{ asset('frontend/images/qoute.png') }}">{{ $client->comments }} </p>
+    								<p><img src="{{ asset('frontend/images/qoute.png') }}">{{ $client->comments }} </p>
     								<a href="{{ $client->link }}">visit site</a>
     							</div>
     						</div>

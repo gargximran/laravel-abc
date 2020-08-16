@@ -34,44 +34,59 @@
         <!-- title row end -->
 ​
         <!-- main gallery start -->
-        <!-- Ph oto Grid -->
         <div class="row photo-gallery"> 
-          <div class="column">
-            <div class="gallery-image">
-                <img src="{{ asset('frontend/images/gallery-3.png') }}" style="width:100%">
-                <div class="gallery-hover">
-                    <a href="{{ asset('frontend/images/gallery-3.png') }}" data-fancybox data-caption="">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
-            </div>
-          </div>
-​
-          <div class="column">
 
-            <div class="gallery-image">
-                <img src="{{ asset('frontend/images/gallery-2.png') }}" style="width:100%">
-                <div class="gallery-hover">
-                    <a href="{{ asset('frontend/images/gallery-2.png') }}" data-fancybox data-caption="">
-                        <i class="fas fa-eye"></i>
-                    </a>
+            <!-- gallery item start -->
+            @foreach( $gallerys as $gallery )
+            <div class="col-md-4">
+                <div class="gallery-image">
+                    <img src="{{ asset('images/gallery/' . $gallery->image ) }}" style="width:100%">
+                    <div class="gallery-hover">
+                        <p>
+                            <i class="fas fa-eye show-gallery-popup" id="{{ $gallery->id }}"></i>
+                        </p>
+                    </div>
                 </div>
             </div>
-          </div>
-​
-          <div class="column">
-            <div class="gallery-image">
-                <img src="{{ asset('frontend/images/gallery-4.png') }}" style="width:100%">
-                <div class="gallery-hover">
-                    <a href="{{ asset('frontend/images/gallery-4.png') }}" data-fancybox data-caption="">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
-            </div>
+            @endforeach
+            <!-- gallery item end --> 
 
-          </div>
         </div>
         <!-- main gallery end -->
+
+        <!-- gallery popup slideshow start -->
+        <div class="gallery-slideshow">
+            <div class="gallery-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="container">
+                <div class="row gallery-slideshow-row">
+                    <div class="col-md-6 offset-md-3 slider">
+
+                        <!-- item start -->
+                        @foreach( $gallerys as $gallery )
+                        <div class="gallery-popup-image  {{ $gallery->id }}">
+                            <img src="{{ asset('images/gallery/' . $gallery->image ) }}" style="width:100%" >
+                            <p>{{ $gallery->caption }}</p>
+                        </div>
+                        @endforeach
+                        <!-- item end-->
+                        
+                        
+                    </div>
+
+                    <!-- slide change button start -->
+                    <div class="col-md-12 slideshow-button">
+                        <button class="previous" onclick="changeSlide('previous')">Previous</button>
+                        <input type="button" class="start Slideshow" onclick="slideshow(this)" value="Start Slideshow" >
+                        <button class="next" onclick="changeSlide('next')">Next</button>
+                    </div>
+                    <!-- slide change button end -->
+
+                </div>
+            </div>
+        </div>
+        <!-- gallery popup slideshow end -->
 ​
 	</div>
 </section>

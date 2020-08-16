@@ -221,6 +221,16 @@ class ProductController extends Controller
 
     }
 
+
+
+
+    public function categoryProduct(Request $request, Category $category){
+
+        $products = $category->product()->where('status', 1)->paginate(20);
+        
+        return view('frontend.pages.categoryProduct', compact('products', 'category'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -230,7 +240,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         
-        $product->delete(); 
+        $product->delete();
 
         Toastr::warning('Product Delete Successfully!');
         return redirect()->route('product_show_backend');
