@@ -126,7 +126,7 @@ class HomeDisplayController extends Controller
             $homedisplay->save();
 
             //write success message
-            $request->session()->flash('message', ' Display added Successfully');  
+            $request->session()->flash('create', ' Display added Successfully');  
 
             return back();
         }

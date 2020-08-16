@@ -903,9 +903,9 @@
                                             <img src="{{ asset('images/vision/' . $vision->image) }}" width="50px"
                                                 alt="">
                                         </td>
-                                        <td>{{ $vision->vision }}</td>
-                                        <td>{{ $vision->mission }}</td>
-                                        <td>{{ $vision->value }}</td>
+                                        <td>{{ Str::limit($vision->vision, 20) }}</td>
+                                        <td>{{ Str::limit($vision->mission, 20) }}</td>
+                                        <td>{{ Str::limit($vision->value, 20) }}</td>
                                         <td>
 
                                             <!-- edit modal start -->

@@ -15,9 +15,9 @@
     <div class="row">
         <div class="col-md-12">
             <!-- add message -->
-            @if( session()->has('message') )
+            @if( session()->has('create') )
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Congratulation!</strong> {{ session()->get('message') }}
+                <strong>Congratulation!</strong> {{ session()->get('create') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
 
-                    <!-- add homebanner row start -->
+                    <!-- add  row start -->
                     <div class="row">
                         <div class="col-md-12 text-right">
                             <button class="btn btn-warning" data-toggle="modal" data-target="#addhomebanner">Add Banner</button>
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- add homebanner row end -->
+                    <!-- add  row end -->
 
                     <!-- manage row start -->
                     <div class="row">
@@ -141,8 +141,8 @@
                                             <img src="{{ asset('images/banner/' . $homebanner->image ) }}" class="img-fluid" width="50px" alt="">
                                         </td>
                                         <td>{{ $homebanner->title }}</td>
-                                        <td>{{ $homebanner->description }}</td>
-                                        <td>{{ $homebanner->link }}</td>
+                                        <td>{{ Str::limit($homebanner->description, 20) }}</td>
+                                        <td>{{ Str::limit($homebanner->link, 20) }}</td>
                                         <td>
 
                                             <!-- edit modal start -->

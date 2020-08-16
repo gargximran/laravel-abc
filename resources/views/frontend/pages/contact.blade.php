@@ -28,40 +28,18 @@
 			<!-- left part start -->
 			<div class="col-md-12">
 				<div class="left">
-					<img src="{{ asset('frontend/images/contact.png') }}" class="img-fluid">
+					@foreach( $maps as $map)
+					<iframe src="{{ $map->link }}" frameborder="0"></iframe>
+					@endforeach
 				</div>
 			</div>
-			<!-- left part end -->
-			<!-- right part start -->
-			<!-- <div class="col-md-6">
-				<div class="right">
-					<h2>Get In Touch With Us !</h2>
-					<p>Fill out the form below to recieve a free and confidential.</p>
-					<form>
-						<div class="form-group">
-							<input type="text" placeholder="Name" class="form-control" name="">
-						</div>
-						<div class="form-group">
-							<input type="email" placeholder="Email" class="form-control" name="">
-						</div>
-						<div class="form-group">
-							<input type="text" placeholder="Website" class="form-control" name="">
-						</div>
-						<div class="form-group">
-							<textarea class="form-control" placeholder="Message" rows="4"></textarea>
-						</div>
-						<div class="form-group">
-							<input type="submit" value="Send Message" class="form-control send-msg" name="">
-						</div>
-					</form>
-				</div>
-			</div> -->
-			<!-- right part end -->
 		</div>
 	</div>
 </section>
 <!-- contact section end -->
+
 <!-- contact page address info start -->
+@foreach( $contactinfos as $contactinfo )
 <section class="contact-page-info section-padding">
 	<div class="container">
 		<div class="row">
@@ -69,8 +47,7 @@
 			<div class="col-md-4">
 				<div class="contact-info-item">
 					<h2>bangladesh</h2>
-					<p>Matuail Medical Road</p>
-					<p>1362 Dhaka, Bangladesh</p>
+					<p>{{ $contactinfo->address }}</p>
 				</div>
 			</div>				
 			<!-- contact info item end -->
@@ -78,8 +55,7 @@
 			<div class="col-md-4">
 				<div class="contact-info-item">
 					<h2>Head Office</h2>
-					<p>Matuail Medical Road</p>
-					<p>1362 Dhaka, Bangladesh</p>
+					<p>{{ $contactinfo->headoffice }}</p>
 				</div>
 			</div>				
 			<!-- contact info item end -->
@@ -87,20 +63,23 @@
 			<div class="col-md-4">
 				<div class="contact-info-item">
 					<h2>Contact</h2>
-					<p>Phone: 01711-784387</p>
-					<p>Mobile: 01711-784387</p>
+					<p>Phone: {{ $contactinfo->phone }}</p>
+					<p>Mobile: {{ $contactinfo->email }}</p>
 				</div>
 			</div>				
 			<!-- contact info item end -->
 		</div>
 	</div>
 </section>
+@endforeach
 <!-- contact page address info end -->
+
 <!-- contact form section start -->
 <section class="contact-form-section section-padding">
 	<div class="container">
 		<div class="row">
 			<!-- left part start -->
+			@foreach( $contactstuffs as $contactstuff )
 			<div class="col-md-6">
 				<div class="left">
 					<h2>How can we help you?</h2>
@@ -109,15 +88,15 @@
 					<div class="row contact-with-people">
 						<div class="col-md-3">
 							<div class="left">
-								<img src="{{ asset('frontend/images/User-icon.png') }}" class="img-fluid" alt="">
+								<img src="{{ asset('images/contactstuff/'. $contactstuff->imageOne) }}" class="img-fluid" alt="">
 							</div>
 						</div>
 						<div class="col-md-9">
 							<div class="right">
-								<h2>Azure Wilson</h2>
-								<p>Customer Realations</p>
-								<p>963.806.0919</p>
-								<p>Abchead@consulting.com</p>
+								<h2>{{ $contactstuff->nameOne }}</h2>
+								<p>{{ $contactstuff->designationOne }}</p>
+								<p>{{ $contactstuff->phoneOne }}</p>
+								<p>{{ $contactstuff->emailOne }}</p>
 							</div>
 						</div>
 					</div>
@@ -126,22 +105,24 @@
 					<div class="row contact-with-people">
 						<div class="col-md-3">
 							<div class="left">
-								<img src="{{ asset('frontend/images/User-icon.png') }}" class="img-fluid" alt="">
+								<img src="{{ asset('images/contactstuff/'. $contactstuff->imageTwo) }}" class="img-fluid" alt="">
 							</div>
 						</div>
 						<div class="col-md-9">
 							<div class="right">
-								<h2>Keith Wilson</h2>
-								<p>Customer Realations</p>
-								<p>963.806.0919</p>
-								<p>Abchead@consulting.com</p>
+								<h2>{{ $contactstuff->nameTwo }}</h2>
+								<p>{{ $contactstuff->designationTwo }}</p>
+								<p>{{ $contactstuff->phoneTwo }}</p>
+								<p>{{ $contactstuff->emailTwo }}</p>
 							</div>
 						</div>
 					</div>
 					<!-- contact people row end -->
 				</div>
 			</div>
+			@endforeach
 			<!-- left part END -->
+
 			<!-- right part start -->
 			<div class="col-md-6">
 				<div class="right">

@@ -69,7 +69,7 @@ class HomeBannerController extends Controller
         $homebanner->save();
 
         //write success message
-        $request->session()->flash('message', ' Home banner added Successfully');  
+        $request->session()->flash('create', ' Home banner added Successfully');  
 
         return back();
     }

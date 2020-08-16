@@ -555,8 +555,10 @@ label{
 }
 .third-section-left .img-box img, .third-section-right .img-box img{
 	position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+	top: 50%;
+	left: 50%;
+	width: 80%;
+    transform: translate(-50%,-50%);
 }
 .home-product-carousel .owl-dots .owl-dot{
     background: #fca456;
@@ -2063,8 +2065,8 @@ label{
 .contact .left img{
 	width: 100%;
 }
-.contact .left{
-	box-shadow: #dedbdb 0px 15px 14px -4px;
+.contact .left iframe{
+	width: 100%;
 }
 .contact .right p{
 	margin: 15px 0;
@@ -2195,6 +2197,99 @@ label{
 	transform: translate(-50%,-50%);
 	color: white;
 	font-size: 30px;
+	cursor: pointer;
+}
+
+
+
+
+
+.gallery-slideshow{
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background: rgba(1,1,1,0.9);
+	z-index: 15;
+	display: none;
+	overflow: scroll;
+    overflow-x: hidden;
+}
+.gallery-slideshow .container{
+	height: 100%;
+	position: relative;
+}
+.gallery-slideshow-row{
+	position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.slideshow-button{
+	margin: 15px 0;
+}
+.slideshow-button{
+	text-align: center;
+}
+.slideshow-button button{
+	border: none;
+    background: #f06039;
+    color: white;
+    padding: 10px 15px;
+}
+.slideshow-button button:focus{
+	box-shadow: none;
+	outline: none;
+}
+.slideshow-button button:hover{
+	background:  white;
+	color: #f06039;
+}
+.slideshow-button input{
+	border: none;
+    background: #f06039;
+    color: white;
+    padding: 10px 15px;
+}
+.slideshow-button input:focus{
+	box-shadow: none;
+	outline: none;
+}
+.slideshow-button input :hover{
+	background:  white;
+	color: #f06039;
+}
+.gallery-slideshow-row gallery-popup-image{
+	display: none;
+}
+.gallery-popup-image{
+	display: none!important;
+}
+.active{
+	display: block!important;
+}
+.gallery-popup-image p{
+	color: white;
+    text-align: center;
+    margin: 15px 0 0 0;
+}
+.gallery-close{
+	position: fixed;
+    right: 15px;
+    padding: 10px;
+    background: white;
+    top: 5px;
+    cursor: pointer;
+}
+.gallery-close .fas{
+	color: #f06039;
+}
+.gallery-close:hover{
+	background: #f06039;
+}
+.gallery-close:hover .fas{
+	color: white;
 }
 /* gallery css end */
 

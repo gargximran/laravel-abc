@@ -14,10 +14,116 @@ $(document).ready(function(){
   })
 })
 
-//fency box js
-$('[data-fancybox="gallery"]').fancybox({
-  selector : '.imglist a:visible'
+//email subscriber ajax
+$.ajaxSetup({
+  headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+ });
+ 
+ $("#createSubscribers").submit(function(e){
+   e.preventDefault();
+
+    let formData = {
+      email : $('#createSubscribers input[name="email"]').val(),
+    }
+
+   $.ajax({
+     type: 'POST',
+     url: '/subscribers/create',
+     data: formData,
+     success: function(data){
+      swal("Thank you!", "Email Subscription Complete!", "success");
+      formData.reset();
+     }
+     
+   })
+ })
+
+ 
+
+
+//gallery slide show start
+$(document).ready(function(){
+
+  $(".show-gallery-popup").click(function(){
+    $(".gallery-slideshow").fadeIn();
+
+    var galleryPopup = $(this).attr('id');
+    if( galleryPopup != 'all' ){
+      $('.' + galleryPopup).css({
+        "display" : "block"
+      });
+      $('html,body').css({
+        "overflow" : "hidden"
+      })
+      $('.' + galleryPopup).addClass('active');
+      $(document).click(function(divclose){
+        if( $(divclose.target).closest(".gallery-popup-image").length == 0 &&  $(divclose.target).closest(".show-gallery-popup").length == 0 &&  $(divclose.target).closest(".slideshow-button").length == 0 ){
+          $(".gallery-slideshow").hide();
+          $(".gallery-popup-image").css({
+            "display" : "none"
+          });
+          $('html,body').css({
+            "overflow" : "auto"
+          })
+          $('.' + galleryPopup).removeClass('active');
+        }
+      })
+    }
+  })
+
+
 });
+
+//slideshow
+var stopSlideShow = false;
+function slideshow(caller){
+  var status = $(caller).attr('value');
+
+  if( status.indexOf('Start') > -1 ){
+    stopSlideShow = false;
+    $(caller).attr('value', 'Stop Slideshow');
+  }
+  else{
+    stopSlideShow = true;
+    $(caller).attr('value', 'Start Slideshow');
+  }
+
+  var interval = setInterval(function(){
+    if( !stopSlideShow ){
+      changeSlide('next');
+    }
+    else{
+      clearInterval(interval);
+    }
+    
+  }, 2000);
+}
+
+//change slide 
+function changeSlide(direction){
+  var currentImage = $(".active");
+  var nextImage = currentImage.next();
+  var prevImage = currentImage.prev();
+  if( direction == 'next' ){
+    if( nextImage.length ){
+      nextImage.addClass('active');
+    }
+    else{
+      $(".slider .gallery-popup-image").first().addClass('active');
+    }
+  }
+  else{
+    if( prevImage.length ){
+      prevImage.addClass('active');
+    }
+    else{
+      $(".slider .gallery-popup-image").last().addClass('active');
+    }
+  }
+  currentImage.removeClass('active');  
+}
 
 
 // member slider

@@ -20,7 +20,10 @@
 <script type="text/javascript" src="{{ asset('frontend/js/step.js') }}"></script>
 
 <!-- wow js file -->
-  <script type="text/javascript" src="{{ asset('frontend/js/wow.min.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('frontend/js/wow.min.js') }}"></script> 
+
+<!-- sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <!-- the main js file -->

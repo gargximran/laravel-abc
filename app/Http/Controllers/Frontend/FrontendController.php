@@ -15,6 +15,10 @@ use App\Models\Backend\About\Team;
 use App\Models\Backend\About\Vision;
 use App\Models\Backend\About\Relation;
 use App\Models\Backend\About\Industry;
+use App\Models\Backend\Contact\Map;
+use App\Models\Backend\Contact\ContactInfo;
+use App\Models\Backend\Contact\ContactStuff;
+use App\MOdels\Backend\Gallery\Gallery;
 
 class FrontendController extends Controller
 {
@@ -23,8 +27,9 @@ class FrontendController extends Controller
         $homebanners = HomeBanner::orderBy('id','asc')->get();
         $homedisplays = HomeDisplay::orderBy('id','asc')->get();
         $testimonials = Testimonial::orderBy('id','asc')->get();
+        $contactinfos = ContactInfo::orderBy('id','asc')->get();
         return view('frontend.pages.index',compact(
-            'homebanners', 'testimonials', 'homedisplays'
+            'homebanners', 'testimonials', 'homedisplays', 'contactinfos'
         ));
     }
 
@@ -37,6 +42,7 @@ class FrontendController extends Controller
         $visions    = Vision::orderBy('id', 'asc')->get();
         $relations   = Relation::orderBy('id', 'asc')->get();
         $industries   = Industry::orderBy('id', 'asc')->get();
+        
         return view('frontend.pages.about',compact(
             'banners', 'abcinfos', 'clients', 'teams', 'visions', 'relations', 'industries'
         ));
@@ -49,11 +55,17 @@ class FrontendController extends Controller
 
     //contact page show
     public function contact(){
-        return view('frontend.pages.contact');
+        $maps = Map::orderBy('id', 'asc')->get();
+        $contactinfos = ContactInfo::orderBy('id','asc')->get();
+        $contactstuffs = ContactStuff::orderBy('id','asc')->get();
+        return view('frontend.pages.contact', compact(
+            'maps', 'contactinfos', 'contactstuffs'
+        ));
     }
 
     //gallery page show
     public function gallery(){
-        return view('frontend.pages.gallery');
+        $gallerys = Gallery::orderBy('id', 'desc')->get();
+        return view('frontend.pages.gallery', compact('gallerys'));
     }
 }

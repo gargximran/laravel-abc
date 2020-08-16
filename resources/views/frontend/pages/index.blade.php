@@ -16,15 +16,17 @@
     					<div class="row">
     						<!-- right part start -->
     						<div class="col-md-6 for-mob bounceInDown" data-wow-duration="1s" data-wow-delay="2s">
-    							<img src="{{ asset('images/banner/' . $homebanner->image) }}" class="img-fluid">
+    							<img src="{{ asset('images/banner/' .$homebanner->image) }}" class="img-fluid">
     						</div>
     						<!-- right part end -->
 
     						<!-- left part start -->
     						<div class="col-md-6 ">
     							<h1>{{ $homebanner->title }}</h1>
-    							<p>{{ $homebanner->description }}.</p>
+    							<p>{{ $homebanner->description }}</p>
     							<a href="{{ $homebanner->link }}">
+    								know more
+    							</a>
                                 <form>
                                     <div class="form-group search-product">
                                         <input type="text" class="form-control" placeholder="Search your products" name="">
@@ -42,10 +44,10 @@
     					</div>
     				</div>
     			</div>
+                @endforeach
     			<!-- item end -->
 
             </div>
-            @endforeach
     		<!-- slider end -->
 
 		</div>
@@ -207,65 +209,7 @@
                 </div>
                 <!-- left part end -->
 
-                <!-- item part start -->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="third-section-left">
-                            <div class="row">
-                                <!-- left -->
-                                <div class="col-md-6 img-box">
-                                    <img src="{{ asset('frontend/images/fan2.png') }}" class="img-fluid">
-                                </div>
-
-                                <!-- right -->
-                                <div class="col-md-6 right">
-                                    <h2>AARAM 36”</h2>
-                                    <ul>
-                                        <li>Since 2012 </li>
-                                        <li>Elegant Design </li>
-                                        <li>Aerodynamic </li>
-                                        <li>3 Years Replacement Guranted </li>
-                                    </ul>
-                                    <p>1500 tk</p>
-                                    <a href="">
-                                        know more
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- left part end -->
-
-                <!-- item part start -->
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="third-section-left">
-                            <div class="row">
-                                <!-- left -->
-                                <div class="col-md-6 img-box">
-                                    <img src="{{ asset('frontend/images/fan2.png') }}" class="img-fluid">
-                                </div>
-
-                                <!-- right -->
-                                <div class="col-md-6 right">
-                                    <h2>AARAM 36”</h2>
-                                    <ul>
-                                        <li>Since 2012 </li>
-                                        <li>Elegant Design </li>
-                                        <li>Aerodynamic </li>
-                                        <li>3 Years Replacement Guranted </li>
-                                    </ul>
-                                    <p>1500 tk</p>
-                                    <a href="">
-                                        know more
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- left part end -->
+                
 
             </div>
 
@@ -356,9 +300,11 @@
                             </div>
 
                             <div class="col-md-7 right">
+                                @foreach( $contactinfos as $contactinfo )
                                 <p>
-                                    <span>Corporate/Head Office & Showroom:</span> 
-                                21, Habibullah Electric Market, Kazi Abdul Hamid Lane, Nawabpur, Dhaka - 1100.</p>
+                                    {{ $contactinfo->address }}
+                                </p>
+                                @endforeach
                             </div>
                         </div>
                     </div>

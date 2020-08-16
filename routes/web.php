@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
-| Rehi's Backend Web Routes Start
+|  Backend Web Routes Start
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -14,13 +15,17 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes();
 
+//super admin register form
+Route::post('/register/create/', 'Auth\RegisterController@superAdminRegister')->name('superAdminRegister');
 
+Route::prefix('dashboard')->group(function(){
 
+    //show dashboard
+    Route::get('/','HomeController@index')->name('dashboard');
 
-Route::prefix('admin')->group(function(){
     // fav icon route start
-    	
     Route::post('/fav/create', 'Backend\FavController@store')->name('fav.create');
     Route::get('/fav', 'Backend\FavController@index')->name('fav');
     
@@ -38,7 +43,7 @@ Route::prefix('admin')->group(function(){
     // logo route end
 
 
-
+    //home page route start
     Route::group(['prefix' => 'home-page'], function(){
 
         //show home page
@@ -124,12 +129,96 @@ Route::prefix('admin')->group(function(){
          // relation route end
     
     });	
-});
 
+    //contact page route start
+    Route::group(['prefix' => 'contact-page'], function(){
+
+        //show contact page start
+        Route::get('/', 'Backend\Contact\ContactPageController@index')->name('contactpage.show');
+
+        // map route start
+        Route::post('/map/create', 'Backend\Contact\MapController@store')->name('map.create');
+        Route::get('/map/edit/{map:id}', 'Backend\Contact\MapController@edit')->name('map.edit');
+        Route::post('/map/edit/{map:id}', 'Backend\Contact\MapController@update')->name('map.update');
+        Route::post('/map/delete/{map:id}', 'Backend\Contact\MapController@destroy')->name('map.delete');
+        // map route end
+
+        // contact info route start
+        Route::post('/contactinfo/create', 'Backend\Contact\ContactInfoController@store')->name('contactinfo.create');
+        Route::get('/contactinfo/edit/{contactinfo:id}', 'Backend\Contact\ContactInfoController@edit')->name('contactinfo.edit');
+        Route::post('/contactinfo/edit/{contactinfo:id}', 'Backend\Contact\ContactInfoController@update')->name('contactinfo.update');
+        Route::post('/contactinfo/delete/{contactinfo:id}', 'Backend\Contact\ContactInfoController@destroy')->name('contactinfo.delete');
+        // contact info route end
+
+        // contact with stuff route start
+        Route::post('/contactstuff/create', 'Backend\Contact\ContactStuffController@store')->name('contactstuff.create');
+        Route::get('/contactstuff/edit/{contactstuff:id}', 'Backend\Contact\ContactStuffController@edit')->name('contactstuff.edit');
+        Route::post('/contactstuff/edit/{contactstuff:id}', 'Backend\Contact\ContactStuffController@update')->name('contactstuff.update');
+        Route::post('/contactstuff/delete/{contactstuff:id}', 'Backend\Contact\ContactStuffController@destroy')->name('contactstuff.delete');
+        // contact with stuff route end
+
+    });	
+    //contact page route end
+
+    //gallery page route start
+    Route::group(['prefix' => 'gallery-page'], function(){
+
+        //gallery page show start
+       Route::get('/gallery', 'Backend\Gallery\GalleryPageController@index')->name('gallerypage.show');
+
+       // gallery route start
+       Route::post('/managegallery/create', 'Backend\Gallery\GalleryController@store')->name('gallery.create');
+       Route::get('/managegallery/edit/{gallery:id}', 'Backend\Gallery\GalleryController@edit')->name('gallery.edit');
+       Route::post('/managegallery/edit/{gallery:id}', 'Backend\Gallery\GalleryController@update')->name('gallery.update');
+       Route::post('/managegallery/delete/{gallery:id}', 'Backend\Gallery\GalleryController@destroy')->name('gallery.delete');
+       // gallery route end
+
+    });	
+    //gallery page route end
+
+    //profile route start
+    Route::get('/profile/edit/{user:id}','Backend\ProfileController@edit')->name('profile.edit');
+    Route::post('/profile/update/{user:id}','Backend\ProfileController@update')->name('profile.update');
+
+    //update pass route
+    Route::post('/profile/updatePassword/{user:id}', 'Backend\ProfileController@updatePassword')->name('updatePassword');
+    
+    //delete route
+    Route::post('/profile/delete/{user:id}', 'Backend\ProfileController@destroy')->name('profile.delete');
+    
+    //email subscriptions start
+    Route::get('/subscribers','Backend\EmailSubscriptionController@index')->name('subscribers');
+    Route::post('/subscribers/delete/{emailsubscription:id}','Backend\EmailSubscriptionController@destroy')->name('subscriber.delete');
+
+    //category Management
+    Route::prefix('category')->group(function(){
+        Route::get('/parent', 'Backend\CategoryController@indexParent')->name('parent_category_show');
+        Route::post('/parent', 'Backend\CategoryController@storeParent')->name('parent_category_store');
+        Route::post('/parent/{category:id}/update', 'Backend\CategoryController@updateParent')->name('parent_category_update');
+
+
+
+        Route::get('/child', 'Backend\CategoryController@indexChild')->name('child_category_show');
+        Route::post('/child', 'Backend\CategoryController@storeChild')->name('child_category_store');
+        Route::post('/child/{category:id}/update', 'Backend\CategoryController@updateChild')->name('child_category_update');
+    });
+
+    //product management
+    Route::prefix('product')->group(function(){
+        Route::get('/', 'Backend\ProductController@index')->name('product_show_backend');
+        Route::get('/add', 'Backend\ProductController@create')->name('product_create_backend');
+        Route::post('/store', 'Backend\ProductController@store')->name('product_store_backend');
+        Route::get('/{product:slug}/edit', 'Backend\ProductController@edit')->name('product_edit_backend');
+        Route::put('/{product:slug}/update', 'Backend\ProductController@update')->name('product_update_backend');
+        Route::delete('/{product:slug}/delete', 'Backend\ProductController@destroy')->name('product_destroy_backend');
+        Route::get('/{product:slug}/show', 'Backend\ProductController@show')->name('product_show_single_backend');
+    });
+
+});
 
 /*
 |--------------------------------------------------------------------------
-| imaran Web Routes
+|  Backend Web Routes End
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -137,46 +226,8 @@ Route::prefix('admin')->group(function(){
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('admin')->namespace('Backend')->group(function(){
 
 
-
-    
-
-
-
-
-    //home page route
-    Route::get('/', 'DashboardController@index')->name('backend_dashboard');
-
-    //category Management
-    Route::prefix('category')->group(function(){
-        Route::get('/parent', 'CategoryController@indexParent')->name('parent_category_show');
-        Route::post('/parent', 'CategoryController@storeParent')->name('parent_category_store');
-        Route::post('/parent/{category:id}/update', 'CategoryController@updateParent')->name('parent_category_update');
-
-
-
-        Route::get('/child', 'CategoryController@indexChild')->name('child_category_show');
-        Route::post('/child', 'CategoryController@storeChild')->name('child_category_store');
-        Route::post('/child/{category:id}/update', 'CategoryController@updateChild')->name('child_category_update');
-    });
-
-
-
-    //product management
-    Route::prefix('product')->group(function(){
-        Route::get('/', 'ProductController@index')->name('product_show_backend');
-        Route::get('/add', 'ProductController@create')->name('product_create_backend');
-        Route::post('/store', 'ProductController@store')->name('product_store_backend');
-        Route::get('/{product:slug}/edit', 'ProductController@edit')->name('product_edit_backend');
-        Route::put('/{product:slug}/update', 'ProductController@update')->name('product_update_backend');
-        Route::delete('/{product:slug}/delete', 'ProductController@destroy')->name('product_destroy_backend');
-        Route::get('/{product:slug}/show', 'ProductController@show')->name('product_show_single_backend');
-    });
-    
-
-});
 
 
 
@@ -221,10 +272,14 @@ Route::get('/about','Frontend\FrontendController@about')->name('about');
 //shop page route
 Route::get('/shop','Frontend\FrontendController@shop')->name('shop');
 
-
+//show contact page
 Route::get('/contact','Frontend\FrontendController@contact')->name('contact');
 
+//show gallery page
 Route::get('/gallery','Frontend\FrontendController@gallery')->name('gallery');
+
+//email subscription
+Route::post('/subscribers/create','Backend\EmailSubscriptionController@store')->name('subscribers.create');
 
 
 
