@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\ContactMessage;
 
 /*
 |--------------------------------------------------------------------------
@@ -194,7 +195,20 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
          Route::post('/relation/delete/{relation:id}', 'Backend\About\RelationController@destroy')->name('relation.delete');
          // relation route end
     
-    });	
+    });
+    
+    
+    //shop page route start
+    Route::get('/shop','backend\Shop\ShopController@index')->name('shop.show');
+
+
+
+    //message
+    Route::get('/message','Backend\Message\MessageController@index')->name('message.show');
+    Route::post('/message/delete/{message:id}','Backend\Message\MessageController@destroy')->name('message.delete');
+    Route::get('/message/show/{message:id}','Backend\Message\MessageController@show')->name('message.view');
+
+    
 
     Route::namespace('Backend')->group(function(){
 
@@ -293,4 +307,7 @@ Route::get('/checkout','Frontend\FrontendController@checkout')->name('checkout')
 
 //email subscription
 Route::post('/subscribers/create','Backend\EmailSubscriptionController@store')->name('subscribers.create');
+
+//message route start
+Route::post('/message/create','Backend\Message\MessageController@store')->name('message.create');
 
