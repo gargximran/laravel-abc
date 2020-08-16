@@ -17,13 +17,14 @@ $(document).ready(function() {
     });
 });
 
-//email subscriber ajax
+//header http request
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
     }
 });
 
+//email subscriber ajax
 $("#createSubscribers").submit(function(e) {
     e.preventDefault();
 
@@ -41,6 +42,26 @@ $("#createSubscribers").submit(function(e) {
         }
     });
 });
+
+//message ajax code
+$("#createMessage").submit(function(e){
+    e.preventDefault();
+
+    let messageData = {
+        name        : $('#createMessage input[name="name"]').val(),
+        email       : $('#createMessage input[name="email"]').val(),
+        website     : $('#createMessage input[name="website"]').val(),
+        message     : $('#createMessage textarea[name="message"]').val(),
+    }
+    $.ajax({
+        type: "POST",
+        url: "/message/create",
+        data: messageData,
+        success: function(){
+            swal("Thank your!", "Your message send", "success");
+        }
+    })
+})
 
 //gallery slide show start
 $(document).ready(function() {

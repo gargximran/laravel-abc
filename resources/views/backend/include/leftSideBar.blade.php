@@ -62,6 +62,15 @@
                         </li>
                         <!-- about page end -->
 
+                        <!-- shop page start -->
+                        <li class="sidebar-item ml-3">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('shop.show') }}" aria-expanded="false">
+                                <i class="fas fa-shopping-bag"></i>
+                                <span class="hide-menu">Shop Page</span>
+                            </a>
+                        </li>
+                        <!-- shop page end -->
+
                         <!-- contact page start -->
                         <li class="sidebar-item ml-3">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('contactpage.show') }}" aria-expanded="false">

@@ -63,7 +63,8 @@
             <!-- ============================================================== -->
             <ul class="navbar-nav float-right">
                
-            <!-- ============================================================== -->
+
+
                 
                 <!-- Messages -->
                 <!-- ============================================================== -->
@@ -73,27 +74,38 @@
                     <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
                         <ul class="list-style-none">
                             <li>
-                                <div class="">
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)" class="link border-top">
-                                        <div class="d-flex no-block align-items-center p-10">
-                                            <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
-                                            <div class="m-l-10">
-                                                <h5 class="m-b-0">Event today</h5> 
-                                                <span class="mail-desc">Just a reminder that event</span> 
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
 
-                                </div>
+                                <!-- Message -->
+                                
+                                @if( count(App\Models\Backend\Message\Message::all()) == 0 )
+                                <div class="alert alert-warning">Your inbox is empty</div>
+                                @else 
+                                @foreach( App\Models\Backend\Message\Message::orderBy('id','desc')->take(3)->get() as $message )
+                                <a href="{{ route('message.view', $message->id) }}" target="blank" class="link border-top">
+                                    <div class="d-flex no-block align-items-center p-10">
+                                        <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                        <div class="m-l-10">
+                                            <h5 class="m-b-0">{{ $message->name }}</h5> 
+                                            <span class="mail-desc">{{ Str::limit($message->message,50) }}</span> 
+                                        </div>
+                                    </div>
+                                </a>
+                                @endforeach
+                                @endif
+                               
+                                <!-- Message -->
+
                             </li>
                         </ul>
+                        <div class="viewallMessage text-center alert ">
+                            <a href="{{ route('message.show') }}">View All</a>
+                        </div>
                     </div>
                 </li>
                 <!-- ============================================================== -->
                 <!-- End Messages -->
                 <!-- ============================================================== -->
+
                 
 
 
