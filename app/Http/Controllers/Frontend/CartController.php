@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Cart;
 use App\Invoice;
 use App\ProductSale;
+use Illuminate\Validation\Rules\In;
 
 class CartController extends Controller
 {
@@ -258,7 +259,31 @@ class CartController extends Controller
     }
 
     public function showPendingOrderInvoice(Invoice $invoice){
-        return view('backend.invoice', compact('invoice'));
+        return view('backend.pages.orders.invoice_pending', compact('invoice'));
+    }
+
+    public function ConfirmPendingOrderInvoice(Invoice $invoice){
+       $invoice->status = 2;
+       if($invoice->save()){
+           foreach($invoice->product as $product){
+               $product->status = 2;
+               $product->save();
+           }
+       }
+
+       return redirect()->route('confirmed_orders');
+    }
+
+    public function DeletePendingOrderInvoice(Invoice $invoice){
+        foreach($invoice->product as $product){
+            
+            $product->delete();
+        }
+
+        if($invoice->delete()){
+            return redirect()->route('pending_orders');
+        }
+
     }
 
 
@@ -267,9 +292,48 @@ class CartController extends Controller
         return view('backend.pages.orders.confirmed', compact('invoices'));
     }
 
+    public function showConfirmedOrderInvoice(Invoice $invoice){
+        return view('backend.pages.orders.confirmed_order', compact('invoice'));
+    }
+
+    public function DeliverConfirmedOrderInvoice(Invoice $invoice){
+        $invoice->status = 3;
+       if($invoice->save()){
+           foreach($invoice->product as $product){
+               $product->status = 3;
+               
+
+                $productQuantity = $product->product;
+                $productQuantity->quantity -= $product->quantity;
+                $productQuantity->save();
+
+
+               $product->save();
+           }
+       }
+
+       return redirect()->route('delivered_orders');
+    }
+
+
+    public function DeleteConfirmedOrderInvoice(Invoice $invoice){
+        foreach($invoice->product as $product){
+            
+            $product->delete();
+        }
+
+        if($invoice->delete()){
+            return redirect()->route('confirmed_orders');
+        }
+    }
+
 
     public function showDeliveredOrders(){
         $invoices = Invoice::orderBy('id', 'desc')->where('status',3)->get();
         return view('backend.pages.orders.delivered', compact('invoices'));
+    }
+
+    public function showDeliveredOrderInvoice(Invoice $invoice){
+        return view('backend.pages.orders.delivered_order', compact('invoice'));
     }
 }

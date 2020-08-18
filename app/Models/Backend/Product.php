@@ -2,6 +2,7 @@
 
 namespace App\Models\Backend;
 
+use App\ProductSale;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -20,6 +21,10 @@ class Product extends Model
 
     public function image(){
         return $this->hasMany(ProductImage::class);
+    }
+
+    public function Sale(){
+        return $this->hasMany(ProductSale::class);
     }
 
 

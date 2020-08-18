@@ -1,5 +1,17 @@
 @extends('backend.template.layout')
+@section('per_page_css')
+<link href="{{asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet"/>
+@endsection
 
+
+@section('per_page_js')
+<script src="{{ asset('backend/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+<script>
+
+
+    $("#zero_config").DataTable();
+</script>
+@endsection
 
 
 @section('main_card_content')
@@ -41,6 +53,40 @@
 								<span class="badge badge-danger">Inactive</span>
 
 							@endif</span></h6>
+								<hr>
+								<h2>Sale Summery :</h2>
+								<h6>Total Sold Quantity : 
+									<span class="font-weight-light">
+										@php
+											$quantity = 0;
+											$totalBalanceSale = 0;
+
+											foreach($product->Sale()->where('status', 3)->get() as $sale){
+												$quantity += $sale->quantity;
+												$totalBalanceSale += $sale->totalPrice;
+											}
+
+
+											
+
+										@endphp
+
+										{{$quantity}}
+									</span>
+								
+								</h6>
+
+								<h6>Total Sold Price : 
+									<span class="font-weight-light">
+										
+
+										{{$totalBalanceSale}} TK
+									</span>
+								
+								</h6>
+
+
+
 								<hr>
 								<p class="font-weight-bold">Description :</p>
 							<p>{{$product->description}}</p>
@@ -91,6 +137,42 @@
 										>Cancel</a
 									>
 								
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="zero_config" class="table table-bordered table-hover text-center align-item-center">
+											<thead>
+												<tr>
+													<th>Date</th>
+													<th>Invoice Code</th>
+													<th>Customer Name</th>
+													<th>Customer Address</th>
+													<th>Quantity</th>
+													<th>P.Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach($product->Sale()->orderBy('id', 'desc')->where('status', 3)->get() as $sale)
+													<tr>
+														<td>{{$sale->created_at->format('d/m/Y')}}</td>
+														<td><a href="{{route('showDeliveredOrderInvoice', $sale->Invoice->invoice_sl)}}">{{$sale->Invoice->invoice_sl}}</a></td>
+														<td>{{$sale->Invoice->first_name}} {{$sale->Invoice->last_name}}</td>
+														<td>{{$sale->Invoice->address}}</td>
+														<td>{{$sale->quantity}}</td>
+														<td>{{$sale->per_product_price}} tk</td>
+														
+													</tr>
+				
+												@endforeach
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>

@@ -94,7 +94,7 @@
 
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href=""  class="btn btn-primary  btn-sm"><i class="mdi mdi-eye"></i> View</a> 
+                                               
                                                 <a href="" data-toggle="modal" data-target="#edit{{$childCategory->id}}" class="btn btn-warning btn-sm"><i class="mdi mdi-account-edit"></i> Edit</a> 
                                                 <div class="btn-group">
                                                     <button
@@ -112,8 +112,10 @@
                                                     
                                                     >
 
-                                                    <form action="" method="POST">
-                                                        <input type="hidden" name="_method" value="delete">                                                    <input type="hidden" name="_token" value="uvzWM02xAsBfvlkvhNEFjrRmm9quBG8EusW29Jb3">                                                    <button class="dropdown-item bg-danger" type="submit">Confirm Delete?</button>
+                                                    <form action="{{route('child_category_delete', $childCategory->id)}}" method="POST">
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        @csrf
+                                                        <button class="dropdown-item bg-danger" type="submit">Confirm Delete?</button>
                                                     </form>
 
                                                         <a

@@ -128,120 +128,47 @@
 
         <!-- product row start -->
         <div class="row">
-        	
+			
+			
+
+			@foreach ($relatedProducts as $relatedProduct)				
+			
         	<!-- product item start -->
 			<div class="col-md-3 col-6">
 				<div class="product-item related-product-box">
 					<div class="product-image">
-						<p>sale</p>
-						<img src="images/fan5.png" class="img-fluid">
-						<a href="">add to cart</a>
+				
+						<img src="{{asset('images/product/'.$relatedProduct->image[0]->name)}}" class="img-fluid">
+						<a style="cursor: pointer;" onclick="return addToCart({{$relatedProduct->id}});">add to cart</a>
 					</div>
 					<div class="product-detail">
-						 <a href="product-details.php">Aaram 56_Full</a>
+						 <a href="product-details.php">{{$relatedProduct->name}}</a>
 						 <div class="product-detail-bottom">
-						 	<p>1500 tk</p>
-							 <ul>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 </ul>
+							@if ($relatedProduct->offer_price)
+							 	<p>{{$relatedProduct->offer_price}} tk</p>
+								 <p><del class="text-danger">{{$relatedProduct->regular_price}} tk</del> </p>
+							@else
+								<p>{{$relatedProduct->regular_price}} tk</p>
+							@endif
+						 	
+						
+							 
 						 </div>
 					</div>
 				</div>
 			</div>
 			<!-- product item end -->
+			@endforeach
 
-			<!-- product item start -->
-			<div class="col-md-3 col-6">
-				<div class="product-item related-product-box">
-					<div class="product-image">
-						<p>sale</p>
-						<img src="images/fan5.png" class="img-fluid">
-						<a href="">add to cart</a>
-					</div>
-					<div class="product-detail">
-						 <a href="product-details.php">Aaram 56_Full</a>
-						 <div class="product-detail-bottom">
-						 	<p>1500 tk</p>
-							 <ul>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 </ul>
-						 </div>
-					</div>
-				</div>
-			</div>
-			<!-- product item end -->
+		
 
-			<!-- product item start -->
-			<div class="col-md-3 col-6">
-				<div class="product-item related-product-box">
-					<div class="product-image">
-						<p>sale</p>
-						<img src="images/fan5.png" class="img-fluid">
-						<a href="">add to cart</a>
-					</div>
-					<div class="product-detail">
-						 <a href="product-details.php">Aaram 56_Full</a>
-						 <div class="product-detail-bottom">
-						 	<p>1500 tk</p>
-							 <ul>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 </ul>
-						 </div>
-					</div>
-				</div>
-			</div>
-			<!-- product item end -->
+			
 
-			<!-- product item start -->
-			<div class="col-md-3 col-6">
-				<div class="product-item related-product-box">
-					<div class="product-image">
-						<p>sale</p>
-						<img src="images/fan5.png" class="img-fluid">
-						<a href="">add to cart</a>
-					</div>
-					<div class="product-detail">
-						 <a href="product-details.php">Aaram 56_Full</a>
-						 <div class="product-detail-bottom">
-						 	<p>1500 tk</p>
-							 <ul>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 	<li><i class="fas fa-star"></i></li>
-							 </ul>
-						 </div>
-					</div>
-				</div>
-			</div>
-			<!-- product item end -->
 
         </div>
         <!-- product row end -->
 
-        <!-- paginate row start -->
-        <div class="row">
-        	<div class="col-md-12 paginate-row">
-				<ul>
-					<li><a href="">1</a></li>
-					<li><a href="">2</a></li>
-				</ul>
-			</div>
-        </div>
-        <!-- paginate row end -->
+        
 
 	</div>
 </section>

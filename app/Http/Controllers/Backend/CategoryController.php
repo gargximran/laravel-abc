@@ -185,6 +185,13 @@ class CategoryController extends Controller
         //
     }
 
+
+    public function deleteChild(Category $category){
+        $category->Product()->delete();
+        $category->delete();
+        return redirect()->route('child_category_show');
+    }
+
     /**
      * Update the specified resource in storage.
      *

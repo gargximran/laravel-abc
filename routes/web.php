@@ -225,6 +225,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
             Route::get('/child', 'CategoryController@indexChild')->name('child_category_show');
             Route::post('/child', 'CategoryController@storeChild')->name('child_category_store');
             Route::post('/child/{category:id}/update', 'CategoryController@updateChild')->name('child_category_update');
+            Route::delete('/child/{category:id}/delete', 'CategoryController@deleteChild')->name('child_category_delete');
         });
     
     
@@ -250,10 +251,38 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
 
     // controller for manage order by admin
     Route::prefix('orders')->group(function(){
+
+        //pending order
         Route::get('pending_orders', 'Frontend\CartController@showPendingOrders')->name('pending_orders');
         Route::get('pending_orders/{invoice:invoice_sl}', 'Frontend\CartController@showPendingOrderInvoice')->name('showPendingOrderInvoice');
+        Route::post('pending_orders/{invoice:invoice_sl}', 'Frontend\CartController@ConfirmPendingOrderInvoice')->name('ConfirmPendingOrderInvoice');
+        Route::delete('pending_orders/{invoice:invoice_sl}', 'Frontend\CartController@DeletePendingOrderInvoice')->name('DeletePendingOrderInvoice');
+
+
+        //confirmed order
         Route::get('confirmed_orders', 'Frontend\CartController@showConfirmedOrders')->name('confirmed_orders');
+        Route::get('confirmed_orders/{invoice:invoice_sl}', 'Frontend\CartController@showConfirmedOrderInvoice')->name('showConfirmedOrderInvoice');
+        Route::post('confirmed_orders/{invoice:invoice_sl}', 'Frontend\CartController@DeliverConfirmedOrderInvoice')->name('DeliverConfirmedOrderInvoice');
+        Route::delete('confirmed_orders/{invoice:invoice_sl}', 'Frontend\CartController@DeleteConfirmedOrderInvoice')->name('DeleteConfirmedOrderInvoice');
+        
+
+
+
+
+
+
+
+        //delivered order
         Route::get('delivered_orders', 'Frontend\CartController@showDeliveredOrders')->name('delivered_orders');
+        Route::get('delivered_orders/{invoice:invoice_sl}', 'Frontend\CartController@showDeliveredOrderInvoice')->name('showDeliveredOrderInvoice');
+    });
+
+
+
+    Route::prefix('excel')->group(function(){
+        Route::get('last_7_day_sale', 'ExcelController@last7Day')->name('last7daySaleDownload');
+        Route::get('last_30_day_sale', 'ExcelController@last1Month')->name('last30daySaleDownload');
+        Route::get('total_sale', 'ExcelController@totalSale')->name('totalSale');
     });
 });
 

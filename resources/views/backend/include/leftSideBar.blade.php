@@ -153,6 +153,36 @@
                         </li>
                     </ul>
                 </li>
+
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-receipt"></i>
+                        <span class="hide-menu"> Download Sale </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item ml-3">
+                            <a href="{{route('last7daySaleDownload')}}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu"> Last 7 Day Sales</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item ml-3">
+                            <a href="{{route('last30daySaleDownload')}}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu"> Last 30 Day Sales </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ml-3">
+                            <a href="{{route('totalSale')}}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu"> Total Sales </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

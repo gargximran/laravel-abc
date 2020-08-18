@@ -199,19 +199,6 @@
 			
 			<!-- left part start -->
 			<div class="left" style="width: 50%">
-				<h2>
-					<form action="{{route('ConfirmPendingOrderInvoice', $invoice->invoice_sl)}}" method="POST">
-						@csrf
-						<button>Confirm Order</button>
-					</form>
-					<br>
-					<form action="{{route('DeletePendingOrderInvoice', $invoice->invoice_sl)}}" method="POST">
-						@csrf
-						@method('delete')
-						<button>Delete Order</button>
-					</form>
-				</h2>
-				<hr>
 				<h1>Invoice 
 					
 					@if ($invoice->status == 1)

@@ -200,12 +200,12 @@
 			<!-- left part start -->
 			<div class="left" style="width: 50%">
 				<h2>
-					<form action="{{route('ConfirmPendingOrderInvoice', $invoice->invoice_sl)}}" method="POST">
+					<form action="{{route('DeliverConfirmedOrderInvoice', $invoice->invoice_sl)}}" method="POST">
 						@csrf
-						<button>Confirm Order</button>
+						<button>Deliver Completed</button>
 					</form>
 					<br>
-					<form action="{{route('DeletePendingOrderInvoice', $invoice->invoice_sl)}}" method="POST">
+					<form action="{{route('DeleteConfirmedOrderInvoice', $invoice->invoice_sl)}}" method="POST">
 						@csrf
 						@method('delete')
 						<button>Delete Order</button>

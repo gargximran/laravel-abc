@@ -228,6 +228,7 @@ class ProductController extends Controller
 
         $products = $category->product()->where('status', 1)->paginate(20);
         
+        
         return view('frontend.pages.categoryProduct', compact('products', 'category'));
     }
 

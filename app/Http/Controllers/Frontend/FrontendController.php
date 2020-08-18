@@ -103,6 +103,8 @@ class FrontendController extends Controller
 
 
     public function singeProduct(Product $product){
-        return view('frontend.pages.productDetails', compact('product'));
+
+        $relatedProducts = Product::whereNotIn('quantity', [0])->where('status', 1)->orWhere('category_id', $product->category_id)->orWhere('model', $product->model)->take(4)->get();
+        return view('frontend.pages.productDetails', compact('product', 'relatedProducts'));
     }
 }

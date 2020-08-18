@@ -88,7 +88,6 @@
 
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="" class="btn btn-primary  btn-sm"><i class="mdi mdi-eye"></i> View</a> 
                                                 <a href="#"  data-toggle="modal" data-target="#edit{{$parentCategory->id}}" class="btn btn-warning btn-sm"><i class="mdi mdi-account-edit"></i> Edit</a> 
                                             </div>
                                                                                

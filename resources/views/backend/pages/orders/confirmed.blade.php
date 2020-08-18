@@ -55,37 +55,8 @@
                                         <td>{{$invoice->created_at->format('d/m/Y')}}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href=""  class="btn btn-primary  btn-sm"><i class="mdi mdi-eye"></i> View</a> 
-                                                <div class="btn-group">
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-danger dropdown-toggle btn-sm"
-                                                        data-toggle="dropdown"
-                                                        aria-haspopup="true"
-                                                        aria-expanded="false"
-                                                    >
-                                                        <i class="mdi mdi-delete-forever"></i> Delete
-                                                    </button>
-                                                    <div
-                                                        class="dropdown-menu text-center position-absolute" 
-                                                        x-placement="bottom-start"
-                                                    
-                                                    >
-
-                                                    <form action="" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="_method" value="delete">
-                                                        <button class="dropdown-item bg-danger" type="submit">Confirm Delete?</button>
-                                                    </form>
-
-                                                        <a
-                                                            class="dropdown-item bg-secondary"
-                                                            href="#"
-                                                            >Cancel</a
-                                                        >
-                                                    
-                                                    </div>
-                                                </div>
+                                                <a href="{{route('showConfirmedOrderInvoice', $invoice->invoice_sl)}}"  class="btn btn-primary  btn-sm"><i class="mdi mdi-eye"></i> View</a> 
+                                                
                                             </div>
                                                                                
                                         </td>
