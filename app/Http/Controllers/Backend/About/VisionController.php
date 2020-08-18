@@ -39,6 +39,7 @@ class VisionController extends Controller
     public function store(Request $request)
     {
         $visions = Vision::orderBy('id', 'asc')->get();
+    
 
         if (count($visions) == NULL) {
             $request->validate(
@@ -47,7 +48,7 @@ class VisionController extends Controller
 
                     'mission' => 'required',
 
-                    'values' => 'required',
+                    'value' => 'required',
 
                     'image' => 'required'
                 ]
@@ -114,11 +115,9 @@ class VisionController extends Controller
         $request->validate(
             [
                 'vision' => 'required',
-
                 'mission' => 'required',
                 'values' => 'required',
 
-                'image' => 'required',
             ]
         );
 

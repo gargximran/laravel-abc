@@ -21,6 +21,8 @@ use App\Models\Backend\Contact\Map;
 use App\Models\Backend\Contact\ContactInfo;
 use App\Models\Backend\Contact\ContactStuff;
 use App\MOdels\Backend\Gallery\Gallery;
+use App\Models\Backend\Shop\Shop;
+use App\Models\Backend\ProductDetails\ProductDetail;
 
 class FrontendController extends Controller
 {
@@ -53,9 +55,8 @@ class FrontendController extends Controller
     //shop page show
     public function shop(){
         $products = Product::orderBy('id', 'desc')->where('quantity',"!=", 0)->where('status', 1)->paginate(20);
-   
-        
-        return view('frontend.pages.shop', compact('products'));
+        $shops = Shop::orderBy('id','asc')->get();
+        return view('frontend.pages.shop', compact('products', 'shops'));
     }
 
     //contact page show
@@ -105,6 +106,7 @@ class FrontendController extends Controller
     public function singeProduct(Product $product){
 
         $relatedProducts = Product::whereNotIn('quantity', [0])->where('status', 1)->orWhere('category_id', $product->category_id)->orWhere('model', $product->model)->take(4)->get();
-        return view('frontend.pages.productDetails', compact('product', 'relatedProducts'));
+        $productdetails = ProductDetail::orderBy('id','asc')->get();
+        return view('frontend.pages.productDetails', compact('product', 'relatedProducts', 'productdetails'));
     }
 }

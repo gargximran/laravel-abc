@@ -64,12 +64,21 @@
 
                          <!-- shop page start -->
                          <li class="sidebar-item ml-3">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('shop.show') }}" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('shopbanner.show') }}" aria-expanded="false">
                                 <i class="fas fa-shopping-bag"></i>
                                 <span class="hide-menu">Shop Page</span>
                             </a>
                         </li>
                         <!-- shop page end -->
+
+                         <!-- product details page start -->
+                         <li class="sidebar-item ml-3">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('productdetails.show') }}" aria-expanded="false">
+                                <i class="fas fa-shopping-basket"></i>
+                                <span class="hide-menu">Product Details</span>
+                            </a>
+                        </li>
+                        <!-- product details page end -->
 
                         <!-- contact page start -->
                         <li class="sidebar-item ml-3">

@@ -1,4 +1,15 @@
 @extends('backend.template.layout')
+@section('per_page_css')
+<link href="{{asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet"/>
+@endsection
+@section('per_page_js')
+<script src="{{ asset('backend/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+<script>
+    $("#map").DataTable();
+    $("#cinfo").DataTable();
+    $("#stuff").DataTable();
+</script>
+@endsection
 @section('main_card_content')
 
 <!-- container start -->
@@ -107,7 +118,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="map" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -269,7 +280,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="cinfo" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -412,7 +423,7 @@
                                                             <input type="text" class="form-control" name="emailOne">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image ( Please upload 512x512 image )</label>
+                                                            <label>Image </label>
                                                             <input type="file" class="form-control-file" name="imageOne">
                                                         </div>
                                                     </div>
@@ -438,7 +449,7 @@
                                                             <input type="text" class="form-control" name="emailTwo">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image ( Please upload 512x512 image )</label>
+                                                            <label>Image </label>
                                                             <input type="file" class="form-control-file" name="imageTwo">
                                                         </div>
                                                     </div>
@@ -464,7 +475,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="stuff" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>

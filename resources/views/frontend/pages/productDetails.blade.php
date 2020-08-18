@@ -2,7 +2,8 @@
 
 @section('body-content')
 <!-- product details page banner page banner start -->
-<section class="shop wow bounceIn" data-wow-duration="1s" data-wow-delay="1" style="background-image: url(images/productdetails.png);">
+@foreach( $productdetails as $productdetail )
+<section class="shop wow bounceIn" data-wow-duration="1s" data-wow-delay="1" style="background-image: url({{ asset('images/banner/' . $productdetail->image) }});">
 	<img src="images/Shape5.png" class="img-fluid">
 	<div class="container">
 		<div class="row">
@@ -13,6 +14,7 @@
 		</div>
 	</div>
 </section>
+@endforeach
 <!-- product details page banner page banner end -->
 
 

@@ -50,7 +50,6 @@ class TestimonialController extends Controller
         $testimonial = new Testimonial();
 
         $testimonial->name          = $request->name;
-        $testimonial->slug          = Str::slug($request->name);
         $testimonial->designation   = $request->designation;
         $testimonial->comments      = $request->comments;
 
@@ -110,7 +109,6 @@ class TestimonialController extends Controller
         );
 
         $testimonial->name          = $request->name;
-        $testimonial->slug          = Str::slug($request->name);
         $testimonial->designation   = $request->designation;
         $testimonial->comments      = $request->comments;
 

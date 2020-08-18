@@ -36,9 +36,12 @@ $("#createSubscribers").submit(function(e) {
         url: "/subscribers/create",
         data: formData,
         success: function(data) {
-            swal("Thank you!", "Email Subscription Complete!", "success");
+            swal("Thank you", "Email Subscription Complete!", "success");
             
-        }
+        },
+        error: function(error){
+            swal("!", "Please give a valid email address", "warning");
+        }	        
     });
 });
 //message ajax code
@@ -56,7 +59,10 @@ $("#createMessage").submit(function(e){
         url: "/message/create",
         data: messageData,
         success: function(){
-            swal("Thank your!", "Your message send", "success");
+            swal("", "Your message send", "success");
+        },
+        error: function(error){
+            swal("!!", "Please fill up the input field", "warning");
         }
     })
 })

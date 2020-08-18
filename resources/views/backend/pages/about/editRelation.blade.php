@@ -28,7 +28,7 @@
                                     <input type="text" class="form-control" name="comments" value="{{ $relation->comments }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Image ( Please upload 526x425px size image )</label> <br>
+                                    <label>Image</label> <br>
                                     <img src="{{ asset('images/relation/' . $relation->image) }}" width="150px" alt="">
                                     <input type="file" class="form-control-file" name="image" >
                                 </div>

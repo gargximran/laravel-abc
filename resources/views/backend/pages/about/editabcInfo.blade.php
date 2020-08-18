@@ -40,7 +40,7 @@
                                     <input type="text" class="form-control" name="year" value="{{ $abcinfo->year }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Image ( Please Upload 500x321px size image )</label> <br>
+                                    <label>Image </label> <br>
                                     <img src="{{ asset('images/abcinfo/' . $abcinfo->image) }}" width="150px" alt=""> <br> <br>
                                     <input type="file" class="form-control-file" name="image">
                                 </div>

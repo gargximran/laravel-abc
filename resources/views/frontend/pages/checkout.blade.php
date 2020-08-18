@@ -59,6 +59,11 @@
 											 @foreach ($carts as $cart)
 												<tr class="full_row">
 													<td><img src="{{asset('images/product/'.$cart->image)}}" height="50px"></td>
+													<td>
+														<p>
+														{{$cart->name}}
+														</p>
+													</td>
 														<td class="review-product-info">
 															<h2></h2>
 															<p>{{$cart->price}} taka</p>

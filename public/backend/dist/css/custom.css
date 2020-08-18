@@ -69,3 +69,49 @@ button:focus{
 .img-150{
   width: 150px !important;
 }
+
+tr{
+  display: flex;
+}
+th{
+  width: 100%!important;
+}
+tbody th{
+  width: 100%!important;
+}
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td{
+  width: 100%!important;;
+}
+#main-wrapper .left-sidebar[data-sidebarbg=skin5], #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul{
+  background: white!important;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link{
+  color: #141619;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link i {
+  color: #141619;
+}
+#main-wrapper .topbar .navbar-collapse[data-navbarbg=skin5], #main-wrapper .topbar[data-navbarbg=skin5]{
+  background: white;
+}
+html body .font-24 {
+  color: white;
+}
+#navbarSupportedContent{
+  background: #ec1c25!important;
+}
+.navbar-brand{
+  background: white;
+}
+.sidebar-nav .has-arrow:after{
+  color: #ec1c25;
+}
+.ti-close.ti-menu{
+  color: #ec1c25;
+}
+#main-wrapper .topbar .top-navbar .navbar-header[data-logobg=skin5]{
+  background: white;
+}
+.page-wrapper>.container-fluid {
+  padding: 50px 15px;
+} 	} 

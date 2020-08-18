@@ -43,8 +43,8 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
-            <div class="auth-box bg-dark border-top border-secondary">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center ">
+            <div class="auth-box  border-top border-secondary">
                 <div id="loginform">
                     <div class="text-center p-t-20 p-b-20">
                         @foreach(  App\Models\Backend\Logo::orderBy('id','asc')->get() as $logo )
@@ -99,11 +99,11 @@
                                 <!-- password end -->
 
                                 <!-- remember me start -->
-                                <div class="input-group mb-3 text-center">
+                                <div class="input-group mb-3 text-center" style="margin-left: 20px;">
                                     
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember" style="color: white">
+                                    <label class="form-check-label" for="remember" >
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>

@@ -2,17 +2,18 @@
 
 @section('body-content')
 <!-- shop page banner start -->
-<section class="wow bounceIn shop" data-wow-duration="1s" data-wow-delay="1" style="background-image: url({{ asset('frontend/images/shop.png') }});">
+@foreach( $shops as $shop )
+<section class="wow bounceIn shop" data-wow-duration="1s" data-wow-delay="1" style="background-image: url({{ asset('images/banner/' . $shop->image) }});">
 	<img src="{{ asset('frontend/images/Shape5.png') }}" class="img-fluid">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-
-				<h1>Archives: Shop</h1>
+				<h1>Archives: {{ $shop->title }}</h1>
 			</div>
 		</div>
 	</div>
 </section>
+@endforeach
 <!-- shop page banner end -->
 
 

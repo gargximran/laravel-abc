@@ -1,4 +1,19 @@
 @extends('backend.template.layout')
+@section('per_page_css')
+<link href="{{asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet"/>
+@endsection
+@section('per_page_js')
+<script src="{{ asset('backend/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+<script>
+    $("#banner").DataTable();
+    $("#abc").DataTable();
+    $("#client").DataTable();
+    $("#teammember").DataTable();
+    $("#industry").DataTable();
+    $("#vission").DataTable();
+    $("#relation").DataTable();
+</script>
+@endsection
 @section('main_card_content')
 
 <!-- container start -->
@@ -113,7 +128,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="banner" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -242,7 +257,7 @@
                                                     <input type="text" class="form-control" name="year">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Image ( Please Upload 500x321px size image )</label>
+                                                    <label>Image </label>
                                                     <input type="file" class="form-control-file" name="image">
                                                 </div>
                                                 <div class="form-group">
@@ -264,7 +279,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="abc" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -407,7 +422,7 @@
                                                     <input type="text" class="form-control" name="link">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Image ( Please upload 471x470px size image )</label>
+                                                    <label>Image </label>
                                                     <input type="file" class="form-control-file" name="image">
                                                 </div>
                                                 <div class="form-group">
@@ -429,7 +444,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="client" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -553,7 +568,7 @@
                                                         class="form-control"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Team Member Image ( Please upload 330x270px size image )
+                                                    <label>Team Member Image
                                                     </label>
                                                     <input type="file" class="form-control-file" name="image">
                                                 </div>
@@ -576,7 +591,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="teammember" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -727,7 +742,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="industry" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -881,7 +896,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="vission" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -1014,7 +1029,7 @@
                                                     <input type="text" class="form-control" name="comments">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Image ( Please upload 526x425px size image )</label>
+                                                    <label>Image </label>
                                                     <input type="file" class="form-control-file" name="image">
                                                 </div>
                                                 <div class="form-group">
@@ -1036,7 +1051,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="relation" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
