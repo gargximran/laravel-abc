@@ -41,17 +41,12 @@ class MessageController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
-                'email' => 'required'
-            ],
-            [
-                'website' => 'required'
-            ],
-            [
+                'name' => 'required',
+                'email' => 'required',
+                'website' => 'required',
                 'message' => 'required'
             ]
+
         );
 
         $message = new Message();

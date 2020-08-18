@@ -5,7 +5,7 @@
 @section('per_page_js')
 <script src="{{ asset('backend/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
 <script>
-    $("#shop").DataTable();
+    $("#pdetail").DataTable();
 </script>
 @endsection
 @section('main_card_content')
@@ -16,7 +16,7 @@
     <!-- title row start -->
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Manage Shop Page</h4>
+            <h4 class="page-title">Manage Product Details</h4>
         </div>
     </div>
     <!-- title row end -->
@@ -45,7 +45,7 @@
 
             <!-- delete message -->
             @if( session()->has('delete') )
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Congratulation!</strong> {{ session()->get('delete') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -73,31 +73,27 @@
 
                     <div class="row">
                         <div classcol-md-12>
-                            <h5>Manage Shop Banner</h5>
+                            <h5>Manage Product Details</h5>
                         </div>
                     </div>
 
                     <!-- add  row start -->
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#addshopbanner">Add Banner</button>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addproductdetail">Add Banner</button>
                             <!-- Modal -->
-                            <div class="modal fade" id="addshopbanner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="addproductdetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Add New shopbanner</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Product Details Banner</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('shopbanner.store') }}" method="POST" enctype="multipart/form-data">
+                                            <form action="{{ route('productdetails.store') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="form-group">
-                                                    <label>Title</label>
-                                                    <input type="text" class="form-control" name="title" required>
-                                                </div>
                                                 <div class="form-group">
                                                     <label>Add Banner</label>
                                                     <input type="file" class="form-control-file" name="image" required>
@@ -120,12 +116,11 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table id="shop" class="table table-bordered table-hover text-center align-item-center">
+                            <table id="pdetail" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
                                         <th scope="col">Image</th>
-                                        <th scope="col">Title</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -133,36 +128,32 @@
                                     @php
                                     $i = 1 ;
                                     @endphp
-                                    @foreach( $shopbanners as $shopbanner )
+                                    @foreach( $productdetails as $productdetail )
                                     <tr class="text-center">
                                         <th scope="row">{{ $i }}</th>
                                         <td>
-                                            <img src="{{ asset('images/banner/' . $shopbanner->image ) }}" class="img-fluid" width="50px" alt="">
+                                            <img src="{{ asset('images/banner/' . $productdetail->image ) }}" class="img-fluid" width="50px" alt="">
                                         </td>
-                                        <td>{{ $shopbanner->title }}</td>
+                                        <td>{{ $productdetail->title }}</td>
                                         <td>
 
                                             <!-- edit modal start -->
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#editshopbanner{{ $shopbanner->id }}">edit</button>
-                                            <div class="modal fade" id="editshopbanner{{ $shopbanner->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#editproductdetail{{ $productdetail->id }}">edit</button>
+                                            <div class="modal fade" id="editproductdetail{{ $productdetail->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Edit this shopbanner?</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Edit this productdetail</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{ route('shopbanner.update', $shopbanner->id) }}" method="POST" enctype="multipart/form-data">
+                                                            <form action="{{ route('productdetails.update', $productdetail->id) }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <div class="form-group">
-                                                                    <label>Title</label>
-                                                                    <input type="text" class="form-control" name="title" required value="{{ $shopbanner->title }}">
-                                                                </div>
-                                                                <div class="form-group">
                                                                     <label>Add Banner</label> <br>
-                                                                    <img src="{{ asset('images/banner/' . $shopbanner->image ) }}" class="img-fluid" width="50px" alt=""> <br> <br>
+                                                                    <img src="{{ asset('images/banner/' . $productdetail->image ) }}" class="img-fluid" width="50px" alt=""> <br> <br>
                                                                     <input type="file" class="form-control-file" name="image" >
                                                                 </div>
                                                                 <div class="form-group">
@@ -178,19 +169,19 @@
                                             </div>
                                             <!-- edit modal end -->
 
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteshopbanner">Delete</button>
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteproductdetail">Delete</button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deleteshopbanner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="deleteproductdetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this shopbanner?</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this productdetail?</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form action="{{ route('shopbanner.delete', $shopbanner->id ) }}" method="POST">
+                                                            <form action="{{ route('productdetails.delete', $productdetail->id ) }}" method="POST">
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-success">Yes</button>
                                                             </form>

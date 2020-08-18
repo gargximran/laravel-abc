@@ -17,7 +17,7 @@
                             No Image uploaded
                             </div>
                         @else
-                        <img src="{{ asset('images/logo/' . $logo->image) }}" style="margin: 15px" width="100%" alt="homepage" class="light-logo" />
+                        <img src="{{ asset('images/logo/' . $logo->image) }}" style="margin: 15px 0" width="100%" alt="homepage" class="light-logo" />
                         @endif
 
                     @endforeach

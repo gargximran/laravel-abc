@@ -96,8 +96,6 @@ class ClientController extends Controller
         $request->validate(
             [
                 'cName' => 'required',
-           
-                'image' => 'required',
             
                 'comments' => 'required'
             ]

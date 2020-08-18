@@ -42,12 +42,7 @@ class HomeBannerController extends Controller
     {
         $request->validate(
             [
-                'title' => 'required'
-            ],
-            [
-                'description' => 'required'
-            ],
-            [
+                'title' => 'required',
                 'image' => 'required'
             ]
         );
@@ -107,13 +102,8 @@ class HomeBannerController extends Controller
     {
         $request->validate(
             [
-                'title' => 'required'
-            ],
-            [
+                'title' => 'required',
                 'description' => 'required'
-            ],
-            [
-                'image' => 'required'
             ]
         );
 

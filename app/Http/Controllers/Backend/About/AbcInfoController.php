@@ -123,8 +123,6 @@ class AbcInfoController extends Controller
                 'c' => 'required',
 
                 'year' => 'required',
-
-                'image' => 'required',
             ]
         );
 

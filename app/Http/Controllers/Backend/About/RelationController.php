@@ -109,7 +109,6 @@ class RelationController extends Controller
         $request->validate(
             [
                 'comments' => 'required',
-                'image' => 'required'
             ]
         );
 

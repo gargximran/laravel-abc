@@ -126,7 +126,7 @@
 			<!-- right part start -->
 			<div class="col-md-6">
 				<div class="right">
-					<form>
+					<form id="createMessage">
 						<div class="form-group">
 							<input type="text" placeholder="Name" class="form-control" name="name" required>
 						</div>

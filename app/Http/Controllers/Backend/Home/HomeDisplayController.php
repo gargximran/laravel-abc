@@ -44,37 +44,17 @@ class HomeDisplayController extends Controller
         if( count($homedisplay) == NULL ){
             $request->validate(
                 [
-                    'titleOne' => 'required'
-                ],
-                [
-                    'descriptionOne' => 'required'
-                ],
-                [
-                    'imageOne' => 'required'
-                ],
-                [
-                    'titleTwo' => 'required'
-                ],
-                [
-                    'descriptionTwo' => 'required'
-                ],
-                [
-                    'imageTwo' => 'required'
-                ],
-                [
-                    'titleThree' => 'required'
-                ],
-                [
-                    'descriptionThree' => 'required'
-                ],
-                [
-                    'imageThree' => 'required'
-                ],
-                [
-                    'title' => 'required'
-                ],
-                [
-                    'description' => 'required'
+                    'titleOne' => 'required',
+                    'descriptionOne' => 'required',
+                    'imageOne' => 'required',
+                    'titleTwo' => 'required',
+                    'descriptionTwo' => 'required',
+                    'imageTwo' => 'required',
+                    'titleThree' => 'required',
+                    'descriptionThree' => 'required',
+                    'imageThree' => 'required',
+                    'title' => 'required',
+                    'description' => 'required',
                 ]
             );
             $homedisplay = new HomeDisplay();
@@ -172,37 +152,14 @@ class HomeDisplayController extends Controller
     {
         $request->validate(
             [
-                'titleOne' => 'required'
-            ],
-            [
-                'descriptionOne' => 'required'
-            ],
-            [
-                'imageOne' => 'required'
-            ],
-            [
-                'titleTwo' => 'required'
-            ],
-            [
-                'descriptionTwo' => 'required'
-            ],
-            [
-                'imageTwo' => 'required'
-            ],
-            [
-                'titleThree' => 'required'
-            ],
-            [
-                'descriptionThree' => 'required'
-            ],
-            [
-                'imageThree' => 'required'
-            ],
-            [
-                'title' => 'required'
-            ],
-            [
-                'description' => 'required'
+                'titleOne' => 'required',
+                'descriptionOne' => 'required',
+                'titleTwo' => 'required',
+                'descriptionTwo' => 'required',
+                'titleThree' => 'required',
+                'descriptionThree' => 'required',
+                'title' => 'required',
+                'description' => 'required',
             ]
         );
 

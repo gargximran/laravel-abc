@@ -36,7 +36,7 @@
                                     <textarea name="description" rows="2" class="form-control">{{ $team->description }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Team Member Image ( Please upload 330x270px size image ) </label> <br>
+                                    <label>Team Member Image </label> <br>
                                     <img src="{{ asset('images/team/'. $team->image) }}" width="150px" alt=""> <br> <br>
                                     <input type="file" class="form-control-file" name="image" >
                                 </div>
