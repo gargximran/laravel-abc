@@ -12,6 +12,13 @@ h5{
 label{
   color: #3e5569!important;
 }
+.message-item{
+  text-align: left;
+}
+.message-item p{
+  color: #3e5569!important; 
+  text-align: justify;
+}
 .close:focus{
   border: none!important;
   outline: none!important;

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\ContactMessage;
 
 /*
 |--------------------------------------------------------------------------
@@ -196,6 +197,18 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     
     });	
 
+
+     //shop page route start
+    Route::get('/shop','backend\Shop\ShopController@index')->name('shop.show');
+
+
+
+    //message
+    Route::get('/message','Backend\Message\MessageController@index')->name('message.show');
+    Route::post('/message/delete/{message:id}','Backend\Message\MessageController@destroy')->name('message.delete');
+    Route::get('/message/show/{message:id}','Backend\Message\MessageController@show')->name('message.view');
+
+
     Route::namespace('Backend')->group(function(){
 
         //home page route
@@ -226,7 +239,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
             Route::delete('/{product:slug}/delete', 'ProductController@destroy')->name('product_destroy_backend');
             Route::get('/{product:slug}/show', 'ProductController@show')->name('product_show_single_backend');
             // per category product show
-            Route::get('/category/{category:slug}', 'ProductController@categoryProduct')->name('categoryProduct');
+            
         });
 
 
@@ -307,5 +320,10 @@ Route::post('/checkout','Frontend\CartController@checkoutPost')->name('checkoutP
 //email subscription
 Route::post('/subscribers/create','Backend\EmailSubscriptionController@store')->name('subscribers.create');
 
+
+//message route start
+Route::post('/message/create','Backend\Message\MessageController@store')->name('message.create');
+
 Route::get('/order/invoice/{invoice:invoice_sl}', 'Frontend\CartController@viewInvoiceCustomer')->name('invoice_view_customer');
+Route::get('/category/{category:slug}', 'Backend\ProductController@categoryProduct')->name('categoryProduct');
 

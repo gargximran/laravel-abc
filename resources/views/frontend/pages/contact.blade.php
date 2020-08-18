@@ -128,19 +128,19 @@
 				<div class="right">
 					<form>
 						<div class="form-group">
-							<input type="text" placeholder="Name" class="form-control" name="">
+							<input type="text" placeholder="Name" class="form-control" name="name" required>
 						</div>
 						<div class="form-group">
-							<input type="email" placeholder="Email" class="form-control" name="">
+							<input type="email" placeholder="Email" class="form-control" name="email" required>
 						</div>
 						<div class="form-group">
-							<input type="text" placeholder="Website" class="form-control" name="">
+							<input type="text" placeholder="Website" class="form-control" name="website"  required>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" placeholder="Message" rows="4"></textarea>
+							<textarea name="message" class="form-control" placeholder="Message" rows="4"  required></textarea>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="Send Message" class="form-control send-msg" name="">
+							<button class="form-control send-msg" type="submit">Send Message</button>
 						</div>
 					</form>
 				</div>

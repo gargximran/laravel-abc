@@ -36,6 +36,7 @@
       id
     }).then(res=>{
       document.getElementById('cartNumber').innerHTML = `<p>${res.data}</p>`
+      swal(" ", "New item added to cart!", "success");
 
     })
   }
