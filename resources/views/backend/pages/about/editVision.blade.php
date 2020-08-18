@@ -36,7 +36,7 @@
                                     <input type="text" class="form-control" name="value" value="{{ $vision->value }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Image ( Please uplaod 380x468px size image )</label> <br>
+                                    <label>Image</label> <br>
                                     <img src="{{ asset('images/vision/' . $vision->image) }}" width="150px" alt="">
                                     <input type="file" class="form-control-file" name="image" > <br> <br>
                                 </div>

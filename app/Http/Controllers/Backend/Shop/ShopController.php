@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Shop\Shop;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class ShopController extends Controller
 {
@@ -15,8 +17,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = Shop::orderBy('id', 'asc')->get();
-        return view('backend.pages.shop.manage', compact('shops'));
+        $shopbanners = Shop::orderBy('id', 'asc')->get();
+        return view('backend.pages.shop.manage', compact('shopbanners'));
     }
 
     /**
@@ -37,7 +39,44 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shops = Shop::orderBy('id', 'asc')->get();
+
+        if (count($shops) == NULL) {
+            $request->validate(
+            [
+                'title' => 'required',
+                'image' => 'required'
+            ]);
+            
+            $shopbanner = new Shop();
+    
+            $shopbanner->title = $request->title;
+            
+            if( $request->image ){
+                $image = $request->file('image');
+                $img = rand(0,10) .'.'. $image->getClientOriginalExtension();
+                $location = public_path('images/banner/' . $img);
+                Image::make($image)->save($location);
+                $shopbanner->image = $img;
+            }
+            $shopbanner->save();
+
+            //write success message
+            $request->session()->flash('message', ' Shop banner added Successfully');
+
+            return back();
+        }
+        else {
+            //write unsuccess message
+            $request->session()->flash('createFailed', 'Shop banner already added');
+
+            return back();
+        }
+
+        
+
+
+
     }
 
     /**
@@ -69,9 +108,31 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Shop $shopbanner)
     {
-        //
+        $request->validate(
+            [
+                'title' => 'required',
+            ]);
+    
+            $shopbanner->title = $request->title;
+            
+            if( $request->image ){
+                if (File::exists('images/banner/' . $shopbanner->image)) {
+                    File::delete('images/banner/' . $shopbanner->image);
+                }
+                $image = $request->file('image');
+                $img = rand(0,10) .'.'. $image->getClientOriginalExtension();
+                $location = public_path('images/banner/' . $img);
+                Image::make($image)->save($location);
+                $shopbanner->image = $img;
+            }
+            $shopbanner->save();
+
+            //write success message
+            $request->session()->flash('update', ' Shop banner updated Successfully');
+
+            return redirect()->route('shopbanner.show');
     }
 
     /**
@@ -80,8 +141,17 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Request $request, Shop $shopbanner )
     {
-        //
+        if( !is_null($shopbanner) ){
+            if (File::exists('images/banner/' . $shopbanner->image)) {
+                File::delete('images/banner/' . $shopbanner->image);
+            }
+            $shopbanner->delete();
+            //write success message
+            $request->session()->flash('delete', ' Shop banner deleted Successfully');
+
+            return redirect()->route('shopbanner.show');
+        }
     }
 }

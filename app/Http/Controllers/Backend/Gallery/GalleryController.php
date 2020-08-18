@@ -100,9 +100,6 @@ class GalleryController extends Controller
         $request->validate(
             [
                 'caption' => 'required'
-            ],
-            [
-                'image' => 'required'
             ]
         );
 

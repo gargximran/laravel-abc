@@ -46,7 +46,7 @@
                                             <input type="text" class="form-control" name="emailOne" value="{{ $contactstuff->emailOne }}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Image  ( Please upload 512x512px size image )</label> <br>
+                                            <label>Image  </label> <br>
                                             <img src="{{ asset('images/contactstuff/' . $contactstuff->imageOne) }}" width="150px" alt=""> <br> <br>
                                             <input type="file" class="form-control-file" name="imageOne">
                                         </div>
@@ -73,7 +73,7 @@
                                             <input type="text" class="form-control" name="emailTwo" value="{{ $contactstuff->emailTwo }}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Image ( Please upload 512x512px size image )</label> <br>
+                                            <label>Image </label> <br>
                                             <img src="{{ asset('images/contactstuff/' . $contactstuff->imageTwo) }}" width="150px" alt=""> <br> <br>
                                             <input type="file" class="form-control-file" name="imageTwo">
                                         </div>

@@ -117,8 +117,6 @@ class VisionController extends Controller
 
                 'mission' => 'required',
                 'values' => 'required',
-
-                'image' => 'required',
             ]
         );
 

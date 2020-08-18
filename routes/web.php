@@ -199,7 +199,16 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
 
 
      //shop page route start
-    Route::get('/shop','backend\Shop\ShopController@index')->name('shop.show');
+    Route::get('/shop','backend\Shop\ShopController@index')->name('shopbanner.show');
+    Route::post('/shop/store/','backend\Shop\ShopController@store')->name('shopbanner.store');
+    Route::post('/shop/update/{shopbanner:id}','backend\Shop\ShopController@update')->name('shopbanner.update');
+    Route::post('/shop/delete/{shopbanner:id}','backend\Shop\ShopController@destroy')->name('shopbanner.delete');
+
+    //Product details page route start
+    Route::get('/productdetails','backend\ProductDetails\ProductDetailsController@index')->name('productdetails.show');
+    Route::post('/productdetails/store/','backend\ProductDetails\ProductDetailsController@store')->name('productdetails.store');
+    Route::post('/productdetails/update/{productdetails:id}','backend\ProductDetails\ProductDetailsController@update')->name('productdetails.update');
+    Route::post('/productdetails/delete/{productdetails:id}','backend\ProductDetails\ProductDetailsController@destroy')->name('productdetails.delete');
 
 
 

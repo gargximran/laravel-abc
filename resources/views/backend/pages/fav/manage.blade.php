@@ -1,4 +1,13 @@
 @extends('backend.template.layout')
+@section('per_page_css')
+<link href="{{asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet"/>
+@endsection
+@section('per_page_js')
+<script src="{{ asset('backend/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+<script>
+    $("#fav").DataTable();
+</script>
+@endsection
 @section('main_card_content')
 
 <!-- container start -->
@@ -105,7 +114,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="fav" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                     <th scope="col">Id</th>

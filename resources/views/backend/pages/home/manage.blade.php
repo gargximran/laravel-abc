@@ -1,4 +1,15 @@
 @extends('backend.template.layout')
+@section('per_page_css')
+<link href="{{asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet"/>
+@endsection
+@section('per_page_js')
+<script src="{{ asset('backend/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+<script>
+    $("#testimonial").DataTable();
+    $("#display").DataTable();
+    $("#homebanner").DataTable();
+</script>
+@endsection
 @section('main_card_content')
 
 <!-- container start -->
@@ -36,7 +47,7 @@
 
             <!-- delete message -->
             @if( session()->has('delete') )
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Congratulation!</strong> {{ session()->get('delete') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -98,7 +109,7 @@
                                                     <input type="text" class="form-control" name="link" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Add homebanner ( Please upload 900x465 size image )</label>
+                                                    <label>Add homebanner </label>
                                                     <input type="file" class="form-control-file" name="image" required>
                                                 </div>
                                                 <div class="form-group">
@@ -119,8 +130,8 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
-                                <thead class="text-center">
+                            <table id="homebanner" class="table table-bordered table-hover text-center align-item-center">
+                                <thead id="homebanner" class="table table-bordered table-hover text-center align-item-center">
                                     <tr>
                                         <th scope="col">Id</th>
                                         <th scope="col">Image</th>
@@ -232,7 +243,7 @@
                                                             <textarea name="descriptionOne" rows="0" class="form-control"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image ( PLease upload 96x177px image )</label>
+                                                            <label>Image </label>
                                                             <input type="file" class="form-control-file" name="imageOne" required>
                                                         </div>
                                                     </div>
@@ -250,7 +261,7 @@
                                                             <textarea name="descriptionTwo" rows="0" class="form-control"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image Image ( PLease upload 249x128px image )</label>
+                                                            <label>Image Image </label>
                                                             <input type="file" class="form-control-file" name="imageTwo" required>
                                                         </div>
                                                     </div>
@@ -268,7 +279,7 @@
                                                             <textarea name="descriptionThree" rows="0" class="form-control"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Image Image ( PLease upload 114x110px image )</label>
+                                                            <label>Image Image </label>
                                                             <input type="file" class="form-control-file" name="imageThree" required>
                                                         </div>
                                                     </div>
@@ -320,7 +331,7 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
+                            <table id="display" class="table table-bordered table-hover text-center align-item-center">
                                 <thead class="text-center">
                                     <tr>
                                         <th scope="col">Id</th>
@@ -471,64 +482,66 @@
                     <!-- manage row start -->
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-dark">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Image</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Designation</th>
-                                        <th scope="col">Comment</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                    $i = 1 ;
-                                    @endphp
-                                    @foreach( $testimonials as $testimonial )
-                                    <tr class="text-center">
-                                        <th scope="row">{{ $i }}</th>
-                                        <td>
-                                            <img src="{{ asset('images/testimonial/' . $testimonial->image ) }}" class="img-fluid" width="50px" alt="">
-                                        </td>
-                                        <td>{{ $testimonial->name }}</td>
-                                        <td>{{ $testimonial->designation }}</td>
-                                        <td>{{ Str::limit($testimonial->comments, 100) }}</td>
-                                        <td>
+                            <div class="table-responsive">
+                                <table id="testimonial" class="table table-bordered table-hover text-center align-item-center">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Designation</th>
+                                            <th scope="col">Comment</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                        $i = 1 ;
+                                        @endphp
+                                        @foreach( $testimonials as $testimonial )
+                                        <tr class="text-center">
+                                            <th scope="row">{{ $i }}</th>
+                                            <td>
+                                                <img src="{{ asset('images/testimonial/' . $testimonial->image ) }}" class="img-fluid" width="50px" alt="">
+                                            </td>
+                                            <td>{{ $testimonial->name }}</td>
+                                            <td>{{ $testimonial->designation }}</td>
+                                            <td>{{ Str::limit($testimonial->comments, 100) }}</td>
+                                            <td>
 
-                                            <!-- edit modal start -->
-                                            <a class="btn btn-primary" href="{{ route('testimonial.edit', $testimonial->id) }}">Edit</a>
+                                                <!-- edit modal start -->
+                                                <a class="btn btn-primary" href="{{ route('testimonial.edit', $testimonial->id) }}">Edit</a>
 
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#deletetestimonial">Delete</button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="deletetestimonial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this commenter?</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <form action="{{ route('testimonial.delete', $testimonial->id) }}" method="POST">
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-success">Yes</button>
-                                                            </form>
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                <button class="btn btn-danger" data-toggle="modal" data-target="#deletetestimonial">Delete</button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="deletetestimonial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Are you sure want to this this commenter?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form action="{{ route('testimonial.delete', $testimonial->id) }}" method="POST">
+                                                                    @csrf
+                                                                    <button type="submit" class="btn btn-success">Yes</button>
+                                                                </form>
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @php
-                                    $i++ ;
-                                    @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                            </td>
+                                        </tr>
+                                        @php
+                                        $i++ ;
+                                        @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- manage row end -->

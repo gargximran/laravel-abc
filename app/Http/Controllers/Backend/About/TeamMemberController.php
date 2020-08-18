@@ -112,7 +112,6 @@ class TeamMemberController extends Controller
 
                 'description' => 'required',
 
-                'image' => 'required'
             ]
         );
 

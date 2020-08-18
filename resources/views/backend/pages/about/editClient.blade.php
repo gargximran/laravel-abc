@@ -36,7 +36,7 @@
                                     <input type="text" class="form-control" name="link"  value="{{ $client->link }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Image ( Please upload 471x470px size image )</label> <br>
+                                    <label>Image </label> <br>
                                     <img src="{{ asset('images/client/' . $client->image ) }}" width="150px" alt=""> <br> <br>
                                     <input type="file" class="form-control-file" name="image" >
                                 </div>
