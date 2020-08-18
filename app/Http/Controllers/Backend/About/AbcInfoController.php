@@ -39,23 +39,19 @@ class AbcInfoController extends Controller
      */
     public function store(Request $request)
     {
-        $abcinfo = AbcInfo::orderBy('id','asc')->get();
+        $abcinfo = AbcInfo::orderBy('id', 'asc')->get();
 
-        if( count($abcinfo) == NULL ){ 
+        if (count($abcinfo) == NULL) {
             $request->validate(
                 [
-                    'a' => 'required'
-                ],
-                [
-                    'b' => 'required'
-                ],
-                [
-                    'c' => 'required'
-                ],
-                [
-                    'year' => 'required'
-                ],
-                [
+                    'a' => 'required',
+
+                    'b' => 'required',
+
+                    'c' => 'required',
+
+                    'year' => 'required',
+
                     'image' => 'required'
                 ]
             );
@@ -67,9 +63,9 @@ class AbcInfoController extends Controller
             $abcinfo->c     = $request->c;
             $abcinfo->year  = $request->year;
 
-            if( $request->image ){
+            if ($request->image) {
                 $image  = $request->file('image');
-                $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+                $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('images/abcinfo/' . $img);
                 Image::make($image)->save($location);
                 $abcinfo->image = $img;
@@ -77,13 +73,12 @@ class AbcInfoController extends Controller
             $abcinfo->save();
 
             //write success message
-            $request->session()->flash('create', ' Abc information added Successfully');  
+            $request->session()->flash('create', ' Abc information added Successfully');
 
             return back();
-        }
-        else{
+        } else {
             //write unsuccess message
-            $request->session()->flash('createFailed', 'Abc information already added');  
+            $request->session()->flash('createFailed', 'Abc information already added');
 
             return back();
         }
@@ -122,19 +117,14 @@ class AbcInfoController extends Controller
     {
         $request->validate(
             [
-                'a' => 'required'
-            ],
-            [
-                'b' => 'required'
-            ],
-            [
-                'c' => 'required'
-            ],
-            [
-                'year' => 'required'
-            ],
-            [
-                'image' => 'required'
+                'a' => 'required',
+
+                'b' => 'required',
+                'c' => 'required',
+
+                'year' => 'required',
+
+                'image' => 'required',
             ]
         );
 
@@ -143,13 +133,13 @@ class AbcInfoController extends Controller
         $abcinfo->c     = $request->c;
         $abcinfo->year  = $request->year;
 
-        if( $request->image ){
-            if( File::exists('images/abcinfo/' . $abcinfo->image) ){
+        if ($request->image) {
+            if (File::exists('images/abcinfo/' . $abcinfo->image)) {
                 File::delete('images/abcinfo/' . $abcinfo->image);
             }
 
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/abcinfo/' . $img);
             Image::make($image)->save($location);
             $abcinfo->image = $img;
@@ -157,7 +147,7 @@ class AbcInfoController extends Controller
         $abcinfo->save();
 
         //write success message
-        $request->session()->flash('update', ' Abc information updated Successfully');  
+        $request->session()->flash('update', ' Abc information updated Successfully');
 
         return redirect()->route('aboutpage.show');
     }
@@ -168,16 +158,16 @@ class AbcInfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Request $request, AbcInfo $abcinfo )
+    public function destroy(Request $request, AbcInfo $abcinfo)
     {
-        if( !is_null($abcinfo) ){
-            if( File::exists('images/abcinfo/' . $abcinfo->image) ){
+        if (!is_null($abcinfo)) {
+            if (File::exists('images/abcinfo/' . $abcinfo->image)) {
                 File::delete('images/abcinfo/' . $abcinfo->image);
             }
             $abcinfo->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  Abc information deleted Successfully'); 
+        $request->session()->flash('delete', '  Abc information deleted Successfully');
         return redirect()->route('aboutpage.show');
     }
 }

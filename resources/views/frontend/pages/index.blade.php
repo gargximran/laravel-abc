@@ -24,7 +24,6 @@
     						<div class="col-md-6 ">
     							<h1>{{ $homebanner->title }}</h1>
     							<p>{{ $homebanner->description }}.</p>
-    							<a href="{{ $homebanner->link }}">Know more </a>
                                 <form action="{{route('search')}}" method="get">
                                     <div class="form-group search-product">
                                         <input type="text" class="form-control" placeholder="Search your products"  name="search">
@@ -162,7 +161,7 @@
 
                                 <!-- right -->
                                 <div class="col-md-6 right">
-                                    <h2>{{$exclusiveItem->name}}</h2>
+                                    <h2><a class="exclusiveProductLink" href="{{route('singeProduct', $exclusiveItem->slug)}}">{{$exclusiveItem->name}}</a></h2>
                                     <ul>
                                         <li>{{__('Size : ').$exclusiveItem->size}} </li>
                                         <li>{{__('Brand : ').$exclusiveItem->brand}} </li>
@@ -175,8 +174,8 @@
                                         <p>{{$exclusiveItem->regular_price}} tk</p>
                                     @endif
                                     
-                                    <a href="#">
-                                        know more
+                                    <a href="{{route('shop')}}">
+                                       Shop Now
                                     </a>
                                 </div>
                             </div>

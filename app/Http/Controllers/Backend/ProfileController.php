@@ -74,9 +74,7 @@ class ProfileController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
+                'name' => 'required',
                 'email' => 'required'
             ]
         );
@@ -86,12 +84,12 @@ class ProfileController extends Controller
         $user->phone        = $request->phone;
         $user->address      = $request->address;
 
-        if( $request->image ){
-            if( File::exists('images/profile/' . $user->image) ){
+        if ($request->image) {
+            if (File::exists('images/profile/' . $user->image)) {
                 File::delete('images/profile/' . $user->image);
             }
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/profile/' . $img);
             Image::make($image)->save($location);
             $user->image = $img;
@@ -99,7 +97,7 @@ class ProfileController extends Controller
         $user->save();
 
         //write success message
-        $request->session()->flash('update', ' Profile updated Successfully');  
+        $request->session()->flash('update', ' Profile updated Successfully');
 
         return back();
     }
@@ -118,18 +116,16 @@ class ProfileController extends Controller
             ]
         );
 
-        if(Hash::check($request->password, $user->password) ){
-            if( File::exists('images/profile/'. $user->image ) ){
-                File::delete('images/profile/'. $user->image ) ;
+        if (Hash::check($request->password, $user->password)) {
+            if (File::exists('images/profile/' . $user->image)) {
+                File::delete('images/profile/' . $user->image);
             }
             $user->delete();
             return redirect()->route('register')->with('deleteSuccess', 'Account deleted Successfully. register new admin from here');
-        }
-        else{
+        } else {
             $request->session()->flash('deleteFailed', 'Please enter correct password to delete your account');
             return back();
         }
-
     }
 
 
@@ -145,37 +141,28 @@ class ProfileController extends Controller
         $request->validate(
             [
                 'oldpassword' => 'required',
-            ],
-            [
                 'newpassword' => 'required',
-            ],
-            [
                 'cnewpassword' => 'required',
-			]        
-		);
+            ]
+        );
 
 
-        if(Hash::check($request->oldpassword, $user->password) ){
+        if (Hash::check($request->oldpassword, $user->password)) {
 
-            if( $request->newpassword == $request->cnewpassword ){
+            if ($request->newpassword == $request->cnewpassword) {
                 $user->password         = Hash::make($request->cnewpassword);
                 $user->save();
                 $request->session()->flash('passupdatesuccess', 'Password updated');
                 return back();
                 exit();
-            }
-            else{
+            } else {
                 $request->session()->flash('updatePassNotMatch', 'New Password and confirm new password are not matched');
                 return back();
                 exit();
             }
-
-        }
-        else{
+        } else {
             $request->session()->flash('oldpassnotmatch', 'Old password not matched please try again');
             return back();
         }
-
-
     }
 }

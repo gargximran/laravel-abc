@@ -113,6 +113,37 @@
                         </li>
                     </ul>
                 </li>
+
+
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-receipt"></i>
+                        <span class="hide-menu"> Manage Order </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item ml-3">
+                            <a href="{{route('pending_orders')}}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu"> Pending Orders </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item ml-3">
+                            <a href="{{route('confirmed_orders')}}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu"> Confirmed Orders </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ml-3">
+                            <a href="{{route('delivered_orders')}}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu"> Delivered Orders </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

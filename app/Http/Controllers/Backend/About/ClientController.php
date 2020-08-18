@@ -34,12 +34,10 @@ class ClientController extends Controller
     {
         $request->validate(
             [
-                'cName' => 'required'
-            ],
-            [
-                'image' => 'required'
-            ],
-            [
+                'cName' => 'required',
+            
+                'image' => 'required',
+            
                 'comments' => 'required'
             ]
         );
@@ -97,12 +95,10 @@ class ClientController extends Controller
     {
         $request->validate(
             [
-                'cName' => 'required'
-            ],
-            [
-                'image' => 'required'
-            ],
-            [
+                'cName' => 'required',
+           
+                'image' => 'required',
+            
                 'comments' => 'required'
             ]
         );

@@ -28,7 +28,6 @@ class VisionController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -39,20 +38,17 @@ class VisionController extends Controller
      */
     public function store(Request $request)
     {
-        $visions = Vision::orderBy('id','asc')->get();
+        $visions = Vision::orderBy('id', 'asc')->get();
 
-        if( count($visions) == NULL ){ 
+        if (count($visions) == NULL) {
             $request->validate(
                 [
-                    'vision' => 'required'
-                ],
-                [
-                    'mission' => 'required'
-                ],
-                [
-                    'values' => 'required'
-                ],
-                [
+                    'vision' => 'required',
+
+                    'mission' => 'required',
+
+                    'values' => 'required',
+
                     'image' => 'required'
                 ]
             );
@@ -63,9 +59,9 @@ class VisionController extends Controller
             $vision->mission    = $request->mission;
             $vision->value     = $request->value;
 
-            if( $request->image ){
+            if ($request->image) {
                 $image  = $request->file('image');
-                $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+                $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('images/vision/' . $img);
                 Image::make($image)->save($location);
                 $vision->image = $img;
@@ -73,13 +69,12 @@ class VisionController extends Controller
             $vision->save();
 
             //write success message
-            $request->session()->flash('create', ' Vision created Successfully');  
+            $request->session()->flash('create', ' Vision created Successfully');
 
             return back();
-        }
-        else{
+        } else {
             //write unsuccess message
-            $request->session()->flash('createFailed', 'Vision already added');  
+            $request->session()->flash('createFailed', 'Vision already added');
 
             return back();
         }
@@ -118,16 +113,12 @@ class VisionController extends Controller
     {
         $request->validate(
             [
-                'vision' => 'required'
-            ],
-            [
-                'mission' => 'required'
-            ],
-            [
-                'values' => 'required'
-            ],
-            [
-                'image' => 'required'
+                'vision' => 'required',
+
+                'mission' => 'required',
+                'values' => 'required',
+
+                'image' => 'required',
             ]
         );
 
@@ -135,13 +126,13 @@ class VisionController extends Controller
         $vision->mission    = $request->mission;
         $vision->value      = $request->value;
 
-        if( $request->image ){
-            if( File::exists('images/vision/' . $vision->image) ){
+        if ($request->image) {
+            if (File::exists('images/vision/' . $vision->image)) {
                 File::delete('images/vision/' . $vision->image);
             }
 
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/vision/' . $img);
             Image::make($image)->save($location);
             $vision->image = $img;
@@ -149,7 +140,7 @@ class VisionController extends Controller
         $vision->save();
 
         //write success message
-        $request->session()->flash('update', ' Vision updated Successfully');  
+        $request->session()->flash('update', ' Vision updated Successfully');
 
         return redirect()->route('aboutpage.show');
     }
@@ -162,14 +153,14 @@ class VisionController extends Controller
      */
     public function destroy(Request $request, Vision $vision)
     {
-        if( !is_null($vision) ){
-            if( File::exists('images/vision/' . $vision->image) ){
+        if (!is_null($vision)) {
+            if (File::exists('images/vision/' . $vision->image)) {
                 File::delete('images/vision/' . $vision->image);
             }
             $vision->delete();
         }
         //write success message
-        $request->session()->flash('delete', ' vision deleted Successfully');  
+        $request->session()->flash('delete', ' vision deleted Successfully');
 
         return redirect()->route('aboutpage.show');
     }

@@ -18,7 +18,7 @@
 				<div class="navbar-item-pc">
 					<ul>
 						<li>
-							<a href="index.php"> <i class="fas fa-home"></i> home</a>
+							<a href="{{route('index')}}"> <i class="fas fa-home"></i> home</a>
 						</li>
 						<li class="parent-nav">
 							<a href="{{ route('about') }}">about</a>
@@ -48,9 +48,15 @@
 							<a href="{{ route('contact') }}">contact</a>
 						</li>
 						<li class="cart">
-							<a href="">cart <i class="fas fa-shopping-cart"></i> </a>
-							<div class="cart-number">
-								<p>3</p>
+							<a href="{{route('checkout')}}">cart <i class="fas fa-shopping-cart"></i> </a>
+							<div class="cart-number" id="cartNumber">
+
+								@php
+									use App\Http\Controllers\Frontend\CartController;							
+								
+									$cartController = new CartController();
+								@endphp
+								<p>{{$cartController->Quantity(request())}}</p>
 							</div>
 						</li>
 					</ul>

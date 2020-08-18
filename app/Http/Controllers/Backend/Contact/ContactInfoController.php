@@ -36,22 +36,16 @@ class ContactInfoController extends Controller
      */
     public function store(Request $request)
     {
-        $contactinfos = ContactInfo::orderBy('id','asc')->get();
+        $contactinfos = ContactInfo::orderBy('id', 'asc')->get();
 
-        if( count($contactinfos) == NULL ){ 
+        if (count($contactinfos) == NULL) {
             $request->validate(
                 [
-                    'address' => 'required'
-                ],
-                [
-                    'headoffice' => 'required'
-                ],
-                [
-                    'phone' => 'required'
-                ],
-                [
+                    'address' => 'required',
+                    'headoffice' => 'required',
+                    'phone' => 'required',
                     'email' => 'required'
-                ],
+                ]
             );
 
             $contactinfo = new ContactInfo();
@@ -63,13 +57,12 @@ class ContactInfoController extends Controller
             $contactinfo->save();
 
             //write success message
-            $request->session()->flash('create', ' Contact Information added Successfully');  
+            $request->session()->flash('create', ' Contact Information added Successfully');
 
             return back();
-        }
-        else{
+        } else {
             //write unsuccess message
-            $request->session()->flash('createFailed', 'Contact Information already added');  
+            $request->session()->flash('createFailed', 'Contact Information already added');
 
             return back();
         }
@@ -108,17 +101,11 @@ class ContactInfoController extends Controller
     {
         $request->validate(
             [
-                'address' => 'required'
-            ],
-            [
-                'headoffice' => 'required'
-            ],
-            [
-                'phone' => 'required'
-            ],
-            [
+                'address' => 'required',
+                'headoffice' => 'required',
+                'phone' => 'required',
                 'email' => 'required'
-            ],
+            ]
         );
 
         $contactinfo->address       = $request->address;
@@ -128,7 +115,7 @@ class ContactInfoController extends Controller
         $contactinfo->save();
 
         //write success message
-        $request->session()->flash('update', ' Contact Information updated Successfully');  
+        $request->session()->flash('update', ' Contact Information updated Successfully');
 
         return redirect()->route('contactpage.show');
     }
@@ -141,11 +128,11 @@ class ContactInfoController extends Controller
      */
     public function destroy(Request $request, ContactInfo $contactinfo)
     {
-        if( !is_null($contactinfo) ){
+        if (!is_null($contactinfo)) {
             $contactinfo->delete();
         }
         //write success message
-        $request->session()->flash('delete', ' Contact Information deleted Successfully');  
+        $request->session()->flash('delete', ' Contact Information deleted Successfully');
 
         return redirect()->route('contactpage.show');
     }

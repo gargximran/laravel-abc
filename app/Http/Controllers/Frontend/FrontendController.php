@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Cart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Logo;
@@ -51,7 +52,7 @@ class FrontendController extends Controller
 
     //shop page show
     public function shop(){
-        $products = Product::orderBy('id', 'desc')->where('quantity',"!=", 0)->where('status', 1)->paginate(5);
+        $products = Product::orderBy('id', 'desc')->where('quantity',"!=", 0)->where('status', 1)->paginate(20);
    
         
         return view('frontend.pages.shop', compact('products'));
@@ -85,8 +86,18 @@ class FrontendController extends Controller
 
 
 
-    public function checkout(){
-        return view('frontend.pages.checkout');
+    public function checkout(Request $request){
+
+        $total = 0;
+
+
+        $carts = Cart::where('ip', $request->ip())->get();
+
+
+        foreach($carts as $cart){
+            $total += $cart->price * $cart->quantity;
+        }
+        return view('frontend.pages.checkout', compact('carts','total'));
     }
 
 

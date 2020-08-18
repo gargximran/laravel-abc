@@ -26,9 +26,13 @@
 
 				<!-- main image start -->
 				<div class="main-img">
-					<img src="images/fan8.png" class="img-fluid img-one block__pic">
-					<img src="images/fan6.png" class="img-fluid img-two block__pic">
-					<img src="images/fan9.png" class="img-fluid img-three block__pic">
+				
+						<img src="{{asset('images/product/'.$product->image[0]->name)}}" class="img-fluid img-one block__pic">
+						<img src="{{asset('images/product/'.$product->image[1]->name)}}" class="img-fluid img-two block__pic">
+						<img src="{{asset('images/product/'.$product->image[2]->name)}}" class="img-fluid img-three block__pic">
+				
+					
+				
 				</div>
 				<!-- main image end -->
 
@@ -36,13 +40,13 @@
 				<div class="thumbnail-image">
 					<div class="row">
 						<div class="col-md-4 col-4">
-							<img src="images/fan9.png" class="img-fluid for-img-one">
+							<img src="{{asset('images/product/'.$product->image[0]->name)}}" class="img-fluid for-img-one">
 						</div>
 						<div class="col-md-4 col-4">
-							<img src="images/fan10.png" class="img-fluid for-img-two">
+							<img src="{{asset('images/product/'.$product->image[1]->name)}}" class="img-fluid for-img-two">
 						</div>
 						<div class="col-md-4 col-4">
-							<img src="images/fan9.png" class="img-fluid for-img-three">
+							<img src="{{asset('images/product/'.$product->image[2]->name)}}" class="img-fluid for-img-three">
 						</div>
 					</div>
 				</div>
@@ -52,18 +56,22 @@
 
 			<!-- right part start -->
 			<div class="right col-md-7">
-				<h2>Relax Cilling fan</h2>
-				<p>1500 Tk</p>
+				<h2>{{$product->name}}</h2>
+				@if ($product->offer_price)
+					<p class="text-danger"><del>{{$product->regular_price}} Tk</del></p>
+					<p>{{$product->offer_price}} Tk</p>
+				@else
+					<p>{{$product->regular_price}} Tk</p>
+				@endif
+				
 				<ul>
-					<li>AAFtAM 36" Since 2012 </li>
-					<li>Elegant Design Aerodynamic Royal Blades Powerful & Heavy </li>
-					<li>Duty Motor Sealed Type Ball Bearing </li>
-					<li>TECHNICAL SPECIFICATIONS </li>
-					<li>Brand:ABC Ceiling Fan Model:AARAM </li>
-					<li>Size/Sweep:900 mm Rated Voltge:220 V </li>
-					<li>Rated Current:SO w Rated Speed:450 rpm </li>
-					<li>Rated Frequency:50 hz Power Factor:0.90</li>
-					<li>Insulation:Class T Air Delivery:140 m3/m Service Value:1.75 m3/me No.of BDS:1318 </li>
+					<li>Brand : {{$product->brand}}</li>
+					<li>Model : {{$product->model}}</li>
+					<li>Product Code : <span class="text-lowercase">{{$product->code}}</span></li>
+					<li>Size : {{$product->size}}</li>
+					<li>Parent Category : {{$product->category->parent->name}} </li>
+					<li>Sub Category : {{$product->category->name}} </li>
+					
 					<li>3 Years Replacement Guranted </li>
 				</ul>
 
@@ -78,7 +86,7 @@
 							</form>
 						</div>
 						<div class="col-md-10 col-9 add-to-cart">
-							<button class="btn">add to cart</button>
+							<button onclick="return addToCart({{$product->id}});" class="btn">add to cart</button>
 						</div>
 					</div>
 				</div>
@@ -96,7 +104,7 @@
 			</div>
 			<div class="col-md-12 info">
 				<h2>description</h2>
-				<p>AAFtAM 36" Since 2012 Elegant Design Aerodynamic Royal Blades Powerful & Heavy Duty Motor Sealed Type Ball Bearing TECHNICAL SPECIFICATIONS  Brand:ABC Ceiling Fan Model:AARAM  Size/Sweep:900 mm Rated Voltge:220 V Rated Current:SO w Rated Speed:450 rpm Rated Frequency:50 hz Power Factor:0.90 Insulation:Class T Air Delivery:140 m3/m Service Value:1.75 m3/me </p>
+				<p>{{$product->description}}</p>
 			</div>
 		</div>
 		<!-- description row end -->

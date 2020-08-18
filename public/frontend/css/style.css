@@ -498,7 +498,7 @@ label{
 	margin-bottom: 25px;
 }
 .top-div .shrape-div-img img{
-	width: 70%;
+	/* width: 70%; */
 }
 .second-section-right-box{
 	position: absolute;
@@ -1406,6 +1406,14 @@ label{
 	display: flex;
   
     justify-content: center;
+}
+.exclusiveProductLink{
+	background: none !important;
+	color: rgb(119, 116, 116) !important;
+
+}
+.exclusiveProductLink:hover{
+	color:rgb(243, 114, 114) !important;
 }
 
 

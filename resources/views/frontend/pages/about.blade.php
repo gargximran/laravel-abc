@@ -87,7 +87,7 @@
     								
     								<h2>{{ $client->cName }}</h2>
     								<p><img src="{{ asset('frontend/images/qoute.png') }}">{{ $client->comments }} </p>
-    								<a href="{{ $client->link }}">visit site</a>
+    								{{-- <a href="">visit site</a> --}}
     							</div>
     						</div>
     						<!-- left part end -->
@@ -96,7 +96,7 @@
     						<div class="col-md-6">
     							<div class="right">
     								<img src="{{ asset('images/client/' . $client->image ) }}" class="img-fluid">
-    								<h1>izaz electronics</h1>
+    						
     							</div>
     						</div>
     						<!-- right part end -->

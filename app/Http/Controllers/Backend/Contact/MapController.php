@@ -42,7 +42,7 @@ class MapController extends Controller
             $request->validate(
                 [
                     'link' => 'required'
-                ],
+                ]
             );
 
             $map = new Map();
@@ -98,7 +98,7 @@ class MapController extends Controller
             $request->validate(
                 [
                     'link' => 'required'
-                ],
+                ]
             );
 
             $map->link = $request->link;

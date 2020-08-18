@@ -39,14 +39,13 @@ class RelationController extends Controller
      */
     public function store(Request $request)
     {
-        $relations = Relation::orderBy('id','asc')->get();
+        $relations = Relation::orderBy('id', 'asc')->get();
 
-        if( count($relations) == NULL ){ 
+        if (count($relations) == NULL) {
             $request->validate(
                 [
-                    'comments' => 'required'
-                ],
-                [
+                    'comments' => 'required',
+
                     'image' => 'required'
                 ]
             );
@@ -55,9 +54,9 @@ class RelationController extends Controller
 
             $relation->comments = $request->comments;
 
-            if( $request->image ){
+            if ($request->image) {
                 $image  = $request->file('image');
-                $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+                $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('images/relation/' . $img);
                 Image::make($image)->save($location);
                 $relation->image = $img;
@@ -65,13 +64,12 @@ class RelationController extends Controller
             $relation->save();
 
             //write success message
-            $request->session()->flash('create', ' Relation added Successfully');  
+            $request->session()->flash('create', ' Relation added Successfully');
 
             return back();
-        }
-        else{
+        } else {
             //write unsuccess message
-            $request->session()->flash('createFailed', 'Relation already added');  
+            $request->session()->flash('createFailed', 'Relation already added');
 
             return back();
         }
@@ -110,21 +108,19 @@ class RelationController extends Controller
     {
         $request->validate(
             [
-                'comments' => 'required'
-            ],
-            [
+                'comments' => 'required',
                 'image' => 'required'
             ]
         );
 
         $relation->comments = $request->comments;
 
-        if( $request->image ){
-            if( File::exists('images/relation/' . $relation->image) ){
+        if ($request->image) {
+            if (File::exists('images/relation/' . $relation->image)) {
                 File::delete('images/relation/' . $relation->image);
             }
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/relation/' . $img);
             Image::make($image)->save($location);
             $relation->image = $img;
@@ -132,7 +128,7 @@ class RelationController extends Controller
         $relation->save();
 
         //write success message
-        $request->session()->flash('update', ' Relation updated Successfully');  
+        $request->session()->flash('update', ' Relation updated Successfully');
 
         return redirect()->route('aboutpage.show');
     }
@@ -145,14 +141,14 @@ class RelationController extends Controller
      */
     public function destroy(Request $request, Relation $relation)
     {
-        if( !is_null($relation) ){
-            if( File::exists('images/relation/' . $relation->image) ){
+        if (!is_null($relation)) {
+            if (File::exists('images/relation/' . $relation->image)) {
                 File::delete('images/relation/' . $relation->image);
             }
             $relation->delete();
         }
         //write success message
-        $request->session()->flash('delete', ' Relation deleted Successfully');  
+        $request->session()->flash('delete', ' Relation deleted Successfully');
 
         return redirect()->route('aboutpage.show');
     }

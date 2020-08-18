@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Logo;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image; 
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
 class LogoController extends Controller
@@ -17,8 +17,8 @@ class LogoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        $logos = logo::orderBy('id','asc')->get();
+    {
+        $logos = logo::orderBy('id', 'asc')->get();
         return view('backend.pages.logo.manage', compact('logos'));
     }
 
@@ -40,14 +40,12 @@ class LogoController extends Controller
      */
     public function store(Request $request)
     {
-        $logos = logo::orderBy('id','asc')->get();
+        $logos = logo::orderBy('id', 'asc')->get();
 
-        if( count($logos) == NULL ){ 
+        if (count($logos) == NULL) {
             $request->validate(
                 [
-                    'name' => 'required'
-                ],
-                [
+                    'name' => 'required',
                     'image' => 'required'
                 ]
             );
@@ -57,9 +55,9 @@ class LogoController extends Controller
             $logo->name = $request->name;
             $logo->slug = Str::slug($request->name);
 
-            if( $request->image ){
+            if ($request->image) {
                 $image  = $request->file('image');
-                $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+                $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('images/logo/' . $img);
                 Image::make($image)->save($location);
                 $logo->image = $img;
@@ -67,13 +65,12 @@ class LogoController extends Controller
             $logo->save();
 
             //write success message
-            $request->session()->flash('message', ' Logo added Successfully');  
+            $request->session()->flash('message', ' Logo added Successfully');
 
             return back();
-        }
-        else{
+        } else {
             //write unsuccess message
-            $request->session()->flash('createFailed', 'Logo already added');  
+            $request->session()->flash('createFailed', 'Logo already added');
 
             return back();
         }
@@ -112,9 +109,7 @@ class LogoController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
+                'name' => 'required',
                 'image' => 'required'
             ]
         );
@@ -122,13 +117,13 @@ class LogoController extends Controller
         $logo->name = $request->name;
         $logo->slug = Str::slug($request->name);
 
-        if( $request->image ){
-            if( File::exists('images/logo/' . $logo->image) ){
+        if ($request->image) {
+            if (File::exists('images/logo/' . $logo->image)) {
                 File::delete('images/logo/' . $logo->image);
             }
 
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/logo/' . $img);
             Image::make($image)->save($location);
             $logo->image = $img;
@@ -136,7 +131,7 @@ class LogoController extends Controller
         $logo->save();
 
         //write success message
-        $request->session()->flash('update', ' Logo updated Successfully'); 
+        $request->session()->flash('update', ' Logo updated Successfully');
         return redirect()->route('logo');
     }
 
@@ -148,14 +143,14 @@ class LogoController extends Controller
      */
     public function destroy(Request $request, Logo $logo)
     {
-        if( !is_null($logo) ){
-            if( File::exists('images/logo/' . $logo->image) ){
+        if (!is_null($logo)) {
+            if (File::exists('images/logo/' . $logo->image)) {
                 File::delete('images/logo/' . $logo->image);
             }
             $logo->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  Logo deleted Successfully'); 
+        $request->session()->flash('delete', '  Logo deleted Successfully');
         return redirect()->route('logo');
     }
 }

@@ -41,15 +41,12 @@ class TeamMemberController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
-                'designation' => 'required'
-            ],
-            [
-                'description' => 'required'
-            ],
-            [
+                'name' => 'required',
+            
+                'designation' => 'required',
+            
+                'description' => 'required',
+            
                 'image' => 'required'
             ]
         );
@@ -60,9 +57,9 @@ class TeamMemberController extends Controller
         $team->designation      = $request->designation;
         $team->description      = $request->description;
 
-        if( $request->image ){
+        if ($request->image) {
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/team/' . $img);
             Image::make($image)->save($location);
             $team->image = $img;
@@ -71,7 +68,7 @@ class TeamMemberController extends Controller
         $team->save();
 
         //write success message
-        $request->session()->flash('create', ' Team added Successfully');  
+        $request->session()->flash('create', ' Team added Successfully');
 
         return back();
     }
@@ -109,15 +106,12 @@ class TeamMemberController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
-                'designation' => 'required'
-            ],
-            [
-                'description' => 'required'
-            ],
-            [
+                'name' => 'required',
+
+                'designation' => 'required',
+
+                'description' => 'required',
+
                 'image' => 'required'
             ]
         );
@@ -126,12 +120,12 @@ class TeamMemberController extends Controller
         $team->designation      = $request->designation;
         $team->description      = $request->description;
 
-        if( $request->image ){
-            if( File::exists('images/team/' . $team->image) ){
+        if ($request->image) {
+            if (File::exists('images/team/' . $team->image)) {
                 File::delete('images/team/' . $team->image);
             }
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/team/' . $img);
             Image::make($image)->save($location);
             $team->image = $img;
@@ -140,7 +134,7 @@ class TeamMemberController extends Controller
         $team->save();
 
         //write success message
-        $request->session()->flash('update', ' Team updated Successfully');  
+        $request->session()->flash('update', ' Team updated Successfully');
 
         return redirect()->route('aboutpage.show');
     }
@@ -153,14 +147,14 @@ class TeamMemberController extends Controller
      */
     public function destroy(Request $request, Team $team)
     {
-        if( !is_null($team) ){
-            if( File::exists('images/team/' . $team->image) ){
+        if (!is_null($team)) {
+            if (File::exists('images/team/' . $team->image)) {
                 File::delete('images/team/' . $team->image);
             }
             $team->delete();
         }
         //write success message
-        $request->session()->flash('delete', ' Team deleted Successfully');  
+        $request->session()->flash('delete', ' Team deleted Successfully');
 
         return redirect()->route('aboutpage.show');
     }

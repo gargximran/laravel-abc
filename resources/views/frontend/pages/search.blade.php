@@ -147,9 +147,9 @@
 						<div class="col-md-3 col-6">
 							<div class="product-item">
 								<div class="product-image">
-                                    <p>10 %</p>
+                                
                                     <img src="{{ asset('images/product/'.$product->image[0]->name) }}" class="img-fluid">
-									<a href="#" onclick="addToCart({{$product->id}});">Add To Cart</a> 
+									<a style="cursor: pointer;" onclick="return addToCart({{$product->id}});">Add To Cart</a> 
 									<!--add to car-->
 								</div>
 								<div class="product-detail">

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Home\Testimonial;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image; 
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
 class TestimonialController extends Controller
@@ -28,7 +28,6 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -41,15 +40,9 @@ class TestimonialController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
-                'designation' => 'required'
-            ],
-            [
-                'comments' => 'required'
-            ],
-            [
+                'name' => 'required',
+                'designation' => 'required',
+                'comments' => 'required',
                 'image' => 'required'
             ]
         );
@@ -57,12 +50,13 @@ class TestimonialController extends Controller
         $testimonial = new Testimonial();
 
         $testimonial->name          = $request->name;
+        $testimonial->slug          = Str::slug($request->name);
         $testimonial->designation   = $request->designation;
         $testimonial->comments      = $request->comments;
 
-        if( $request->image ){
+        if ($request->image) {
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/testimonial/' . $img);
             Image::make($image)->save($location);
             $testimonial->image = $img;
@@ -70,7 +64,7 @@ class TestimonialController extends Controller
         $testimonial->save();
 
         //write success message
-        $request->session()->flash('create', ' Testimonial added Successfully');  
+        $request->session()->flash('create', ' Testimonial added Successfully');
 
         return back();
     }
@@ -94,7 +88,7 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial)
     {
-        return view('backend.pages.home.editTestimonial' , compact('testimonial'));
+        return view('backend.pages.home.editTestimonial', compact('testimonial'));
     }
 
     /**
@@ -108,15 +102,9 @@ class TestimonialController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
-                'designation' => 'required'
-            ],
-            [
-                'comments' => 'required'
-            ],
-            [
+                'name' => 'required',
+                'designation' => 'required',
+                'comments' => 'required',
                 'image' => 'required'
             ]
         );
@@ -126,13 +114,13 @@ class TestimonialController extends Controller
         $testimonial->designation   = $request->designation;
         $testimonial->comments      = $request->comments;
 
-        if( $request->image ){
-            if( File::exists('images/testimonial' . $testimonial->image) ){
+        if ($request->image) {
+            if (File::exists('images/testimonial' . $testimonial->image)) {
                 File::delete('images/testimonial' . $testimonial->image);
             }
 
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/testimonial/' . $img);
             Image::make($image)->save($location);
             $testimonial->image = $img;
@@ -140,7 +128,7 @@ class TestimonialController extends Controller
         $testimonial->save();
 
         //write success message
-        $request->session()->flash('update', ' Testimonial updated Successfully');  
+        $request->session()->flash('update', ' Testimonial updated Successfully');
 
         return redirect()->route('homepage.show');
     }
@@ -153,14 +141,14 @@ class TestimonialController extends Controller
      */
     public function destroy(Request $request, Testimonial $testimonial)
     {
-        if( !is_null($testimonial) ){
-            if( File::exists('images/testimonial/' . $testimonial->image) ){
+        if (!is_null($testimonial)) {
+            if (File::exists('images/testimonial/' . $testimonial->image)) {
                 File::delete('images/testimonial/' . $testimonial->image);
             }
             $testimonial->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  Testimonial deleted Successfully'); 
+        $request->session()->flash('delete', '  Testimonial deleted Successfully');
         return redirect()->route('homepage.show');
     }
 }

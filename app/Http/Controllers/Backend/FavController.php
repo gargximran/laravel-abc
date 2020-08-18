@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Fav;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image; 
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
 class FavController extends Controller
@@ -18,7 +18,7 @@ class FavController extends Controller
      */
     public function index()
     {
-        $favs = Fav::orderBy('id','asc')->get();
+        $favs = Fav::orderBy('id', 'asc')->get();
         return view('backend.pages.fav.manage', compact('favs'));
     }
 
@@ -29,7 +29,6 @@ class FavController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -40,14 +39,12 @@ class FavController extends Controller
      */
     public function store(Request $request)
     {
-        $favs = fav::orderBy('id','asc')->get();
+        $favs = fav::orderBy('id', 'asc')->get();
 
-        if( count($favs) == NULL ){ 
+        if (count($favs) == NULL) {
             $request->validate(
                 [
-                    'name' => 'required'
-                ],
-                [
+                    'name' => 'required',
                     'image' => 'required'
                 ]
             );
@@ -57,9 +54,9 @@ class FavController extends Controller
             $fav->name = $request->name;
             $fav->slug = Str::slug($request->name);
 
-            if( $request->image ){
+            if ($request->image) {
                 $image  = $request->file('image');
-                $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+                $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('images/fav/' . $img);
                 Image::make($image)->save($location);
                 $fav->image = $img;
@@ -67,13 +64,12 @@ class FavController extends Controller
             $fav->save();
 
             //write success message
-            $request->session()->flash('message', ' fav icon added Successfully');  
+            $request->session()->flash('message', ' fav icon added Successfully');
 
             return back();
-        }
-        else{
+        } else {
             //write unsuccess message
-            $request->session()->flash('createFailed', 'fav icon already added');  
+            $request->session()->flash('createFailed', 'fav icon already added');
 
             return back();
         }
@@ -112,9 +108,7 @@ class FavController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required'
-            ],
-            [
+                'name' => 'required',
                 'image' => 'required'
             ]
         );
@@ -122,13 +116,13 @@ class FavController extends Controller
         $fav->name = $request->name;
         $fav->slug = Str::slug($request->name);
 
-        if( $request->image ){
-            if( File::exists('images/fav/' . $fav->image) ){
+        if ($request->image) {
+            if (File::exists('images/fav/' . $fav->image)) {
                 File::delete('images/fav/' . $fav->image);
             }
 
             $image  = $request->file('image');
-            $img    = rand(0,100) . '.' . $image->getClientOriginalExtension();
+            $img    = rand(0, 100) . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/fav/' . $img);
             Image::make($image)->save($location);
             $fav->image = $img;
@@ -136,7 +130,7 @@ class FavController extends Controller
         $fav->save();
 
         //write success message
-        $request->session()->flash('update', ' fav icon updated Successfully'); 
+        $request->session()->flash('update', ' fav icon updated Successfully');
         return redirect()->route('fav');
     }
 
@@ -148,14 +142,14 @@ class FavController extends Controller
      */
     public function destroy(Request $request, Fav $fav)
     {
-        if( !is_null($fav) ){
-            if( File::exists('images/fav/' . $fav->image) ){
+        if (!is_null($fav)) {
+            if (File::exists('images/fav/' . $fav->image)) {
                 File::delete('images/fav/' . $fav->image);
             }
             $fav->delete();
         }
         //write success message
-        $request->session()->flash('delete', '  fav deleted Successfully'); 
+        $request->session()->flash('delete', '  fav deleted Successfully');
         return redirect()->route('fav');
     }
 }

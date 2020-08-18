@@ -228,8 +228,19 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
             // per category product show
             Route::get('/category/{category:slug}', 'ProductController@categoryProduct')->name('categoryProduct');
         });
+
+
+        
         
     
+    });
+
+    // controller for manage order by admin
+    Route::prefix('orders')->group(function(){
+        Route::get('pending_orders', 'Frontend\CartController@showPendingOrders')->name('pending_orders');
+        Route::get('pending_orders/{invoice:invoice_sl}', 'Frontend\CartController@showPendingOrderInvoice')->name('showPendingOrderInvoice');
+        Route::get('confirmed_orders', 'Frontend\CartController@showConfirmedOrders')->name('confirmed_orders');
+        Route::get('delivered_orders', 'Frontend\CartController@showDeliveredOrders')->name('delivered_orders');
     });
 });
 
@@ -279,8 +290,9 @@ Route::get('/about','Frontend\FrontendController@about')->name('about');
 
 //shop page route
 Route::get('/shop','Frontend\FrontendController@shop')->name('shop');
-Route::get('/shop/{product:slug}','Frontend\FrontendController@singeProduct')->name('singeProduct');
 Route::get('/shop/search','Frontend\FrontendController@search')->name('search');
+Route::get('/shop/{product:slug}','Frontend\FrontendController@singeProduct')->name('singeProduct');
+
 
 //show contact page
 Route::get('/contact','Frontend\FrontendController@contact')->name('contact');
@@ -290,7 +302,10 @@ Route::get('/gallery','Frontend\FrontendController@gallery')->name('gallery');
 
 //checkout
 Route::get('/checkout','Frontend\FrontendController@checkout')->name('checkout');
+Route::post('/checkout','Frontend\CartController@checkoutPost')->name('checkoutPost');
 
 //email subscription
 Route::post('/subscribers/create','Backend\EmailSubscriptionController@store')->name('subscribers.create');
+
+Route::get('/order/invoice/{invoice:invoice_sl}', 'Frontend\CartController@viewInvoiceCustomer')->name('invoice_view_customer');
 

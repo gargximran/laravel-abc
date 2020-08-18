@@ -24,5 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('cart')->group(function(){
     Route::post('add','Frontend\CartController@store' );
+    Route::post('delete','Frontend\CartController@destroy');
+    Route::post('update','Frontend\CartController@update');
+
+    Route::get('show','Frontend\CartController@show' );
 });
 

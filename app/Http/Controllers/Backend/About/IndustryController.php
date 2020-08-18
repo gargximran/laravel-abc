@@ -39,7 +39,7 @@ class IndustryController extends Controller
         $request->validate(
             [
                 'industry' => 'required'
-            ],
+            ]
         );
 
         $industry = new Industry();
@@ -87,7 +87,7 @@ class IndustryController extends Controller
         $request->validate(
             [
                 'industry' => 'required'
-            ],
+            ]
         );
 
         $industry->information = $request->industry;
